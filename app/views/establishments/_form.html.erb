@@ -13,11 +13,11 @@
   </div>
   <div>
     <%= f.label :address %>
-    <%= f.number_field :address %>
+    <%= f.text_field :address %>
   </div>
   <div>
     <%= f.label :number %>
-    <%= f.number_field :number %>
+    <%= f.text_field :number %>
   </div>
   <div>
     <%= f.label :neighborhood %>
@@ -44,6 +44,6 @@
     <%= f.email_field :email %>
   </div>
   <div>
-    <%= f.submit %>
+    <%= f.submit 'Save' %>
   </div>
 <% end %>
