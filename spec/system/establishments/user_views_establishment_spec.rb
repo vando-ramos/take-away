@@ -59,13 +59,14 @@ describe 'User visits the establishment page' do
     expect(page).not_to have_content('contato@giraffas.com.br')
   end
 
-  # it 'and there is no registered establishment' do
-  #   user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-  #                       password: '123456abcdef', password_confirmation: '123456abcdef')
+  it 'and there is no registered establishment' do
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
+                        password: '123456abcdef', password_confirmation: '123456abcdef')
 
-  #   login_as(user)
+    login_as(user)
+    visit(root_path)
 
-  #   expect(current_path).to eq(new_establishment_path)
-  #   expect(page).to have_content('Please register an establishment')
-  # end
+    expect(current_path).to eq(new_establishment_path)
+    expect(page).to have_content('Please register an establishment')
+  end
 end
