@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :identification_number, length: { is: 11 }, numericality: { only_integer: true }
   validate :valid_cpf
 
+  has_one :establishment
+
   private
 
   def valid_cpf

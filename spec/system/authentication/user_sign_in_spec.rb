@@ -6,17 +6,12 @@ describe 'User authenticates' do
                  password: '123456abcdef', password_confirmation: '123456abcdef')
 
     visit(root_path)
-    within('nav') do
-      click_on('Sign in')
-    end
     fill_in 'Email', with: 'bond@email.com'
     fill_in 'Password', with: '123456abcdef'
-    within('form') do
-      click_on('Sign in')
-    end
+    click_on('Sign in')
 
+    expect(page).not_to have_link('Sign in')
     within('nav') do
-      expect(page).not_to have_link('Sign in')
       expect(page).to have_button('Sign out')
       expect(page).to have_content('bond@email.com')
     end
@@ -28,23 +23,17 @@ describe 'User authenticates' do
                  password: '123456abcdef', password_confirmation: '123456abcdef')
 
     visit(root_path)
-    within('nav') do
-      click_on('Sign in')
-    end
     fill_in 'Email', with: 'bond@email.com'
     fill_in 'Password', with: '123456abcdef'
-    within('form') do
-      click_on('Sign in')
-    end
+    click_on('Sign in')
     within('nav') do
       click_on('Sign out')
     end
 
+    expect(current_path).to eq(new_user_session_path)
     within('nav') do
-      expect(page).to have_link('Sign in')
       expect(page).not_to have_button('Sign out')
       expect(page).not_to have_content('bond@email.com')
     end
-    expect(page).to have_content('Signed out successfully')
   end
 end
