@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'User authenticates' do
   it 'successfully' do
-    User.create!(name: 'James', last_name: 'Bond', identification_number: '111.222.333-44', email: 'bond@email.com',
+    User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
                  password: '123456abcdef', password_confirmation: '123456abcdef')
 
     visit(root_path)
@@ -24,7 +24,7 @@ describe 'User authenticates' do
   end
 
   it 'and sign out' do
-    User.create!(name: 'James', last_name: 'Bond', identification_number: '111.222.333-44', email: 'bond@email.com',
+    User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
                  password: '123456abcdef', password_confirmation: '123456abcdef')
 
     visit(root_path)
