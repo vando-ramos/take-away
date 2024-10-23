@@ -9,7 +9,8 @@
   </div>
   <div>
     <%= f.label :cnpj %>
-    <%= f.text_field :cnpj %>
+    <%= f.text_field :cnpj, placeholder: '00000000000000', pattern: "[0-9]*", inputmode: "numeric",
+                      maxlength: 14, title: 'Only numbers are allowed' %>
   </div>
   <div>
     <%= f.label :address %>
@@ -33,11 +34,13 @@
   </div>
   <div>
     <%= f.label :zip_code %>
-    <%= f.text_field :zip_code %>
+    <%= f.text_field :zip_code, placeholder: '00000000', pattern: "[0-9]*", inputmode: "numeric",
+                      maxlength: 9, title: 'Only numbers are allowed' %>
   </div>
   <div>
     <%= f.label :phone_number %>
-    <%= f.text_field :phone_number %>
+    <%= f.text_field :phone_number, placeholder: '00000000000', pattern: "[0-9]*", inputmode: "numeric",
+                      maxlength: 11, title: 'Only numbers are allowed' %>
   </div>
   <div>
     <%= f.label :email %>

@@ -42,5 +42,12 @@ RSpec.describe User, type: :model do
 
       expect(john.valid?).to eq false
     end
+
+    it 'email must be valid' do
+      user = User.new(name: 'John', last_name: 'Wick', identification_number: CPF.generate, email: 'wick.email.com',
+                      password: '123456abcdef', password_confirmation: '123456abcdef')
+
+      expect(user.valid?).to eq false
+    end
   end
 end

@@ -145,6 +145,36 @@ RSpec.describe Establishment, type: :model do
       expect(estab.valid?).to eq false
       expect(estab.errors[:cnpj]).to include("is not valid")
     end
+
+    it 'cnpj must be unique' do
+      bond = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
+                          password: '123456abcdef', password_confirmation: '123456abcdef')
+
+      john = User.create!(name: 'John', last_name: 'Wick', identification_number: CPF.generate, email: 'wick@email.com',
+                          password: '123456abcdef', password_confirmation: '123456abcdef')
+
+      cnpj = CNPJ.generate
+
+      estab1 = Establishment.create!(user: bond, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas', cnpj: cnpj,
+                                     address: 'Rua Comercial Sul', number: '123', neighborhood: 'Asa Sul', city: 'Brasília',
+                                     state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+
+      estab2 = Establishment.new(user: john, corporate_name: 'KFC Brasil S.A.', brand_name: 'KFC', cnpj: cnpj,
+                                     address: 'Av Paulista', number: '1234', neighborhood: 'Centro', city: 'São Paulo', state: 'SP', zip_code: '10010-100', phone_number: '1140041234', email: 'contato@kfc.com.br')
+
+      expect(estab2.valid?).to eq false
+    end
+
+    it 'email must be valid' do
+      user = User.create!(name: 'John', last_name: 'Wick', identification_number: CPF.generate, email: 'wick@email.com',
+                          password: '123456abcdef', password_confirmation: '123456abcdef')
+
+      estab = Establishment.new(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas', cnpj: 00011100012345,
+                                address: 'Rua Comercial Sul', number: '123', neighborhood: 'Asa Sul', city: 'Brasília',
+                                state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato.giraffas.com.br')
+
+      expect(estab.valid?).to eq false
+    end
   end
 
   describe 'generates a random code' do
