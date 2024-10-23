@@ -27,6 +27,18 @@ main {
   padding: 10px;
 }
 
+h2 {
+  margin: 20px;
+}
+
 section {
-  padding: 10px;
+  margin-left: 20px;
+}
+
+li {
+  margin: 10px;
+}
+
+.link {
+  margin: 20px;
 }

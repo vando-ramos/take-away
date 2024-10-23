@@ -1,10 +1,17 @@
 <h2>Operating Hours</h2>
 
-<ul>
-  <% @operating_hours.each do |op_hour| %>
-    <li>
-      <%= op_hour.day_of_week.capitalize %>
-      <p><%= op_hour.opening_time.strftime("%H:%M") %> - <%= op_hour.closing_time.strftime("%H:%M") %></p>
-    </li>
+<section class='operating-hours'>
+  <% if @operating_hours.any? %>
+    <ul>
+      <% @operating_hours.each do |op_hour| %>
+        <li>
+          <h3 class='day'><%= op_hour.day_of_week.capitalize %></h3>
+          <p><%= op_hour.opening_time.strftime("%H:%M") %> - <%= op_hour.closing_time.strftime("%H:%M") %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>There is no operating hours registered</p>
   <% end %>
-</ul>
+</section>
+
