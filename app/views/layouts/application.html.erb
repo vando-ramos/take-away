@@ -12,12 +12,14 @@
   </head>
 
   <body>
-    <nav>
+    <nav class='navbar'>    
+      <h1>Take Away</h1>
+
       <ul>
         <% if user_signed_in? %>
           <li><%= current_user.email %></li>
           <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete %></li>
-        <% end %>          
+        <% end %>        
       </ul>
     </nav>
 

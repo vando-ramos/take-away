@@ -7,6 +7,7 @@ class Establishment < ApplicationRecord
   validates :cnpj, uniqueness: true
   validate :valid_cnpj
   validates :email, format: { with: /\A[^@\s]+@([^@\s]+\.)+(com|br|org)\z/, message: 'must be a valid email' }
+  validates :phone_number, length: { in: 10..11, message: 'must be 10 or 11 digits' }
 
   before_validation :generate_code, on: :create
 

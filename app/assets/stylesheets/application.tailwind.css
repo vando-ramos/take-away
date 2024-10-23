@@ -12,9 +12,15 @@
 
 */
 
-nav {
-  border: 2px solid black;
-  padding: 10px;  
+.navbar {
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
+  height: 80px;
+  padding: 20px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 main {

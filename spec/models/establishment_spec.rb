@@ -175,6 +175,20 @@ RSpec.describe Establishment, type: :model do
 
       expect(estab.valid?).to eq false
     end
+
+    it 'phone number must be 10 or 11 digits' do
+      user = User.create!(name: 'John', last_name: 'Wick', identification_number: CPF.generate, email: 'wick@email.com',
+                          password: '123456abcdef', password_confirmation: '123456abcdef')
+
+      estab = Establishment.new(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas', cnpj: 00011100012345,
+                                address: 'Rua Comercial Sul', number: '123', neighborhood: 'Asa Sul', city: 'Brasília',
+                                state: 'DF', zip_code: '70300-902', phone_number: '98765432', email: 'contato@giraffas.com.br')
+
+      estab.valid?
+
+      expect(estab.errors.include? :phone_number).to be true
+      expect(estab.errors[:phone_number]).to include('must be 10 or 11 digits')
+    end
   end
 
   describe 'generates a random code' do
