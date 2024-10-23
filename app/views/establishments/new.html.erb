@@ -1,3 +1,11 @@
 <h2>Please register your establishment</h2>
 
+<% if @establishment.errors.any? %>
+  <ul>
+    <% @establishment.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= render 'form' %>

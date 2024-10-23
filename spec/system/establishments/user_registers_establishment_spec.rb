@@ -53,4 +53,25 @@ describe 'User registers an establishment' do
     expect(page).to have_content('2198765432')
     expect(page).to have_content('contato@giraffas.com.br')
   end
+
+  it 'with icomplete data' do
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
+                        password: '123456abcdef', password_confirmation: '123456abcdef')
+
+    login_as(user)
+    visit(root_path)
+    fill_in 'Corporate name', with: ''
+    fill_in 'Brand name', with: ''
+    fill_in 'Cnpj', with: ''
+    fill_in 'Phone number', with: ''
+    fill_in 'Email', with: ''
+    click_on 'Save'
+
+    expect(page).to have_content('Unable to register establishment')
+    expect(page).to have_content("Corporate name can't be blank")
+    expect(page).to have_content("Brand name can't be blank")
+    expect(page).to have_content("Cnpj can't be blank")
+    expect(page).to have_content("Phone number can't be blank")
+    expect(page).to have_content("Email can't be blank")
+  end
 end
