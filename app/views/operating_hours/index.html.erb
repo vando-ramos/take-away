@@ -1,0 +1,10 @@
+<h2>Operating Hours</h2>
+
+<ul>
+  <% @operating_hours.each do |op_hour| %>
+    <li>
+      <%= op_hour.day_of_week.capitalize %>
+      <p><%= op_hour.opening_time.strftime("%H:%M") %> - <%= op_hour.closing_time.strftime("%H:%M") %></p>
+    </li>
+  <% end %>
+</ul>
