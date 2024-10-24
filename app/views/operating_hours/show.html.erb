@@ -1,0 +1,6 @@
+<h2><%= @operating_hour.day_of_week.humanize %></h2>
+
+<p><%= @operating_hour.opening_time.strftime("%H:%M") %> - <%= @operating_hour.closing_time.strftime("%H:%M") %></p>
+<p><%= @operating_hour.status %></p>
+
+<%= link_to 'Edit', edit_establishment_operating_hour_path %>
