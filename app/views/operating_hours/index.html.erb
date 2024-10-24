@@ -1,12 +1,14 @@
 <h2>Operating Hours</h2>
 
+<div><%= link_to 'Register Operating Hour', new_establishment_operating_hour_path %></div>
+
 <section class='operating-hours'>
   <% if @operating_hours.any? %>
     <ul>
-      <% @operating_hours.each do |op_hour| %>
+      <% @operating_hours.each do |oh| %>
         <li>
-          <h3 class='day'><%= op_hour.day_of_week.capitalize %></h3>
-          <p><%= op_hour.opening_time.strftime("%H:%M") %> - <%= op_hour.closing_time.strftime("%H:%M") %></p>
+          <h3 class='day'><%= oh.day_of_week.humanize %></h3>
+          <p><%= oh.opening_time.strftime("%H:%M") %> - <%= oh.closing_time.strftime("%H:%M") %></p>
         </li>
       <% end %>
     </ul>
