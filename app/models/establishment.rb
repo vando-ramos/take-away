@@ -1,6 +1,7 @@
 class Establishment < ApplicationRecord
   belongs_to :user
   has_many :operating_hours
+  has_many :dishes
 
   validates :corporate_name, :brand_name, :cnpj, :address, :number, :neighborhood, :city, :state, :zip_code,
             :phone_number, :email, :code, presence: true

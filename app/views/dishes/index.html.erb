@@ -1,0 +1,13 @@
+<h2>Dishes</h2>
+
+<% if @dishes.any? %>
+  <ul>
+    <% @dishes.each do |dish| %>
+      <li><%= dish.name %></li>
+      <p><%= dish.description %></p>
+      <p><%= dish.calories %> cal</p>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There is no dishes registered</p>
+<% end %>

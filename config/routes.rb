@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root "home#index"
   resources :establishments do
     resources :operating_hours
+    resources :dishes
   end
 end
