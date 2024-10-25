@@ -1,3 +1,11 @@
 <h2>Register Dish</h2>
 
+<% if @dish.errors.any? %>
+  <ul>
+    <% @dish.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= render 'form' %>
