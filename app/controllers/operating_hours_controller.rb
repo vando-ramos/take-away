@@ -39,7 +39,11 @@ class OperatingHoursController < ApplicationController
   private
 
   def set_establishment
-    @establishment = Establishment.find(params[:establishment_id])
+    @establishment = Establishment.find_by(id: params[:establishment_id])
+    
+    if @establishment.nil?
+      redirect_to root_path, alert: 'Establishment not found'
+    end
   end
 
   def set_operating_hour

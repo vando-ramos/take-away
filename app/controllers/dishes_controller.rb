@@ -39,11 +39,24 @@ class DishesController < ApplicationController
   private
 
   def set_establishment
-    @establishment = Establishment.find(params[:establishment_id])
+    @establishment = current_user.establishment
   end
 
+  # def set_dish
+  #   @dish = @establishment.dishes.find_by(id: params[:id])
+  #   redirect_to establishment_dishes_path(@establishment.id), alert: 'Dish not found' if @dish.nil?
+  # end
+
   def set_dish
-    @dish = Dish.find(params[:id])
+    @dish = @establishment.dishes.find_by(id: params[:id])
+
+    if @dish.nil?
+      if Dish.exists?(id: params[:id])
+        redirect_to establishment_dishes_path(@establishment.id), alert: 'You do not have access to dishes from other establishments'
+      else
+        redirect_to establishment_dishes_path(@establishment.id), alert: 'Dish not found'
+      end
+    end
   end
 
   def dish_params

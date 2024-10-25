@@ -69,4 +69,19 @@ describe 'User visits the establishment page' do
     expect(current_path).to eq(new_establishment_path)
     expect(page).to have_content('Please register an establishment')
   end
+
+  it 'and the establishment not found' do
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
+                        password: '123456abcdef', password_confirmation: '123456abcdef')
+
+    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+                                  cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
+                                  neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+
+    login_as(user)
+    visit(establishment_path(9999))
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content('Establishment not found')
+  end
 end

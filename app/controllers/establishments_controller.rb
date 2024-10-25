@@ -1,5 +1,5 @@
 class EstablishmentsController < ApplicationController
-  before_action :set_order_and_check_user, only: %i[show]
+  before_action :set_establishment_and_check_user, only: %i[show]
 
   def show
   end
@@ -21,10 +21,12 @@ class EstablishmentsController < ApplicationController
 
   private
 
-  def set_order_and_check_user
-    @establishment = Establishment.find(params[:id])
+  def set_establishment_and_check_user
+    @establishment = Establishment.find_by(id: params[:id])
 
-    if @establishment.user != current_user
+    if @establishment.nil?
+      return redirect_to root_path, alert: 'Establishment not found'
+    elsif @establishment.user != current_user
       return redirect_to root_path, alert: 'You do not have access to other establishments'
     end
   end
