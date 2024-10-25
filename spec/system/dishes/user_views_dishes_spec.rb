@@ -19,11 +19,13 @@ describe 'User views the dishes' do
 
     Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
                  description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
-                 calories: 265, image: '')
+                 calories: 265,
+                 image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
 
     Dish.create!(establishment: estab, name: 'Macarrão Carbonara',
                  description: 'Macarrão com molho cremoso à base de ovos, queijo e bacon',
-                 calories: 550, image: '')
+                 calories: 550,
+                 image: fixture_file_upload(Rails.root.join('spec/fixtures/files/carbonara.jpg'), 'image/jpg'))
 
     login_as(user)
     visit(root_path)
@@ -34,11 +36,11 @@ describe 'User views the dishes' do
     expect(page).to have_content('Pizza')
     expect(page).to have_content('Pizza com molho de tomate, queijo, calabresa e orégano')
     expect(page).to have_content('265 cal')
-    # expect(page).to have_selector("img[src*='pizza-calabresa.jpg']")
+    expect(page).to have_css("img[src*='pizza-calabresa.jpg']")
     expect(page).to have_content('Macarrão Carbonara')
     expect(page).to have_content('Macarrão com molho cremoso à base de ovos, queijo e bacon')
     expect(page).to have_content('550 cal')
-    # expect(page).to have_selector("img[src*='carbonara.jpg']")
+    expect(page).to have_css("img[src*='carbonara.jpg']")
   end
 
   it 'and there is no dishes registered' do

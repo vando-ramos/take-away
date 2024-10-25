@@ -5,6 +5,7 @@
 <% if @dishes.any? %>
   <ul>
     <% @dishes.each do |dish| %>
+      <div class='dish-img'><%= image_tag dish.image %></div>
       <li><%= dish.name %></li>
       <p><%= dish.description %></p>
       <p><%= dish.calories %> cal</p>

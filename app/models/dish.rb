@@ -1,5 +1,5 @@
 class Dish < ApplicationRecord
   belongs_to :establishment
 
-  # has_one_attached :image
+  has_one_attached :image
 end
