@@ -33,7 +33,7 @@ describe 'User views the dishes' do
 
     expect(current_path).to eq(establishment_dishes_path(estab.id))
     expect(page).to have_content('Dishes')
-    expect(page).to have_content('Pizza')
+    expect(page).to have_content('Pizza de Calabresa')
     expect(page).to have_content('Pizza com molho de tomate, queijo, calabresa e orégano')
     expect(page).to have_content('265 cal')
     expect(page).to have_css("img[src*='pizza-calabresa.jpg']")

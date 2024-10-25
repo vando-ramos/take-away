@@ -51,6 +51,7 @@ describe 'User registers dishes' do
 
     expect(current_path).to eq(establishment_dishes_path(estab.id))
     expect(page).to have_content('Dish successfully registered')
+    expect(page).to have_content('Pizza de Calabresa')
     expect(page).to have_content('256 cal')
     expect(page).to have_content('Pizza com molho de tomate, queijo, calabresa e orégano')
     expect(page).to have_css("img[src*='pizza-calabresa.jpg']")

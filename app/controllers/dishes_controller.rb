@@ -1,8 +1,12 @@
 class DishesController < ApplicationController
   before_action :set_establishment
+  before_action :set_dish, only: %i[show edit update]
 
   def index
     @dishes = @establishment.dishes
+  end
+
+  def show
   end
 
   def new
@@ -20,10 +24,26 @@ class DishesController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @dish.update(dish_params)
+      redirect_to establishment_dishes_path(@establishment.id), notice: 'Dish successfully updated'
+    else
+      flash.now.alert = 'Unable to update dish'
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
   private
 
   def set_establishment
     @establishment = Establishment.find(params[:establishment_id])
+  end
+
+  def set_dish
+    @dish = Dish.find(params[:id])
   end
 
   def dish_params

@@ -3,13 +3,15 @@
 <%= link_to 'Register Dish', new_establishment_dish_path(@establishment.id) %>
 
 <% if @dishes.any? %>
-  <ul>
+  <ul>    
     <% @dishes.each do |dish| %>
-      <div class='dish-img'><%= image_tag dish.image %></div>
-      <li><%= dish.name %></li>
-      <p><%= dish.description %></p>
-      <p><%= dish.calories %> cal</p>
-    <% end %>
+      <div class='dish-container'>
+        <div class='dish-img'><%= image_tag dish.image %></div>
+        <li><%= link_to dish.name, establishment_dish_path(@establishment.id, dish.id) %></li>
+        <p><%= dish.description %></p>
+        <p><%= dish.calories %> cal</p>
+      </div>
+    <% end %>    
   </ul>
 <% else %>
   <p>There is no dishes registered</p>
