@@ -7,3 +7,6 @@
 </section>
 
 <%= link_to 'Edit', edit_establishment_dish_path(@establishment.id, @dish.id) %>
+
+<%= button_to 'Delete', establishment_dish_path(@establishment.id, @dish.id), 
+    method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>

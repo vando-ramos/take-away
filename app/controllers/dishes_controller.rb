@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
   before_action :set_establishment
-  before_action :set_dish, only: %i[show edit update]
+  before_action :set_dish, only: %i[show edit update destroy]
 
   def index
     @dishes = @establishment.dishes
@@ -36,16 +36,16 @@ class DishesController < ApplicationController
     end
   end
 
+  def destroy
+    @dish.destroy
+    redirect_to establishment_dishes_path(@establishment.id), notice: 'Dish successfully deleted'
+  end
+
   private
 
   def set_establishment
     @establishment = current_user.establishment
   end
-
-  # def set_dish
-  #   @dish = @establishment.dishes.find_by(id: params[:id])
-  #   redirect_to establishment_dishes_path(@establishment.id), alert: 'Dish not found' if @dish.nil?
-  # end
 
   def set_dish
     @dish = @establishment.dishes.find_by(id: params[:id])

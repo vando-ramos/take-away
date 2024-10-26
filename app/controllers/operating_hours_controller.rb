@@ -39,15 +39,20 @@ class OperatingHoursController < ApplicationController
   private
 
   def set_establishment
-    @establishment = Establishment.find_by(id: params[:establishment_id])
-    
-    if @establishment.nil?
-      redirect_to root_path, alert: 'Establishment not found'
-    end
+    @establishment = current_user.establishment
   end
 
   def set_operating_hour
-    @operating_hour = OperatingHour.find(params[:id])
+    @operating_hour = @establishment.operating_hours.find_by(id: params[:id])
+
+    if @operating_hour.nil?
+      if OperatingHour.exists?(id: params[:id])
+        redirect_to establishment_operating_hours_path(@establishment.id),
+        alert: 'You do not have access to operating hours from other establishments'
+      else
+        redirect_to establishment_operating_hours_path(@establishment.id), alert: 'Operating hours not found'
+      end
+    end
   end
 
   def operating_hour_params
