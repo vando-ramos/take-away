@@ -1,5 +1,5 @@
 class DishesController < ApplicationController
-  before_action :set_establishment
+  before_action :set_establishment_and_check_user
   before_action :set_dish, only: %i[show edit update destroy]
 
   def index
@@ -43,19 +43,21 @@ class DishesController < ApplicationController
 
   private
 
-  def set_establishment
-    @establishment = current_user.establishment
+  def set_establishment_and_check_user
+    @establishment = Establishment.find_by(id: params[:establishment_id])
+
+    if @establishment.nil?
+      return redirect_to root_path, alert: 'Establishment not found'
+    elsif @establishment.user != current_user
+      return redirect_to root_path,
+      alert: 'You do not have access to dishes from other establishments'
+    end
   end
 
   def set_dish
     @dish = @establishment.dishes.find_by(id: params[:id])
-
-    if @dish.nil?
-      if Dish.exists?(id: params[:id])
-        redirect_to establishment_dishes_path(@establishment.id), alert: 'You do not have access to dishes from other establishments'
-      else
-        redirect_to establishment_dishes_path(@establishment.id), alert: 'Dish not found'
-      end
+    unless @dish
+      redirect_to establishment_dishes_path(@establishment.id), alert: 'Dish not found'
     end
   end
 

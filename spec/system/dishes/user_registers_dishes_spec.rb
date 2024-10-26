@@ -9,7 +9,7 @@ describe 'User registers dishes' do
     expect(page).to have_field('Password')
   end
 
-  it 'from menu' do
+  it 'from the menu' do
     user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
                         password: '123456abcdef', password_confirmation: '123456abcdef')
 

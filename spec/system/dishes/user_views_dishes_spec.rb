@@ -104,7 +104,7 @@ describe 'User views the dishes' do
     login_as(bond)
     visit(establishment_dish_path(john_estab.id, dish.id))
 
-    expect(current_path).to eq(establishment_dishes_path(bond_estab.id))
+    expect(current_path).to eq(root_path)
     expect(page).to have_content('You do not have access to dishes from other establishments')
   end
 end

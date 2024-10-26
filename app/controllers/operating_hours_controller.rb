@@ -1,5 +1,5 @@
 class OperatingHoursController < ApplicationController
-  before_action :set_establishment
+  before_action :set_establishment_and_check_user
   before_action :set_operating_hour, only: %i[show edit update]
 
   def index
@@ -38,20 +38,21 @@ class OperatingHoursController < ApplicationController
 
   private
 
-  def set_establishment
-    @establishment = current_user.establishment
+  def set_establishment_and_check_user
+    @establishment = Establishment.find_by(id: params[:establishment_id])
+
+    if @establishment.nil?
+      return redirect_to root_path, alert: 'Establishment not found'
+    elsif @establishment.user != current_user
+      return redirect_to root_path,
+      alert: 'You do not have access to operating hours from other establishments'
+    end
   end
 
   def set_operating_hour
     @operating_hour = @establishment.operating_hours.find_by(id: params[:id])
-
-    if @operating_hour.nil?
-      if OperatingHour.exists?(id: params[:id])
-        redirect_to establishment_operating_hours_path(@establishment.id),
-        alert: 'You do not have access to operating hours from other establishments'
-      else
-        redirect_to establishment_operating_hours_path(@establishment.id), alert: 'Operating hours not found'
-      end
+    unless @operating_hour
+      redirect_to establishment_operating_hours_path(@establishment.id), alert: 'Operating hours not found'
     end
   end
 
