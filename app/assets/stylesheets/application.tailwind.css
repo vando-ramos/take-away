@@ -35,7 +35,7 @@ section {
   margin-left: 20px;
 }
 
-.dish-container {
+.container {
   margin-top: 30px;
 }
 
@@ -47,6 +47,6 @@ li {
   margin: 20px;
 }
 
-.dish-img {
+.img {
   width: 300px;
 }

@@ -1,0 +1,11 @@
+<h2>Register Drink</h2>
+
+<% if @drink.errors.any? %>
+  <ul>
+    <% @drink.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>

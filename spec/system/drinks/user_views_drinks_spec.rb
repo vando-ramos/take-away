@@ -36,11 +36,11 @@ describe 'User views the drinks' do
     expect(page).to have_content('Limonada')
     expect(page).to have_content('Uma refrescante bebida feita com limões frescos, açúcar e água')
     expect(page).to have_content('120 cal')
-    # expect(page).to have_css("img[src*='limonada.jpg']")
+    expect(page).to have_css("img[src*='limonada.jpg']")
     expect(page).to have_content('Mojito')
     expect(page).to have_content('Um coquetel clássico cubano feito com rum branco, limão, hortelã, açúcar e água com gás')
     expect(page).to have_content('150 cal')
-    # expect(page).to have_css("img[src*='mojito.jpg']")
+    expect(page).to have_css("img[src*='mojito.jpg']")
   end
 
   it 'and there is no drinks registered' do
@@ -104,7 +104,7 @@ describe 'User views the drinks' do
     login_as(bond)
     visit(establishment_drink_path(john_estab.id, drink.id))
 
-    expect(current_path).to eq(establishment_drinks_path(bond_estab.id))
+    expect(current_path).to eq(root_path)
     expect(page).to have_content('You do not have access to drinks from other establishments')
   end
 end
