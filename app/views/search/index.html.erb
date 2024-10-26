@@ -1,5 +1,4 @@
-<h2>Results</h2>
-<p>Dishes found: <%= @dishes.count %></p>
+<h2>Results found: <%= @dishes.count %></h2>
 
 <% if @dishes.present? %>
   <ul>
@@ -9,5 +8,17 @@
   </ul>
 <% else %>
   <p>Dish not found</p>
+<% end %>
+
+<h2>Results found: <%= @drinks.count %></h2>
+
+<% if @drinks.present? %>
+  <ul>
+    <% @drinks.each do |drink| %>''
+      <li><%= drink.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Drink not found</p>
 <% end %>
 

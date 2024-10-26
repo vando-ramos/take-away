@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  
+
   root "home#index"
 
   resources :establishments do
@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     resources :drinks
   end
 
-  get 'search', to: 'search#index'
+  resources :search, only: [:index]
 end
