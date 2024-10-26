@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
   before_action :set_establishment_and_check_user
-  before_action :set_drink, only: %i[show]
+  before_action :set_drink, only: %i[show edit update]
 
   def index
     @drinks = @establishment.drinks
@@ -21,6 +21,18 @@ class DrinksController < ApplicationController
     else
       flash.now.alert = 'Unable to register drink'
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @drink.update(drink_params)
+      redirect_to establishment_drinks_path(@establishment.id), notice: 'Drink successfully updated'
+    else
+      flash.now.alert = 'Unable to update drink'
+      render :edit, status: :unprocessable_entity
     end
   end
 
