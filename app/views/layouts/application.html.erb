@@ -17,10 +17,20 @@
         <h1>Take Away</h1>
       <% end %>
 
-      <ul>
+      <ul class='nav-list'>
         <% if user_signed_in? %>
-          <li><%= current_user.email %></li>
-          <li><%= button_to 'Sign out', destroy_user_session_path, method: :delete %></li>
+          <li class='nav-item'>
+            <%= form_with url: search_path, method: :get do |f| %>
+              <%= f.label :query, 'Search' %>
+              <%= f.text_field :query, placeholder: 'Search dishes and drinks' %>
+              <%= f.submit 'Search' %>
+            <% end %>
+          </li>
+
+          <li class='nav-item'>
+            <%= current_user.email %>
+            <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+          </li>          
         <% end %>        
       </ul>
     </nav>

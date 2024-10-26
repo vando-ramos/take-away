@@ -1,0 +1,13 @@
+<h2>Results</h2>
+<p>Dishes found: <%= @dishes.count %></p>
+
+<% if @dishes.present? %>
+  <ul>
+    <% @dishes.each do |dish| %>
+      <li><%= dish.name %></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Dish not found</p>
+<% end %>
+

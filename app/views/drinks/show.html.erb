@@ -4,7 +4,7 @@
   <div class='img'><%= image_tag @drink.image %></div>
   <p><%= @drink.description %></p>
   <p><%= @drink.calories %> cal</p>
-  <p>Is alcoholic? <%= @drink.is_alcoholic %> cal</p>
+  <p>Is alcoholic? <%= @drink.is_alcoholic %></p>
 </section>
 
 <%= link_to 'Edit', edit_establishment_drink_path(@establishment.id, @drink.id) %>
