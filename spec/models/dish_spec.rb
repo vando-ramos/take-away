@@ -11,9 +11,9 @@ RSpec.describe Dish, type: :model do
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
       dish = Dish.new(establishment: estab, name: '',
-                        description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
-                        calories: 265,
-                        image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+                      description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
+                      calories: 265,
+                      image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
 
       expect(dish.valid?).to eq false
     end
@@ -27,9 +27,9 @@ RSpec.describe Dish, type: :model do
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
       dish = Dish.new(establishment: estab, name: 'Pizza de Calabresa',
-                        description: '',
-                        calories: 265,
-                        image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+                      description: '',
+                      calories: 265,
+                      image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
 
       expect(dish.valid?).to eq false
     end
@@ -43,9 +43,9 @@ RSpec.describe Dish, type: :model do
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
       dish = Dish.new(establishment: estab, name: 'Pizza de Calabresa',
-                        description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
-                        calories: '',
-                        image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+                      description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
+                      calories: '',
+                      image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
 
       expect(dish.valid?).to eq false
     end
@@ -59,9 +59,9 @@ RSpec.describe Dish, type: :model do
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
       dish = Dish.new(establishment: estab, name: 'Pizza de Calabresa',
-                        description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
-                        calories: 265,
-                        image: '')
+                      description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
+                      calories: 265,
+                      image: '')
 
       expect(dish.valid?).to eq false
     end
