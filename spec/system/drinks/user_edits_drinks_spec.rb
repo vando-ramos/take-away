@@ -1,4 +1,6 @@
-describe 'User edits dishes' do
+require 'rails_helper'
+
+describe 'User edits drinks' do
   it 'if authenticated' do
     visit(root_path)
 
@@ -70,7 +72,7 @@ describe 'User edits dishes' do
     expect(page).to have_css("img[src*='mojito.jpg']")
   end
 
-  it 'successfully' do
+  it 'and all fields are mandatory' do
     user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
                         password: '123456abcdef', password_confirmation: '123456abcdef')
 

@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
   before_action :set_establishment_and_check_user
-  before_action :set_drink, only: %i[show edit update]
+  before_action :set_drink, only: %i[show edit update destroy]
 
   def index
     @drinks = @establishment.drinks
@@ -34,6 +34,11 @@ class DrinksController < ApplicationController
       flash.now.alert = 'Unable to update drink'
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @drink.destroy
+    redirect_to establishment_drinks_path(@establishment.id), notice: 'Drink successfully deleted'
   end
 
   private
