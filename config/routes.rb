@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :establishments do
     resources :operating_hours
     resources :dishes
+    resources :drinks
   end
 end

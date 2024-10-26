@@ -1,0 +1,16 @@
+<h2>Drinks</h2>
+
+<% if @drinks.any? %>
+  <ul>    
+    <% @drinks.each do |drink| %>
+      <div class='drink-container'>
+        <li><%= link_to drink.name, establishment_drink_path(@establishment.id, drink.id) %></li>
+        <p><%= drink.description %></p>
+        <p><%= drink.calories %> cal</p>
+        <p><%= drink.is_alcoholic %></p>
+      </div>
+    <% end %>    
+  </ul>
+<% else %>
+  <p>There is no drinks registered</p>
+<% end %>
