@@ -33,6 +33,7 @@ group :development, :test do
   gem "debug", platforms: %i[ mri windows ]
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'shoulda-matchers', '~> 6.0'
 end
 
 group :development do

@@ -49,5 +49,19 @@ RSpec.describe User, type: :model do
 
       expect(user.valid?).to eq false
     end
+
+    it 'password must be at least 12 characters long' do
+      user = User.new(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
+                      password: '123456', password_confirmation: '123456')
+
+      user.valid?
+
+      expect(user.errors.include? :password).to be true
+      expect(user.errors[:password]).to include('is too short (minimum is 12 characters)')
+    end
+  end
+
+  describe 'associations' do
+    it { should have_one(:establishment) }
   end
 end

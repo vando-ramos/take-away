@@ -191,7 +191,6 @@ describe 'User searches for dishes and drinks' do
                          calories: 550,
                          image: fixture_file_upload(Rails.root.join('spec/fixtures/files/carbonara.jpg'), 'image/jpg'))
 
-
     login_as(john)
     visit(root_path)
     fill_in 'Search', with: 'queijo'
@@ -209,10 +208,12 @@ describe 'User searches for dishes and drinks' do
     john = User.create!(name: 'John', last_name: 'Wick', identification_number: CPF.generate, email: 'wick@email.com',
                         password: '123456abcdef', password_confirmation: '123456abcdef')
 
-    estab1 = Establishment.create!(user: bond, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas', cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
+    estab1 = Establishment.create!(user: bond, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
                                   neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
-    estab2 = Establishment.create!(user: john, corporate_name: 'KFC Brasil S.A.', brand_name: 'KFC', cnpj: CNPJ.generate, address: 'Av Paulista', number: '1234',
+    estab2 = Establishment.create!(user: john, corporate_name: 'KFC Brasil S.A.', brand_name: 'KFC',
+                                  cnpj: CNPJ.generate, address: 'Av Paulista', number: '1234',
                                   neighborhood: 'Centro', city: 'São Paulo', state: 'SP', zip_code: '10010-100', phone_number: '1140041234', email: 'contato@kfc.com.br')
 
     drink1 = Drink.create!(establishment: estab1, name: 'Limonada',
@@ -224,7 +225,6 @@ describe 'User searches for dishes and drinks' do
                            description: 'Um coquetel clássico cubano feito com rum branco, limões, hortelã, açúcar e água com gás',
                            calories: 150, is_alcoholic: 'yes',
                            image: fixture_file_upload(Rails.root.join('spec/fixtures/files/mojito.jpg'), 'image/jpg'))
-
 
     login_as(john)
     visit(root_path)
