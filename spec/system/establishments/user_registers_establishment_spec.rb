@@ -74,4 +74,19 @@ describe 'User registers an establishment' do
     expect(page).to have_content("Phone number can't be blank")
     expect(page).to have_content("Email can't be blank")
   end
+
+  it 'and a user can only has one establishment' do
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
+                        password: '123456abcdef', password_confirmation: '123456abcdef')
+
+    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+                                  cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
+                                  neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+
+    login_as(user)
+    visit(new_establishment_path)
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content('You already have an establishment')
+  end
 end

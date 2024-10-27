@@ -1,5 +1,6 @@
 class EstablishmentsController < ApplicationController
   before_action :set_establishment_and_check_user, only: %i[show]
+  before_action :check_user_establishment, only: %i[new create]
 
   def show
   end
@@ -28,6 +29,12 @@ class EstablishmentsController < ApplicationController
       return redirect_to root_path, alert: 'Establishment not found'
     elsif @establishment.user != current_user
       return redirect_to root_path, alert: 'You do not have access to other establishments'
+    end
+  end
+
+  def check_user_establishment
+    if current_user.establishment.present?
+      redirect_to root_path, alert: 'You already have an establishment'
     end
   end
 
