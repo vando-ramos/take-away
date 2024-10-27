@@ -36,10 +36,12 @@ describe 'User views the drinks' do
     expect(page).to have_content('Limonada')
     expect(page).to have_content('Uma refrescante bebida feita com limões frescos, açúcar e água')
     expect(page).to have_content('120 cal')
+    expect(page).to have_content('Is alcoholic? No')
     expect(page).to have_css("img[src*='limonada.jpg']")
     expect(page).to have_content('Mojito')
     expect(page).to have_content('Um coquetel clássico cubano feito com rum branco, limão, hortelã, açúcar e água com gás')
     expect(page).to have_content('150 cal')
+    expect(page).to have_content('Is alcoholic? Yes')
     expect(page).to have_css("img[src*='mojito.jpg']")
   end
 
@@ -106,5 +108,31 @@ describe 'User views the drinks' do
 
     expect(current_path).to eq(root_path)
     expect(page).to have_content('You do not have access to drinks from other establishments')
+  end
+
+  it 'from the search' do
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
+                        password: '123456abcdef', password_confirmation: '123456abcdef')
+
+    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+                                  brand_name: 'Giraffas', cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123', neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432',
+                                  email: 'contato@giraffas.com.br')
+
+    Drink.create!(establishment: estab, name: 'Limonada',
+                  description: 'Uma refrescante bebida feita com limões frescos, açúcar e água',
+                  calories: 120, is_alcoholic: 'no',
+                  image: fixture_file_upload(Rails.root.join('spec/fixtures/files/limonada.jpg'), 'image/jpg'))
+
+    login_as(user)
+    visit(root_path)
+    fill_in 'Search', with: 'Limonada'
+    click_on('Search')
+    click_on('Limonada')
+
+    expect(page).to have_content('Limonada')
+    expect(page).to have_content('Uma refrescante bebida feita com limões frescos, açúcar e água')
+    expect(page).to have_content('120 cal')
+    expect(page).to have_content('Is alcoholic? No')
+    expect(page).to have_css("img[src*='limonada.jpg']")
   end
 end

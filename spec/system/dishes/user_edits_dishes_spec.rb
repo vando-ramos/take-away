@@ -97,4 +97,32 @@ describe 'User edits dishes' do
     expect(page).to have_content("Calories can't be blank")
     expect(page).to have_content("Description can't be blank")
   end
+
+  it 'from the search' do
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
+                        password: '123456abcdef', password_confirmation: '123456abcdef')
+
+    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+                                  cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
+                                  neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+
+    dish = Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
+                        description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
+                        calories: 265,
+                        image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+
+    login_as(user)
+    visit(root_path)
+    fill_in 'Search', with: 'Pizza de Calabresa'
+    click_on('Search')
+    click_on('Edit Pizza de Calabresa')
+
+    expect(current_path).to eq(edit_establishment_dish_path(estab.id, dish.id))
+    expect(page).to have_content('Edit Dish')
+    expect(page).to have_field('Name', with: 'Pizza de Calabresa')
+    expect(page).to have_field('Description', with: 'Pizza com molho de tomate, queijo, calabresa e orégano')
+    expect(page).to have_field('Calories', with: '265')
+    expect(page).to have_field('Image', type: 'file')
+    expect(page).to have_button('Update Dish')
+  end
 end

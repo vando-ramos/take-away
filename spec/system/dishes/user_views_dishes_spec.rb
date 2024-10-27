@@ -107,4 +107,29 @@ describe 'User views the dishes' do
     expect(current_path).to eq(root_path)
     expect(page).to have_content('You do not have access to dishes from other establishments')
   end
+
+  it 'from the search' do
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
+                        password: '123456abcdef', password_confirmation: '123456abcdef')
+
+    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+                                  brand_name: 'Giraffas', cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123', neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432',
+                                  email: 'contato@giraffas.com.br')
+
+    Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
+                 description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
+                 calories: 265,
+                 image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+
+    login_as(user)
+    visit(root_path)
+    fill_in 'Search', with: 'Pizza'
+    click_on('Search')
+    click_on('Pizza de Calabresa')
+
+    expect(page).to have_content('Pizza de Calabresa')
+    expect(page).to have_content('Pizza com molho de tomate, queijo, calabresa e orégano')
+    expect(page).to have_content('265 cal')
+    expect(page).to have_css("img[src*='pizza-calabresa.jpg']")
+  end
 end

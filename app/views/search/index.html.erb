@@ -3,7 +3,9 @@
 <% if @dishes.present? %>
   <ul>
     <% @dishes.each do |dish| %>
-      <li><%= dish.name %></li>
+      <li><%= link_to dish.name, establishment_dish_path(@establishment.id, dish.id) %></li>
+
+      <%= link_to "Edit #{dish.name}", edit_establishment_dish_path(@establishment.id, dish.id) %>
     <% end %>
   </ul>
 <% else %>
@@ -15,7 +17,9 @@
 <% if @drinks.present? %>
   <ul>
     <% @drinks.each do |drink| %>
-      <li><%= drink.name %></li>
+      <li><%= link_to drink.name, establishment_drink_path(@establishment.id, drink.id) %></li>
+
+      <%= link_to "Edit #{drink.name}", edit_establishment_drink_path(@establishment.id, drink.id) %>
     <% end %>
   </ul>
 <% else %>
