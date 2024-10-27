@@ -82,4 +82,8 @@ RSpec.describe Drink, type: :model do
       expect(drink.valid?).to eq false
     end
   end
+
+  describe 'associations' do
+    it { should belong_to(:establishment) }
+  end
 end

@@ -66,4 +66,8 @@ RSpec.describe Dish, type: :model do
       expect(dish.valid?).to eq false
     end
   end
+
+  describe 'associations' do
+    it { should belong_to(:establishment) }
+  end
 end

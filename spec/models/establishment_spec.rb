@@ -236,5 +236,8 @@ RSpec.describe Establishment, type: :model do
 
   describe 'associations' do
     it { should belong_to(:user) }
+    it { should have_many(:operating_hours) }
+    it { should have_many(:dishes) }
+    it { should have_many(:drinks) }
   end
 end
