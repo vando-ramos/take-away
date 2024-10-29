@@ -9,11 +9,15 @@ Rails.application.routes.draw do
     resources :dishes do
       post 'active', on: :member
       post 'inactive', on: :member
+
+      # resources :options
     end
-    
+
     resources :drinks do
       post 'active', on: :member
       post 'inactive', on: :member
+
+      # resources :options
     end
   end
 

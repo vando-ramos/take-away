@@ -17,3 +17,18 @@
 
 <%= button_to 'Delete', establishment_drink_path(@establishment.id, @drink.id), 
     method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+
+<h2>Options</h2>
+
+<%= link_to 'Register Option' %>
+
+<% if @drink.options.any? %>
+  <ul>
+    <% @drink.options.each do |option| %>
+      <li><%= option.description %></li>
+      <li><%= number_to_currency(option.price, unit: "R$", separator: ",", delimiter: ".") %></li>
+    <% end %>
+  </ul>
+<% else %>
+  There are no registered options
+<% end %>
