@@ -1,14 +1,12 @@
 <div class='form-container'>
-  <%= form_with model: [@establishment, @dish, @option], 
-      url: establishment_dish_dish_options_path(@establishment, @dish) do |f| %>        
+  <%= form_with model: [@establishment, @dish, @dish_option] do |f| %>        
     <div>
       <%= f.label :description %>
       <%= f.text_area :description %>
     </div>
     <div>
       <%= f.label :price %>
-      <%= f.number_field :price, step: 0.01, value: number_to_currency(f.object.price, unit: "", 
-                          separator: ",", delimiter: ".") %>
+      <%= f.text_field :price %>
     </div>
     <div>
       <%= f.submit %>

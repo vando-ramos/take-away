@@ -15,8 +15,8 @@ describe 'User views options' do
                         calories: 265, status: 'active',
                         image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
 
-    Option.create!(dish: dish, drink: nil, price: '30,00', description: 'Média (26cm de diâmetro)')
-    Option.create!(dish: dish, drink: nil, price: '50,00', description: 'Grande (35cm de diâmetro)')
+    DishOption.create!(dish: dish, price: '30,00', description: 'Média (26cm de diâmetro)')
+    DishOption.create!(dish: dish, price: '50,00', description: 'Grande (35cm de diâmetro)')
 
     login_as(user)
     visit(root_path)
@@ -25,7 +25,7 @@ describe 'User views options' do
 
     expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
     expect(page).to have_content('Options')
-    expect(page).to have_link('Register Option')
+    expect(page).to have_link('Register Dish Option')
     expect(page).to have_content('Média (26cm de diâmetro)')
     expect(page).to have_content('R$30,00')
     expect(page).to have_content('Grande (35cm de diâmetro)')
@@ -46,8 +46,8 @@ describe 'User views options' do
                           calories: 120, is_alcoholic: 'no', status: 'active',
                           image: fixture_file_upload(Rails.root.join('spec/fixtures/files/limonada.jpg'), 'image/jpg'))
 
-    Option.create!(dish: nil, drink: drink, price: '5,00', description: '300ml')
-    Option.create!(dish: nil, drink: drink, price: '8,00', description: '500ml')
+    DrinkOption.create!(drink: drink, price: '5,00', description: '300ml')
+    DrinkOption.create!(drink: drink, price: '8,00', description: '500ml')
 
     login_as(user)
     visit(root_path)
@@ -56,7 +56,7 @@ describe 'User views options' do
 
     expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
     expect(page).to have_content('Options')
-    expect(page).to have_link('Register Option')
+    expect(page).to have_link('Register Drink Option')
     expect(page).to have_content('300ml')
     expect(page).to have_content('R$5,00')
     expect(page).to have_content('500ml')
@@ -84,8 +84,8 @@ describe 'User views options' do
 
     expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
     expect(page).to have_content('Options')
-    expect(page).to have_link('Register Option')
-    expect(page).to have_content('There are no registered options')
+    expect(page).to have_link('Register Dish Option')
+    expect(page).to have_content('There are no registered dish options')
   end
 
   it 'and there are no registered options for drinks' do
@@ -109,7 +109,7 @@ describe 'User views options' do
 
     expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
     expect(page).to have_content('Options')
-    expect(page).to have_link('Register Option')
-    expect(page).to have_content('There are no registered options')
+    expect(page).to have_link('Register Drink Option')
+    expect(page).to have_content('There are no registered drink options')
   end
 end

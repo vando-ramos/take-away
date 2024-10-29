@@ -19,15 +19,18 @@
 
 <h2>Options</h2>
 
-<div><%= link_to 'Register Option', new_establishment_dish_dish_option_path(@establishment.id, @dish.id) %></div>
+<div><%= link_to 'Register Dish Option', new_establishment_dish_dish_option_path(@establishment.id, @dish.id) %></div>
 
-<% if @dish.options.any? %>
+<% if @dish.dish_options.any? %>
   <ul>
-    <% @dish.options.each do |option| %>
+    <% @dish.dish_options.each do |option| %>
       <li><%= option.description %></li>
       <li><%= number_to_currency(option.price, unit: "R$", separator: ",", delimiter: ".") %></li>
+
+      <%= link_to "Edit #{option.description}", 
+          edit_establishment_dish_dish_option_path(@establishment.id, @dish.id) %>
     <% end %>
   </ul>
 <% else %>
-  <p>There are no registered options</p>
+  <p>There are no registered dish options</p>
 <% end %>

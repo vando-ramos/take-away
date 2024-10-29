@@ -20,15 +20,15 @@
 
 <h2>Options</h2>
 
-<div><%= link_to 'Register Option', new_establishment_drink_drink_option_path(@establishment.id, @drink.id) %></div>
+<div><%= link_to 'Register Drink Option', new_establishment_drink_drink_option_path(@establishment.id, @drink.id) %></div>
 
-<% if @drink.options.any? %>
+<% if @drink.drink_options.any? %>
   <ul>
-    <% @drink.options.each do |option| %>
+    <% @drink.drink_options.each do |option| %>
       <li><%= option.description %></li>
       <li><%= number_to_currency(option.price, unit: "R$", separator: ",", delimiter: ".") %></li>
     <% end %>
   </ul>
 <% else %>
-  <p>There are no registered options</p>
+  <p>There are no registered drink options</p>
 <% end %>

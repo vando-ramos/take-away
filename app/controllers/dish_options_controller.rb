@@ -1,20 +1,33 @@
 class DishOptionsController < ApplicationController
   before_action :set_establishment_and_check_user
   before_action :set_dish
+  before_action :set_dish_option, only: %i[edit update]
 
   def new
-    @option = @dish.options.build
+    @dish_option = @dish.dish_options.build
     @dishes = Dish.all
   end
 
   def create
-    @option = @dish.options.build(option_params)
+    @dish_option = @dish.dish_options.build(dish_option_params)
 
-    if @option.save
-      redirect_to establishment_dish_path(@establishment.id, @dish.id), notice: 'Option successfully registered'
+    if @dish_option.save
+      redirect_to establishment_dish_path(@establishment.id, @dish.id), notice: 'Dish option successfully registered'
     else
-      flash.now.alert = 'Unable to register option'
+      flash.now.alert = 'Unable to register dish option'
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    if @dish_option.update(dish_option_params)
+      redirect_to establishment_dish_path(@establishment.id, @dish.id), notice: 'Dish option successfully updated'
+    else
+      flash.now.alert = 'Unable to update dish option'
+      render :edit, status: :unprocessable_entity
     end
   end
 
@@ -35,7 +48,11 @@ class DishOptionsController < ApplicationController
     @dish = Dish.find_by(id: params[:dish_id])
   end
 
-  def option_params
-    params.require(:option).permit(:dish_id, :description, :price)
+  def set_dish_option
+    @dish_option = DishOption.find(params[:id])
+  end
+
+  def dish_option_params
+    params.require(:dish_option).permit(:dish_id, :description, :price)
   end
 end

@@ -19,13 +19,13 @@ describe 'User registers options' do
     visit(root_path)
     click_on('Dishes')
     click_on('Pizza de Calabresa')
-    click_on('Register Option')
+    click_on('Register Dish Option')
 
     expect(current_path).to eq(new_establishment_dish_dish_option_path(estab.id, dish.id))
-    expect(page).to have_content('Register Option')
+    expect(page).to have_content('Register Dish Option')
     expect(page).to have_field('Description')
     expect(page).to have_field('Price')
-    expect(page).to have_button('Create Option')
+    expect(page).to have_button('Create Dish option')
   end
 
   it 'Successfully' do
@@ -46,13 +46,13 @@ describe 'User registers options' do
     visit(root_path)
     click_on('Dishes')
     click_on('Pizza de Calabresa')
-    click_on('Register Option')
+    click_on('Register Dish Option')
     fill_in 'Description', with: 'Média (26cm de diâmetro)'
     fill_in 'Price', with: '30,00'
-    click_on('Create Option')
+    click_on('Create Dish option')
 
     expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
-    expect(page).to have_content('Option successfully registered')
+    expect(page).to have_content('Dish option successfully registered')
     expect(page).to have_content('Média (26cm de diâmetro)')
     expect(page).to have_content('R$30,00')
   end
@@ -75,13 +75,13 @@ describe 'User registers options' do
     visit(root_path)
     click_on('Drinks')
     click_on('Limonada')
-    click_on('Register Option')
+    click_on('Register Drink Option')
 
     expect(current_path).to eq(new_establishment_drink_drink_option_path(estab.id, drink.id))
-    expect(page).to have_content('Register Option')
+    expect(page).to have_content('Register Drink Option')
     expect(page).to have_field('Description')
     expect(page).to have_field('Price')
-    expect(page).to have_button('Create Option')
+    expect(page).to have_button('Create Drink option')
   end
 
   it 'from the drink details page' do
@@ -102,14 +102,14 @@ describe 'User registers options' do
     visit(root_path)
     click_on('Drinks')
     click_on('Limonada')
-    click_on('Register Option')
+    click_on('Register Drink Option')
     fill_in 'Description', with: '300ml'
     fill_in 'Price', with: '5,00'
-    click_on('Create Option')
+    click_on('Create Drink option')
 
     expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
-    expect(page).to have_content('Register Option')
-    expect(page).to have_content('Option successfully registered')
+    expect(page).to have_content('Register Drink Option')
+    expect(page).to have_content('Drink option successfully registered')
     expect(page).to have_content('300ml')
     expect(page).to have_content('R$5,00')
   end

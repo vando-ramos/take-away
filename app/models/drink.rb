@@ -1,6 +1,6 @@
 class Drink < ApplicationRecord
   belongs_to :establishment
-  has_many :options
+  has_many :drink_options
 
   has_one_attached :image
 
