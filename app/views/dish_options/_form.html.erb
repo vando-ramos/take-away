@@ -1,13 +1,6 @@
 <div class='form-container'>
-  <%= form_with model: [@establishment, @dish, @option] do |f| %>
-    <div>
-      <%= f.label :dish_id %>
-      <%= f.collection_select :dish_id, @dishes, :id, :name, include_blank: true %>
-    </div>
-    <div>
-      <%= f.label :drink_id %>
-      <%= f.collection_select :drink_id, @drinks, :id, :name, include_blank: true %>
-    </div>
+  <%= form_with model: [@establishment, @dish, @option], 
+      url: establishment_dish_dish_options_path(@establishment, @dish) do |f| %>        
     <div>
       <%= f.label :description %>
       <%= f.text_area :description %>

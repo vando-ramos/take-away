@@ -20,7 +20,7 @@
 
 <h2>Options</h2>
 
-<%= link_to 'Register Option' %>
+<div><%= link_to 'Register Option', new_establishment_drink_drink_option_path(@establishment.id, @drink.id) %></div>
 
 <% if @drink.options.any? %>
   <ul>
@@ -30,5 +30,5 @@
     <% end %>
   </ul>
 <% else %>
-  There are no registered options
+  <p>There are no registered options</p>
 <% end %>

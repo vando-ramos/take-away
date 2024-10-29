@@ -1,18 +1,17 @@
-class OptionsController < ApplicationController
+class DrinkOptionsController < ApplicationController
   before_action :set_establishment_and_check_user
-  before_action :set_dish
+  before_action :set_drink
 
   def new
-    @option = @dish.options.build
-    @dishes = Dish.all
+    @option = @drink.options.build
     @drinks = Drink.all
   end
 
   def create
-    @option = @dish.options.build(option_params)
+    @option = @drink.options.build(option_params)
 
     if @option.save
-      redirect_to establishment_dish_path(@establishment.id, @dish.id), notice: 'Option successfully registered'
+      redirect_to establishment_drink_path(@establishment.id, @drink.id), notice: 'Option successfully registered'
     else
       flash.now.alert = 'Unable to register option'
       render :new, status: :unprocessable_entity
@@ -32,11 +31,11 @@ class OptionsController < ApplicationController
     end
   end
 
-  def set_dish
-    @dish = Dish.find_by(id: params[:dish_id])
+  def set_drink
+    @drink = Drink.find_by(id: params[:drink_id])
   end
 
   def option_params
-    params.require(:option).permit(:dish_id, :drink_id, :description, :price)
+    params.require(:option).permit(:drink_id, :description, :price)
   end
 end
