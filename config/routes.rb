@@ -10,14 +10,14 @@ Rails.application.routes.draw do
       post 'active', on: :member
       post 'inactive', on: :member
 
-      # resources :options
+      resources :options
     end
 
     resources :drinks do
       post 'active', on: :member
       post 'inactive', on: :member
 
-      # resources :options
+      resources :options
     end
   end
 

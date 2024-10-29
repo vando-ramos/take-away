@@ -19,7 +19,7 @@
 
 <h2>Options</h2>
 
-<%= link_to 'Register Option' %>
+<%= link_to 'Register Option', new_establishment_dish_option_path(@establishment.id, @dish.id) %>
 
 <% if @dish.options.any? %>
   <ul>
