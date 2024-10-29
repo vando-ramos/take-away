@@ -24,12 +24,14 @@ describe 'User views the dishes' do
     Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
                  description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
                  calories: 265,
-                 image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+                 image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'),
+                 status: 'active')
 
     Dish.create!(establishment: estab, name: 'Macarrão Carbonara',
                  description: 'Macarrão com molho cremoso à base de ovos, queijo e bacon',
                  calories: 550,
-                 image: fixture_file_upload(Rails.root.join('spec/fixtures/files/carbonara.jpg'), 'image/jpg'))
+                 image: fixture_file_upload(Rails.root.join('spec/fixtures/files/carbonara.jpg'), 'image/jpg'),
+                 status: 'inactive')
 
     login_as(user)
     visit(root_path)
@@ -37,11 +39,11 @@ describe 'User views the dishes' do
 
     expect(current_path).to eq(establishment_dishes_path(estab.id))
     expect(page).to have_content('Dishes')
-    expect(page).to have_content('Pizza de Calabresa')
+    expect(page).to have_content('Pizza de Calabresa (Active)')
     expect(page).to have_content('Pizza com molho de tomate, queijo, calabresa e orégano')
     expect(page).to have_content('265 cal')
     expect(page).to have_css("img[src*='pizza-calabresa.jpg']")
-    expect(page).to have_content('Macarrão Carbonara')
+    expect(page).to have_content('Macarrão Carbonara (Inactive)')
     expect(page).to have_content('Macarrão com molho cremoso à base de ovos, queijo e bacon')
     expect(page).to have_content('550 cal')
     expect(page).to have_css("img[src*='carbonara.jpg']")
@@ -123,7 +125,8 @@ describe 'User views the dishes' do
     Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
                  description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
                  calories: 265,
-                 image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+                 image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'),
+                 status: 'active')
 
     login_as(user)
     visit(root_path)
@@ -131,7 +134,7 @@ describe 'User views the dishes' do
     click_on('Search')
     click_on('Pizza de Calabresa')
 
-    expect(page).to have_content('Pizza de Calabresa')
+    expect(page).to have_content('Pizza de Calabresa (Active)')
     expect(page).to have_content('Pizza com molho de tomate, queijo, calabresa e orégano')
     expect(page).to have_content('265 cal')
     expect(page).to have_css("img[src*='pizza-calabresa.jpg']")

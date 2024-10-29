@@ -7,7 +7,10 @@
     <% @drinks.each do |drink| %>
       <div class='container'>
         <div class='img'><%= image_tag drink.image %></div>
-        <li><%= link_to drink.name, establishment_drink_path(@establishment.id, drink.id) %></li>
+        <li>
+          <%= link_to drink.name, establishment_drink_path(@establishment.id, drink.id) %> 
+          (<%= drink.status.humanize %>)
+        </li>
         <p><%= drink.description %></p>
         <p><%= drink.calories %> cal</p>
         <p>Is alcoholic? <%= drink.is_alcoholic.humanize %></p>

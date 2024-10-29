@@ -1,6 +1,6 @@
 class DrinksController < ApplicationController
   before_action :set_establishment_and_check_user
-  before_action :set_drink, only: %i[show edit update destroy]
+  before_action :set_drink, only: %i[show edit update destroy active inactive]
 
   def index
     @drinks = @establishment.drinks
@@ -39,6 +39,16 @@ class DrinksController < ApplicationController
   def destroy
     @drink.destroy
     redirect_to establishment_drinks_path(@establishment.id), notice: 'Drink successfully deleted'
+  end
+
+  def active
+    @drink.active!
+    redirect_to establishment_drink_path(@establishment, @drink.id), notice: 'Drink successfully activated'
+  end
+
+  def inactive
+    @drink.inactive!
+    redirect_to establishment_drink_path(@establishment, @drink.id), notice: 'Drink successfully deactivated'
   end
 
   private

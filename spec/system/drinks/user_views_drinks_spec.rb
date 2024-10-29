@@ -19,12 +19,12 @@ describe 'User views the drinks' do
 
     Drink.create!(establishment: estab, name: 'Limonada',
                  description: 'Uma refrescante bebida feita com limões frescos, açúcar e água',
-                 calories: 120, is_alcoholic: 'no',
+                 calories: 120, is_alcoholic: 'no', status: 'active',
                  image: fixture_file_upload(Rails.root.join('spec/fixtures/files/limonada.jpg'), 'image/jpg'))
 
     Drink.create!(establishment: estab, name: 'Mojito',
                  description: 'Um coquetel clássico cubano feito com rum branco, limão, hortelã, açúcar e água com gás',
-                 calories: 150, is_alcoholic: 'yes',
+                 calories: 150, is_alcoholic: 'yes', status: 'inactive',
                  image: fixture_file_upload(Rails.root.join('spec/fixtures/files/mojito.jpg'), 'image/jpg'))
 
     login_as(user)
@@ -33,12 +33,12 @@ describe 'User views the drinks' do
 
     expect(current_path).to eq(establishment_drinks_path(estab.id))
     expect(page).to have_content('Drinks')
-    expect(page).to have_content('Limonada')
+    expect(page).to have_content('Limonada (Active)')
     expect(page).to have_content('Uma refrescante bebida feita com limões frescos, açúcar e água')
     expect(page).to have_content('120 cal')
     expect(page).to have_content('Is alcoholic? No')
     expect(page).to have_css("img[src*='limonada.jpg']")
-    expect(page).to have_content('Mojito')
+    expect(page).to have_content('Mojito (Inactive)')
     expect(page).to have_content('Um coquetel clássico cubano feito com rum branco, limão, hortelã, açúcar e água com gás')
     expect(page).to have_content('150 cal')
     expect(page).to have_content('Is alcoholic? Yes')
@@ -120,7 +120,7 @@ describe 'User views the drinks' do
 
     Drink.create!(establishment: estab, name: 'Limonada',
                   description: 'Uma refrescante bebida feita com limões frescos, açúcar e água',
-                  calories: 120, is_alcoholic: 'no',
+                  calories: 120, is_alcoholic: 'no', status: 'active',
                   image: fixture_file_upload(Rails.root.join('spec/fixtures/files/limonada.jpg'), 'image/jpg'))
 
     login_as(user)
@@ -129,7 +129,7 @@ describe 'User views the drinks' do
     click_on('Search')
     click_on('Limonada')
 
-    expect(page).to have_content('Limonada')
+    expect(page).to have_content('Limonada (Active)')
     expect(page).to have_content('Uma refrescante bebida feita com limões frescos, açúcar e água')
     expect(page).to have_content('120 cal')
     expect(page).to have_content('Is alcoholic? No')
