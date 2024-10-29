@@ -1,4 +1,11 @@
-<h2><%= @dish.name %></h2>
+<h2><%= @dish.name %> (<%= @dish.status.humanize %>)</h2>
+
+<% if @dish.status == 'active' %>
+  <%= button_to 'Deactivate', inactive_establishment_dish_path(@establishment.id, @dish.id) %>
+<% else %>
+  <%= button_to 'Activate', active_establishment_dish_path(@establishment.id, @dish.id) %>
+<% end %>
+
 
 <section>
   <div class='img'><%= image_tag @dish.image %></div>  

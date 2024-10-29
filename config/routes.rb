@@ -5,7 +5,10 @@ Rails.application.routes.draw do
 
   resources :establishments do
     resources :operating_hours
-    resources :dishes
+    resources :dishes do
+      post 'active', on: :member
+      post 'inactive', on: :member
+    end
     resources :drinks
   end
 

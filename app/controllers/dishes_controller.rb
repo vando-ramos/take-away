@@ -1,6 +1,6 @@
 class DishesController < ApplicationController
   before_action :set_establishment_and_check_user
-  before_action :set_dish, only: %i[show edit update destroy]
+  before_action :set_dish, only: %i[show edit update destroy active inactive]
 
   def index
     @dishes = @establishment.dishes
@@ -39,6 +39,16 @@ class DishesController < ApplicationController
   def destroy
     @dish.destroy
     redirect_to establishment_dishes_path(@establishment.id), notice: 'Dish successfully deleted'
+  end
+
+  def active
+    @dish.active!
+    redirect_to establishment_dish_path(@establishment, @dish.id), notice: 'Dish successfully activated'
+  end
+
+  def inactive
+    @dish.inactive!
+    redirect_to establishment_dish_path(@establishment, @dish.id), notice: 'Dish successfully deactivated'
   end
 
   private

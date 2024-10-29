@@ -4,4 +4,6 @@ class Dish < ApplicationRecord
   has_one_attached :image
 
   validates :name, :description, :calories, :image, presence: true
+
+  enum status: { active: 0, inactive: 1 }
 end
