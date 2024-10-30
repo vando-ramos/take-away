@@ -3,7 +3,8 @@ class DishesController < ApplicationController
   before_action :set_dish, only: %i[show edit update destroy active inactive]
 
   def index
-    @dishes = @establishment.dishes
+    @tags = Tag.all
+    @dishes = params[:tag_id].present? ? Dish.joins(:tags).where(tags: { id: params[:tag_id] }) : Dish.all
   end
 
   def show

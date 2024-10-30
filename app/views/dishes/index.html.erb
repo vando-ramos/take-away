@@ -2,6 +2,14 @@
 
 <div><%= link_to 'Register Dish', new_establishment_dish_path(@establishment.id) %></div>
 
+<%= form_with(url: establishment_dishes_path(@establishment), method: :get) do %>
+  <%= label_tag :tag_id, "Filter by Tag" %>
+  <%= select_tag :tag_id, options_from_collection_for_select(@tags, :id, :name, params[:tag_id]), 
+                  include_blank: "All" %>
+
+  <%= submit_tag "Filter" %>
+<% end %>
+
 <% if @dishes.any? %>
   <ul>    
     <% @dishes.each do |dish| %>
