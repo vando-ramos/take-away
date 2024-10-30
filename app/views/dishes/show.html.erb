@@ -1,5 +1,9 @@
 <h2><%= @dish.name %> (<%= @dish.status.humanize %>)</h2>
 
+<% @dish.tags.each do |tag| %>
+  <span>#<%= tag.name %></span>
+<% end %>
+
 <% if @dish.status == 'active' %>
   <%= button_to 'Deactivate', inactive_establishment_dish_path(@establishment.id, @dish.id) %>
 <% else %>

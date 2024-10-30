@@ -17,6 +17,15 @@
       <%= f.file_field :image %>
     </div> 
     <div>
+      <%= f.label :tags %>
+      <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |box| %>
+        <div>
+          <%= box.check_box %>
+          <%= box.label %>
+        </div>
+      <% end %>
+    </div>
+    <div>
       <%= f.submit %>
     </div>
   <% end %>

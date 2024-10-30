@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_30_151140) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_30_162235) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -46,6 +46,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_30_151140) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dish_id"], name: "index_dish_options_on_dish_id"
+  end
+
+  create_table "dish_tags", force: :cascade do |t|
+    t.integer "tag_id", null: false
+    t.integer "dish_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_dish_tags_on_dish_id"
+    t.index ["tag_id"], name: "index_dish_tags_on_tag_id"
   end
 
   create_table "dishes", force: :cascade do |t|
@@ -136,6 +145,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_30_151140) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "dish_options", "dishes"
+  add_foreign_key "dish_tags", "dishes"
+  add_foreign_key "dish_tags", "tags"
   add_foreign_key "dishes", "establishments"
   add_foreign_key "drink_options", "drinks"
   add_foreign_key "drinks", "establishments"
