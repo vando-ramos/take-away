@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post 'inactive', on: :member
 
       resources :dish_options, only: %i[new create edit update]
+
     end
 
     resources :drinks do
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
 
       resources :drink_options, only: %i[new create edit update]
     end
+
+    resources :tags
   end
 
   resources :search, only: [:index]

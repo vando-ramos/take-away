@@ -66,8 +66,9 @@ class DishesController < ApplicationController
 
   def set_dish
     @dish = @establishment.dishes.find_by(id: params[:id])
+
     unless @dish
-      redirect_to establishment_dishes_path(@establishment.id), alert: 'Dish not found'
+      return redirect_to establishment_dishes_path(@establishment.id), alert: 'Dish not found'
     end
   end
 

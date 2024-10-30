@@ -1,0 +1,14 @@
+<h2>Tags</h2>
+
+<div><%= link_to 'Add Tag', new_establishment_tag_path(@establishment.id) %></div>
+
+<% if @tags.any? %>
+  <ul>
+    <% @tags.each do |tag| %>
+      <li>#<%= tag.name %></li>
+    <% end %>
+  </ul>  
+<% else %>
+  <p>There are no registered tags</p>
+<% end %>
+
