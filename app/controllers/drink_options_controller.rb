@@ -49,7 +49,10 @@ class DrinkOptionsController < ApplicationController
   end
 
   def set_drink_option
-    @drink_option = DrinkOption.find(params[:id])
+    @drink_option = @drink.drink_options.find_by(id: params[:id])
+    unless @drink_option
+      redirect_to establishment_drink_path(@establishment.id, @drink.id), alert: 'Drink option not found'
+    end
   end
 
   def drink_option_params

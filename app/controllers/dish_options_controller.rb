@@ -49,7 +49,10 @@ class DishOptionsController < ApplicationController
   end
 
   def set_dish_option
-    @dish_option = DishOption.find(params[:id])
+    @dish_option = @dish.dish_options.find_by(id: params[:id])
+    unless @dish_option
+      redirect_to establishment_dish_path(@establishment.id, @dish.id), alert: 'Dish option not found'
+    end
   end
 
   def dish_option_params
