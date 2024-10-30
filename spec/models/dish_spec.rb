@@ -69,5 +69,6 @@ RSpec.describe Dish, type: :model do
 
   describe 'associations' do
     it { should belong_to(:establishment) }
+    it { should have_many(:dish_options) }
   end
 end

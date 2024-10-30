@@ -1,3 +1,11 @@
 <h2>Register Dish Option</h2>
 
+<% if @dish_option.errors.any? %>
+  <ul>
+    <% @dish_option.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= render 'form' %>

@@ -85,5 +85,6 @@ RSpec.describe Drink, type: :model do
 
   describe 'associations' do
     it { should belong_to(:establishment) }
+    it { should have_many(:drink_options) }
   end
 end
