@@ -70,5 +70,10 @@ RSpec.describe Dish, type: :model do
   describe 'associations' do
     it { should belong_to(:establishment) }
     it { should have_many(:dish_options) }
+    it { should have_many(:dish_tags) }
+    it { should have_many(:tags) }
+    it { should have_one_attached(:image) }
   end
+
+  it { should define_enum_for(:status).with_values(active: 0, inactive: 1) }
 end

@@ -86,5 +86,9 @@ RSpec.describe Drink, type: :model do
   describe 'associations' do
     it { should belong_to(:establishment) }
     it { should have_many(:drink_options) }
+    it { should have_one_attached(:image) }
   end
+
+  it { should define_enum_for(:is_alcoholic).with_values(yes: 0, no: 1) }
+  it { should define_enum_for(:status).with_values(active: 0, inactive: 1) }
 end

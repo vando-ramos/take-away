@@ -35,6 +35,12 @@ RSpec.describe Tag, type: :model do
       tag2 = Tag.new(name: 'Vegano')
 
       expect(tag2.valid?).to eq false
+      expect(tag2.errors[:name]).to include('has already been taken')
     end
+  end
+
+  describe 'associations' do
+    it { should have_many(:dish_tags) }
+    it { should have_many(:dishes) }
   end
 end
