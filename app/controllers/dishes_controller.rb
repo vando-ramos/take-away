@@ -4,7 +4,12 @@ class DishesController < ApplicationController
 
   def index
     @tags = Tag.all
-    @dishes = params[:tag_id].present? ? Dish.joins(:tags).where(tags: { id: params[:tag_id] }) : Dish.all
+
+    @dishes = if params[:tag_id].present?
+      @establishment.dishes.joins(:tags).where(tags: { id: params[:tag_id] })
+    else
+      @establishment.dishes
+    end
   end
 
   def show

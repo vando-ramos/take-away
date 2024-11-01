@@ -21,7 +21,7 @@ describe 'User edits drink options' do
     visit(root_path)
     click_on('Drinks')
     click_on('Limonada')
-    click_on('Edit 300ml')
+    find("#edit_drink_option_#{drink_option.id}").click
 
     expect(current_path).to eq(edit_establishment_drink_drink_option_path(estab.id, drink.id, drink_option.id))
     expect(page).to have_content('Edit Drink Option')
@@ -50,7 +50,7 @@ describe 'User edits drink options' do
     visit(root_path)
     click_on('Drinks')
     click_on('Limonada')
-    click_on('Edit 300ml')
+    find("#edit_drink_option_#{drink_option.id}").click
     fill_in 'Description', with: '500ml'
     fill_in 'Price', with: '8,00'
     click_on('Update Drink option')

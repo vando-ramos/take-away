@@ -1,5 +1,7 @@
 <h2><%= @drink.name %> (<%= @drink.status.humanize %>)</h2>
 
+<%= link_to 'Price History', establishment_drink_drink_price_history_index_path(@establishment.id, @drink.id) %>
+
 <% if @drink.status == 'active' %>
   <%= button_to 'Deactivate', inactive_establishment_drink_path(@establishment.id, @drink.id) %>
 <% else %>
@@ -28,8 +30,9 @@
       <li><%= option.description %></li>
       <li><%= number_to_currency(option.price, unit: "R$", separator: ",", delimiter: ".") %></li>
 
-      <%= link_to "Edit #{option.description}", 
-          edit_establishment_drink_drink_option_path(@establishment.id, @drink.id) %>
+      <%= link_to 'Edit', 
+          edit_establishment_drink_drink_option_path(@establishment.id, @drink.id, option.id), 
+          id: dom_id(option, :edit) %>
     <% end %>
   </ul>
 <% else %>

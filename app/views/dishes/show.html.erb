@@ -1,5 +1,7 @@
 <h2><%= @dish.name %> (<%= @dish.status.humanize %>)</h2>
 
+<%= link_to 'Price History', establishment_dish_dish_price_history_index_path(@establishment.id, @dish.id) %>
+
 <% @dish.tags.each do |tag| %>
   <span>#<%= tag.name %></span>
 <% end %>
@@ -31,8 +33,9 @@
       <li><%= option.description %></li>
       <li><%= number_to_currency(option.price, unit: "R$", separator: ",", delimiter: ".") %></li>
 
-      <%= link_to "Edit #{option.description}", 
-          edit_establishment_dish_dish_option_path(@establishment.id, @dish.id) %>
+      <%= link_to 'Edit', 
+          edit_establishment_dish_dish_option_path(@establishment.id, @dish.id, option.id), 
+          id: dom_id(option, :edit) %>
     <% end %>
   </ul>
 <% else %>

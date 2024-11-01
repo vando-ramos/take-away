@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
       resources :dish_options, only: %i[new create edit update]
 
+      resources :dish_price_history, only: %i[index]
     end
 
     resources :drinks do
@@ -19,6 +20,8 @@ Rails.application.routes.draw do
       post 'inactive', on: :member
 
       resources :drink_options, only: %i[new create edit update]
+
+      resources :drink_price_history, only: %i[index]
     end
 
     resources :tags

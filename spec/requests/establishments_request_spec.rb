@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "Establishments", type: :request do
   describe "GET /establishments/new" do
     context 'when user already has an establishment' do
-      before do
+      it "redirect to root_path" do
         user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
                             email: 'bond@email.com', password: '123456abcdef',
                             password_confirmation: '123456abcdef')
@@ -15,9 +15,7 @@ RSpec.describe "Establishments", type: :request do
                                       state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
         login_as(user)
-      end
 
-      it "redirect to root_path" do
         get new_establishment_path
         expect(response).to redirect_to(root_path)
         follow_redirect!
@@ -28,7 +26,7 @@ RSpec.describe "Establishments", type: :request do
 
   describe "POST /establishments" do
     context 'when user already has an establishment' do
-      before do
+      it "redirect to root_path" do
         user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
                              email: 'bond@email.com', password: '123456abcdef',
                              password_confirmation: '123456abcdef')
@@ -40,9 +38,7 @@ RSpec.describe "Establishments", type: :request do
                                         state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
         login_as(user)
-      end
 
-      it "redirect to root_path" do
         establishment_params = {
           establishment: {
             corporate_name: 'New Establishment S.A.',

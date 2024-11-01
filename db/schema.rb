@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_30_162235) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_31_235139) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -119,6 +119,17 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_30_162235) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["establishment_id"], name: "index_operating_hours_on_establishment_id"
+  end
+
+  create_table "price_histories", force: :cascade do |t|
+    t.string "price"
+    t.integer "item_type"
+    t.integer "item_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.index ["item_type", "item_id"], name: "index_price_histories_on_item_type_and_item_id"
   end
 
   create_table "tags", force: :cascade do |t|

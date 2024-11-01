@@ -21,7 +21,7 @@ describe 'User edits dish options' do
     visit(root_path)
     click_on('Dishes')
     click_on('Pizza de Calabresa')
-    click_on('Edit Média (26cm)')
+    find("#edit_dish_option_#{dish_option.id}").click
 
     expect(current_path).to eq(edit_establishment_dish_dish_option_path(estab.id, dish.id, dish_option.id))
     expect(page).to have_content('Edit Dish Option')
@@ -50,7 +50,7 @@ describe 'User edits dish options' do
     visit(root_path)
     click_on('Dishes')
     click_on('Pizza de Calabresa')
-    click_on('Edit Média (26cm)')
+    find("#edit_dish_option_#{dish_option.id}").click
     fill_in 'Description', with: 'Pequena (15cm)'
     fill_in 'Price', with: '20,00'
     click_on('Update Dish option')
