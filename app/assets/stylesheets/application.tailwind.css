@@ -12,31 +12,60 @@
 
 */
 
-.navbar {
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
-  height: 80px;
-  padding: 20px;
-  margin: 10px;
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.navbar {
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  height: 100vh;
+  width: 200px;
+  margin: 0 10px;
+  overflow: auto;
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  /* padding-top: 10px; */
 }
 
 .nav-list {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: center;
-  flex: 1;
-}
-
-.nav-item:first-child {
-  margin-left: auto;
-  margin-right: auto;
 }
 
 main {
-  padding: 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;  
+  align-items: center;
+  margin: 30px;
+  overflow: auto;
+}
+
+/* table */
+
+table {  
+  width: 100%;
+  border-collapse: collapse;
+}
+  
+table, th, td {
+  border: 1px solid black;
+  padding: 5px;
+}
+
+td {
+  text-align: center;
 }
 
 h2 {

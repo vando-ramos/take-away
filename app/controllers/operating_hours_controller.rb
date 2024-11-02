@@ -2,9 +2,9 @@ class OperatingHoursController < ApplicationController
   before_action :set_establishment_and_check_user
   before_action :set_operating_hour, only: %i[show edit update]
 
-  def index
-    @operating_hours = @establishment.operating_hours
-  end
+  # def index
+  #   @operating_hours = @establishment.operating_hours
+  # end
 
   def show
   end

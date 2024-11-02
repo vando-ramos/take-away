@@ -1,5 +1,5 @@
 class DishesController < ApplicationController
-  before_action :set_establishment_and_check_user
+  before_action :set_establishment
   before_action :set_dish, only: %i[show edit update destroy active inactive]
 
   def index
@@ -23,7 +23,7 @@ class DishesController < ApplicationController
     @dish = @establishment.dishes.build(dish_params)
 
     if @dish.save
-      redirect_to establishment_dishes_path(@establishment.id), notice: 'Dish successfully registered'
+      redirect_to dishes_path, notice: 'Dish successfully registered'
     else
       flash.now.alert = 'Unable to register dish'
       render :new, status: :unprocessable_entity
@@ -35,7 +35,7 @@ class DishesController < ApplicationController
 
   def update
     if @dish.update(dish_params)
-      redirect_to establishment_dishes_path(@establishment.id), notice: 'Dish successfully updated'
+      redirect_to dishes_path, notice: 'Dish successfully updated'
     else
       flash.now.alert = 'Unable to update dish'
       render :edit, status: :unprocessable_entity
@@ -44,37 +44,41 @@ class DishesController < ApplicationController
 
   def destroy
     @dish.destroy
-    redirect_to establishment_dishes_path(@establishment.id), notice: 'Dish successfully deleted'
+    redirect_to dishes_path, notice: 'Dish successfully deleted'
   end
 
   def active
     @dish.active!
-    redirect_to establishment_dish_path(@establishment, @dish.id), notice: 'Dish successfully activated'
+    redirect_to dish_path(@dish.id), notice: 'Dish successfully activated'
   end
 
   def inactive
     @dish.inactive!
-    redirect_to establishment_dish_path(@establishment, @dish.id), notice: 'Dish successfully deactivated'
+    redirect_to dish_path(@dish.id), notice: 'Dish successfully deactivated'
   end
 
   private
 
-  def set_establishment_and_check_user
-    @establishment = Establishment.find_by(id: params[:establishment_id])
+  # def set_establishment_and_check_user
+  #   @establishment = Establishment.find_by(id: params[:establishment_id])
 
-    if @establishment.nil?
-      return redirect_to root_path, alert: 'Establishment not found'
-    elsif @establishment.user != current_user
-      return redirect_to root_path,
-      alert: 'You do not have access to dishes from other establishments'
-    end
+  #   if @establishment.nil?
+  #     return redirect_to root_path, alert: 'Establishment not found'
+  #   elsif @establishment.user != current_user
+  #     return redirect_to root_path,
+  #     alert: 'You do not have access to dishes from other establishments'
+  #   end
+  # end
+
+  def set_establishment
+    @establishment = current_user.establishment
   end
 
   def set_dish
     @dish = @establishment.dishes.find_by(id: params[:id])
 
     unless @dish
-      return redirect_to establishment_dishes_path(@establishment.id), alert: 'Dish not found'
+      return redirect_to root_path, alert: 'Dish not found or you do not have access to this dish'
     end
   end
 

@@ -37,7 +37,7 @@ describe 'User views the dishes' do
     visit(root_path)
     click_on('Dishes')
 
-    expect(current_path).to eq(establishment_dishes_path(estab.id))
+    expect(current_path).to eq(dishes_path)
     expect(page).to have_content('Dishes')
     expect(page).to have_content('Pizza de Calabresa (Active)')
     expect(page).to have_content('Pizza com molho de tomate, queijo, calabresa e orégano')
@@ -62,7 +62,7 @@ describe 'User views the dishes' do
     visit(root_path)
     click_on('Dishes')
 
-    expect(current_path).to eq(establishment_dishes_path(estab.id))
+    expect(current_path).to eq(dishes_path)
     expect(page).to have_content('Dishes')
     expect(page).to have_content('There is no dishes registered')
   end
@@ -81,10 +81,10 @@ describe 'User views the dishes' do
                  image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
 
     login_as(user)
-    visit(establishment_dish_path(estab.id, 9999))
+    visit(dish_path(9999))
 
-    expect(current_path).to eq(establishment_dishes_path(estab.id))
-    expect(page).to have_content('Dish not found')
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content('Dish not found or you do not have access to this dish')
   end
 
   it 'and does not view dishes from other establishments' do
@@ -108,10 +108,10 @@ describe 'User views the dishes' do
                  image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
 
     login_as(bond)
-    visit(establishment_dish_path(john_estab.id, dish.id))
+    visit(dish_path(dish.id))
 
     expect(current_path).to eq(root_path)
-    expect(page).to have_content('You do not have access to dishes from other establishments')
+    expect(page).to have_content('Dish not found or you do not have access to this dish')
   end
 
   it 'from the search' do

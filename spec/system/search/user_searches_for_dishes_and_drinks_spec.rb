@@ -16,10 +16,8 @@ describe 'User searches for dishes and drinks' do
     login_as(user)
     visit(root_path)
 
-    within('nav') do
-      expect(page).to have_field('Search')
-      expect(page).to have_button('Search')
-    end
+    expect(page).to have_field('Search')
+    expect(page).to have_button('Search')
   end
 
   it 'and finds a dish by name' do

@@ -118,7 +118,7 @@ describe 'User edits drinks' do
     visit(root_path)
     fill_in 'Search', with: 'Limonada'
     click_on('Search')
-    click_on('Edit Limonada')
+    click_on('Edit')
 
     expect(current_path).to eq(edit_establishment_drink_path(estab.id, drink.id))
     expect(page).to have_content('Edit Drink')

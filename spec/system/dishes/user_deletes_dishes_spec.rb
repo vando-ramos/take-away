@@ -28,7 +28,7 @@ describe 'User deletes dishes' do
     click_on('Pizza de Calabresa')
     click_on('Delete')
 
-    expect(current_path).to eq(establishment_dishes_path(estab.id))
+    expect(current_path).to eq(dishes_path)
     expect(page).to have_content('Dish successfully deleted')
     expect(page).not_to have_content('Pizza de Calabresa')
     expect(page).not_to have_content('265 cal')

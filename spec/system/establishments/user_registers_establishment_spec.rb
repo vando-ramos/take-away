@@ -2,8 +2,9 @@ require 'rails_helper'
 
 describe 'User registers an establishment' do
   it 'after authenticated' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     login_as(user)
     visit(root_path)
@@ -24,8 +25,9 @@ describe 'User registers an establishment' do
   end
 
   it 'successfully' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     cnpj = CNPJ.generate
 
@@ -55,8 +57,9 @@ describe 'User registers an establishment' do
   end
 
   it 'with icomplete data' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     login_as(user)
     visit(root_path)

@@ -3,9 +3,12 @@
 <% if @dishes.present? %>
   <ul>
     <% @dishes.each do |dish| %>
-      <li><%= link_to dish.name, establishment_dish_path(@establishment.id, dish.id) %></li>
+      <li>
+        <%= link_to dish.name, dish_path(dish.id) %>
 
-      <%= link_to "Edit #{dish.name}", edit_establishment_dish_path(@establishment.id, dish.id) %>
+        <%= link_to 'Edit', edit_dish_path(dish.id), 
+                          id: dom_id(dish, :edit) %>
+      </li>
     <% end %>
   </ul>
 <% else %>
@@ -17,9 +20,12 @@
 <% if @drinks.present? %>
   <ul>
     <% @drinks.each do |drink| %>
-      <li><%= link_to drink.name, establishment_drink_path(@establishment.id, drink.id) %></li>
+      <li>
+        <%= link_to drink.name, drink_path(drink.id) %>
 
-      <%= link_to "Edit #{drink.name}", edit_establishment_drink_path(@establishment.id, drink.id) %>
+        <%= link_to 'Edit', edit_drink_path(drink.id), 
+                          id: dom_id(drink, :edit) %>
+      </li>
     <% end %>
   </ul>
 <% else %>

@@ -20,22 +20,38 @@
       <ul class='nav-list'>
         <% if user_signed_in? %>
           <li class='nav-item'>
-            <%= form_with url: search_index_path, method: :get do |f| %>
-              <%= f.label :query, 'Search' %>
-              <%= f.text_field :query, placeholder: 'Search dishes and drinks' %>
-              <%= f.submit 'Search' %>
-            <% end %>
-          </li>
-
-          <li class='nav-item'>
             <%= current_user.email %>
             <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
-          </li>          
-        <% end %>       
-      </ul>
+          </li>
+          <% if current_user.establishment.present? %>
+            <li class='nav-item'>
+              <%= link_to 'My Establishment', root_path %>
+            </li>            
+            <li class='nav-item'>
+              <%= link_to 'Dishes', dishes_path %>
+            </li>
+            <li class='nav-item'>
+              <%= link_to 'Drinks', drinks_path %>
+            </li>
+            <li class='nav-item'>
+              <%= link_to 'Tags', establishment_tags_path(@establishment.id) %>
+            </li>                   
+          <% end %>
+        <% end %>
+      </ul>      
     </nav>
 
     <main>
+      <% if user_signed_in? && current_user.establishment.present? %>
+        <div class='search'>
+          <%= form_with url: search_index_path, method: :get do |f| %>
+            <%= f.label :query, 'Search' %>
+            <%= f.text_field :query, placeholder: 'Search dishes and drinks' %>
+            <%= f.submit 'Search' %>
+          <% end %>
+        </div>
+      <% end %>
+
       <p><%= notice || alert %></p>
 
       <%= yield %>

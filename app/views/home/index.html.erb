@@ -1,9 +1,32 @@
-<div class='link'><%= link_to 'My Establishment', establishment_path(@establishment.id) %></div>
+<h1><%= link_to @establishment.corporate_name, establishment_path(@establishment.id) %></h1>
 
-<div class='link'><%= link_to 'Operating Hours', establishment_operating_hours_path(@establishment.id) %></div>
+<h2>Operating Hours</h2>
 
-<div class='link'><%= link_to 'Dishes', establishment_dishes_path(@establishment.id) %></div>
+<div><%= link_to 'Register Operating Hour', new_establishment_operating_hour_path(@establishment.id) %></div>
 
-<div class='link'><%= link_to 'Drinks', establishment_drinks_path(@establishment.id) %></div>
-
-<div class='link'><%= link_to 'Tags', establishment_tags_path(@establishment.id) %></div>
+<div class='table-container'>
+  <% if @operating_hours.any? %>
+    <table>
+      <thead>      
+        <tr>
+          <th>Day of week</th>
+          <th>Operating Hour</th>        
+        </tr>           
+      </thead>
+      <tbody>
+        <% @operating_hours.each do |oh| %>
+          <tr>
+            <td>
+              <%= link_to oh.day_of_week.humanize, establishment_operating_hour_path(@establishment.id, oh.id) %>
+            </td>
+            <td>
+              <%= oh.opening_time.strftime("%H:%M") %> - <%= oh.closing_time.strftime("%H:%M") %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p>There is no operating hours registered</p>
+  <% end %>
+</div>

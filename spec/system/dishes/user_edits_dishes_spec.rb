@@ -28,7 +28,7 @@ describe 'User edits dishes' do
     click_on('Pizza de Calabresa')
     click_on('Edit')
 
-    expect(current_path).to eq(edit_establishment_dish_path(estab.id, dish.id))
+    expect(current_path).to eq(edit_dish_path(dish.id))
     expect(page).to have_content('Edit Dish')
     expect(page).to have_field('Name', with: 'Pizza de Calabresa')
     expect(page).to have_field('Description', with: 'Pizza com molho de tomate, queijo, calabresa e orégano')
@@ -61,7 +61,7 @@ describe 'User edits dishes' do
     attach_file('Image', Rails.root.join('spec/fixtures/files/carbonara.jpg'))
     click_on('Update Dish')
 
-    expect(current_path).to eq(establishment_dishes_path(estab.id))
+    expect(current_path).to eq(dishes_path)
     expect(page).to have_content('Dish successfully updated')
     expect(page).to have_content('Macarrão Carbonara')
     expect(page).to have_content('Macarrão com molho cremoso à base de ovos, queijo e bacon')
@@ -115,9 +115,9 @@ describe 'User edits dishes' do
     visit(root_path)
     fill_in 'Search', with: 'Pizza de Calabresa'
     click_on('Search')
-    click_on('Edit Pizza de Calabresa')
+    click_on('Edit')
 
-    expect(current_path).to eq(edit_establishment_dish_path(estab.id, dish.id))
+    expect(current_path).to eq(edit_dish_path(dish.id))
     expect(page).to have_content('Edit Dish')
     expect(page).to have_field('Name', with: 'Pizza de Calabresa')
     expect(page).to have_field('Description', with: 'Pizza com molho de tomate, queijo, calabresa e orégano')

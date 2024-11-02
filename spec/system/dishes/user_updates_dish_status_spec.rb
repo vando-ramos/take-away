@@ -25,7 +25,7 @@ describe 'User updates the dish status' do
     click_on('Pizza de Calabresa')
     click_on('Deactivate')
 
-    expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
+    expect(current_path).to eq(dish_path(dish.id))
     expect(page).to have_content('Dish successfully deactivated')
     expect(page).to have_content('Inactive')
     expect(page).to have_button('Activate')
@@ -56,7 +56,7 @@ describe 'User updates the dish status' do
     click_on('Pizza de Calabresa')
     click_on('Activate')
 
-    expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
+    expect(current_path).to eq(dish_path(dish.id))
     expect(page).to have_content('Dish successfully activated')
     expect(page).to have_content('Active')
     expect(page).to have_button('Deactivate')

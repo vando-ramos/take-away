@@ -22,7 +22,7 @@ describe 'User registers dishes' do
     click_on('Dishes')
     click_on('Register Dish')
 
-    expect(current_path).to eq(new_establishment_dish_path(estab.id))
+    expect(current_path).to eq(new_dish_path)
     expect(page).to have_content('Register Dish')
     expect(page).to have_field('Name')
     expect(page).to have_field('Description')
@@ -49,7 +49,7 @@ describe 'User registers dishes' do
     attach_file('Image', Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'))
     click_on('Create Dish')
 
-    expect(current_path).to eq(establishment_dishes_path(estab.id))
+    expect(current_path).to eq(dishes_path)
     expect(page).to have_content('Dish successfully registered')
     expect(page).to have_content('Pizza de Calabresa')
     expect(page).to have_content('256 cal')
