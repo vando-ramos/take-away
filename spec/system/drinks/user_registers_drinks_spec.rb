@@ -22,7 +22,7 @@ describe 'User registers drinks' do
     click_on('Drinks')
     click_on('Register Drink')
 
-    expect(current_path).to eq(new_establishment_drink_path(estab.id))
+    expect(current_path).to eq(new_drink_path)
     expect(page).to have_content('Register Drink')
     expect(page).to have_field('Name')
     expect(page).to have_field('Description')
@@ -51,7 +51,7 @@ describe 'User registers drinks' do
     attach_file('Image', Rails.root.join('spec/fixtures/files/limonada.jpg'))
     click_on('Create Drink')
 
-    expect(current_path).to eq(establishment_drinks_path(estab.id))
+    expect(current_path).to eq(drinks_path)
     expect(page).to have_content('Drink successfully registered')
     expect(page).to have_content('Limonada')
     expect(page).to have_content('120 cal')

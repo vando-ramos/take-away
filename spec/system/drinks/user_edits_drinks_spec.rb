@@ -28,7 +28,7 @@ describe 'User edits drinks' do
     click_on('Limonada')
     click_on('Edit')
 
-    expect(current_path).to eq(edit_establishment_drink_path(estab.id, drink.id))
+    expect(current_path).to eq(edit_drink_path(drink.id))
     expect(page).to have_content('Edit Drink')
     expect(page).to have_field('Name', with: 'Limonada')
     expect(page).to have_field('Description', with: 'Uma refrescante bebida feita com limões frescos, açúcar e água')
@@ -63,7 +63,7 @@ describe 'User edits drinks' do
     attach_file('Image', Rails.root.join('spec/fixtures/files/mojito.jpg'))
     click_on('Update Drink')
 
-    expect(current_path).to eq(establishment_drinks_path(estab.id))
+    expect(current_path).to eq(drinks_path)
     expect(page).to have_content('Drink successfully updated')
     expect(page).to have_content('Mojito')
     expect(page).to have_content('Um coquetel clássico cubano feito com rum branco, limão, hortelã, açúcar e água com gás')
@@ -120,7 +120,7 @@ describe 'User edits drinks' do
     click_on('Search')
     click_on('Edit')
 
-    expect(current_path).to eq(edit_establishment_drink_path(estab.id, drink.id))
+    expect(current_path).to eq(edit_drink_path(drink.id))
     expect(page).to have_content('Edit Drink')
     expect(page).to have_field('Name', with: 'Limonada')
     expect(page).to have_field('Description', with: 'Uma refrescante bebida feita com limões frescos, açúcar e água')

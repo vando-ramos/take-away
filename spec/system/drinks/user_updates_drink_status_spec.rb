@@ -23,7 +23,7 @@ describe 'User updates the drink status' do
     click_on('Limonada')
     click_on('Deactivate')
 
-    expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
+    expect(current_path).to eq(drink_path(drink.id))
     expect(page).to have_content('Drink successfully deactivated')
     expect(page).to have_content('Inactive')
     expect(page).to have_button('Activate')
@@ -52,7 +52,7 @@ describe 'User updates the drink status' do
     click_on('Limonada')
     click_on('Activate')
 
-    expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
+    expect(current_path).to eq(drink_path(drink.id))
     expect(page).to have_content('Drink successfully activated')
     expect(page).to have_content('Active')
     expect(page).to have_button('Deactivate')

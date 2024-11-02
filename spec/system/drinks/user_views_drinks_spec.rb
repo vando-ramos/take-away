@@ -31,7 +31,7 @@ describe 'User views the drinks' do
     visit(root_path)
     click_on('Drinks')
 
-    expect(current_path).to eq(establishment_drinks_path(estab.id))
+    expect(current_path).to eq(drinks_path)
     expect(page).to have_content('Drinks')
     expect(page).to have_content('Limonada (Active)')
     expect(page).to have_content('Uma refrescante bebida feita com limões frescos, açúcar e água')
@@ -58,7 +58,7 @@ describe 'User views the drinks' do
     visit(root_path)
     click_on('Drinks')
 
-    expect(current_path).to eq(establishment_drinks_path(estab.id))
+    expect(current_path).to eq(drinks_path)
     expect(page).to have_content('Drinks')
     expect(page).to have_content('There is no drinks registered')
   end
@@ -77,10 +77,10 @@ describe 'User views the drinks' do
                   image: fixture_file_upload(Rails.root.join('spec/fixtures/files/limonada.jpg'), 'image/jpg'))
 
     login_as(user)
-    visit(establishment_drink_path(estab.id, 9999))
+    visit(drink_path(9999))
 
-    expect(current_path).to eq(establishment_drinks_path(estab.id))
-    expect(page).to have_content('Drink not found')
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content('Drink not found or you do not have access to this drink')
   end
 
   it 'and does not view drinks from other establishments' do
@@ -104,10 +104,10 @@ describe 'User views the drinks' do
                           image: fixture_file_upload(Rails.root.join('spec/fixtures/files/limonada.jpg'), 'image/jpg'))
 
     login_as(bond)
-    visit(establishment_drink_path(john_estab.id, drink.id))
+    visit(drink_path(drink.id))
 
     expect(current_path).to eq(root_path)
-    expect(page).to have_content('You do not have access to drinks from other establishments')
+    expect(page).to have_content('Drink not found or you do not have access to this drink')
   end
 
   it 'from the search' do

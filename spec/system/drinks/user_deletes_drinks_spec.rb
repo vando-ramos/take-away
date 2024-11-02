@@ -28,7 +28,7 @@ describe 'User deletes drinks' do
     click_on('Limonada')
     click_on('Delete')
 
-    expect(current_path).to eq(establishment_drinks_path(estab.id))
+    expect(current_path).to eq(drinks_path)
     expect(page).to have_content('Drink successfully deleted')
     expect(page).not_to have_content('Limonada')
     expect(page).not_to have_content('120 cal')
