@@ -23,7 +23,7 @@ describe 'User edits drink options' do
     click_on('Limonada')
     find("#edit_drink_option_#{drink_option.id}").click
 
-    expect(current_path).to eq(edit_establishment_drink_drink_option_path(estab.id, drink.id, drink_option.id))
+    expect(current_path).to eq(edit_drink_drink_option_path(drink.id, drink_option.id))
     expect(page).to have_content('Edit Drink Option')
     expect(page).to have_field('Description', with: '300ml')
     expect(page).to have_field('Price', with: '5,00')
@@ -55,7 +55,7 @@ describe 'User edits drink options' do
     fill_in 'Price', with: '8,00'
     click_on('Update Drink option')
 
-    expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
+    expect(current_path).to eq(drink_path(drink.id))
     expect(page).to have_content('Drink option successfully updated')
     expect(page).to have_content('500ml')
     expect(page).to have_content('R$8,00')
@@ -78,9 +78,9 @@ describe 'User edits drink options' do
     drink_option = DrinkOption.create!(drink: drink, price: '5,00', description: '300ml')
 
     login_as(user)
-    visit(edit_establishment_drink_drink_option_path(estab.id, drink.id, 9999))
+    visit(edit_drink_drink_option_path(drink.id, 9999))
 
-    expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
+    expect(current_path).to eq(drink_path(drink.id))
     expect(page).to have_content('Drink option not found')
   end
 end

@@ -21,7 +21,7 @@ describe 'User registers drink options' do
     click_on('Limonada')
     click_on('Register Drink Option')
 
-    expect(current_path).to eq(new_establishment_drink_drink_option_path(estab.id, drink.id))
+    expect(current_path).to eq(new_drink_drink_option_path(drink.id))
     expect(page).to have_content('Register Drink Option')
     expect(page).to have_field('Description')
     expect(page).to have_field('Price')
@@ -51,7 +51,7 @@ describe 'User registers drink options' do
     fill_in 'Price', with: '5,00'
     click_on('Create Drink option')
 
-    expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
+    expect(current_path).to eq(drink_path(drink.id))
     expect(page).to have_content('Register Drink Option')
     expect(page).to have_content('Drink option successfully registered')
     expect(page).to have_content('300ml')

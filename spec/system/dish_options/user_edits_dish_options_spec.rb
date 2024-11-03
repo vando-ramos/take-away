@@ -23,7 +23,7 @@ describe 'User edits dish options' do
     click_on('Pizza de Calabresa')
     find("#edit_dish_option_#{dish_option.id}").click
 
-    expect(current_path).to eq(edit_establishment_dish_dish_option_path(estab.id, dish.id, dish_option.id))
+    expect(current_path).to eq(edit_dish_dish_option_path(dish.id, dish_option.id))
     expect(page).to have_content('Edit Dish Option')
     expect(page).to have_field('Description', with: 'Média (26cm)')
     expect(page).to have_field('Price', with: '30,00')
@@ -55,7 +55,7 @@ describe 'User edits dish options' do
     fill_in 'Price', with: '20,00'
     click_on('Update Dish option')
 
-    expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
+    expect(current_path).to eq(dish_path(dish.id))
     expect(page).to have_content('Dish option successfully updated')
     expect(page).to have_content('Pequena (15cm)')
     expect(page).to have_content('R$20,00')
@@ -78,9 +78,9 @@ describe 'User edits dish options' do
     dish_option = DishOption.create!(dish: dish, price: '30,00', description: 'Média (26cm)')
 
     login_as(user)
-    visit(edit_establishment_dish_dish_option_path(estab.id, dish.id, 9999))
+    visit(edit_dish_dish_option_path(dish.id, 9999))
 
-    expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
+    expect(current_path).to eq(dish_path(dish.id))
     expect(page).to have_content('Dish option not found')
   end
 end

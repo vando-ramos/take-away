@@ -21,7 +21,7 @@ describe 'User registers options' do
     click_on('Pizza de Calabresa')
     click_on('Register Dish Option')
 
-    expect(current_path).to eq(new_establishment_dish_dish_option_path(estab.id, dish.id))
+    expect(current_path).to eq(new_dish_dish_option_path(dish.id))
     expect(page).to have_content('Register Dish Option')
     expect(page).to have_field('Description')
     expect(page).to have_field('Price')
@@ -51,7 +51,7 @@ describe 'User registers options' do
     fill_in 'Price', with: '30,00'
     click_on('Create Dish option')
 
-    expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
+    expect(current_path).to eq(dish_path(dish.id))
     expect(page).to have_content('Dish option successfully registered')
     expect(page).to have_content('Média (26cm de diâmetro)')
     expect(page).to have_content('R$30,00')

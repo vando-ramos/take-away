@@ -23,7 +23,7 @@ describe 'User views dish options' do
     click_on('Dishes')
     click_on('Pizza de Calabresa')
 
-    expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
+    expect(current_path).to eq(dish_path(dish.id))
     expect(page).to have_content('Options')
     expect(page).to have_link('Register Dish Option')
     expect(page).to have_content('Média (26cm de diâmetro)')
@@ -51,7 +51,7 @@ describe 'User views dish options' do
     click_on('Dishes')
     click_on('Pizza de Calabresa')
 
-    expect(current_path).to eq(establishment_dish_path(estab.id, dish.id))
+    expect(current_path).to eq(dish_path(dish.id))
     expect(page).to have_content('Options')
     expect(page).to have_link('Register Dish Option')
     expect(page).to have_content('There are no registered dish options')

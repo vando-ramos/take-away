@@ -23,7 +23,7 @@ describe 'User views drink options' do
     click_on('Drinks')
     click_on('Limonada')
 
-    expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
+    expect(current_path).to eq(drink_path(drink.id))
     expect(page).to have_content('Options')
     expect(page).to have_link('Register Drink Option')
     expect(page).to have_content('300ml')
@@ -51,7 +51,7 @@ describe 'User views drink options' do
     click_on('Drinks')
     click_on('Limonada')
 
-    expect(current_path).to eq(establishment_drink_path(estab.id, drink.id))
+    expect(current_path).to eq(drink_path(drink.id))
     expect(page).to have_content('Options')
     expect(page).to have_link('Register Drink Option')
     expect(page).to have_content('There are no registered drink options')
