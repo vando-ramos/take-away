@@ -1,5 +1,5 @@
 class EstablishmentsController < ApplicationController
-  before_action :set_establishment_and_check_user, only: %i[show new create]
+  before_action :set_establishment_and_check_user, only: %i[show]
   before_action :check_user_establishment, only: %i[new create]
 
   def show
@@ -22,29 +22,17 @@ class EstablishmentsController < ApplicationController
 
   private
 
-  # def set_establishment_and_check_user
-  #   @establishment = Establishment.find_by(id: params[:id])
-
-  #   if @establishment.nil?
-  #     return redirect_to root_path_path, alert: 'Establishment not found'
-  #   elsif @establishment.user != current_user
-  #     return redirect_to root_path, alert: 'You do not have access to other establishments'
-  #   end
-  # end
-
   def set_establishment_and_check_user
-    @establishment = current_user.establishment
+    @establishment = Establishment.find_by(id: params[:id])
 
-    if @establishment.nil?
-      return redirect_to new_establishment_path, alert: 'Establishment not found'
-    elsif @establishment.user != current_user
-      return redirect_to root_path, alert: 'You do not have access to other establishments'
+    if @establishment.nil? || @establishment.user != current_user
+      return redirect_to root_path, alert: 'Establishment not found or you do not have access'
     end
   end
 
   def check_user_establishment
     if current_user.establishment.present?
-      redirect_to root_path, alert: 'You already have an establishment'
+      return redirect_to root_path, alert: 'You already have an establishment'
     end
   end
 

@@ -10,8 +10,9 @@ describe 'User edits the operating hours' do
   end
 
   it 'from the menu' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
@@ -23,7 +24,6 @@ describe 'User edits the operating hours' do
 
     login_as(user)
     visit(root_path)
-    click_on('Operating Hours')
     click_on('Sunday')
     click_on('Edit')
 
@@ -38,8 +38,9 @@ describe 'User edits the operating hours' do
   end
 
   it 'successfully' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
@@ -51,7 +52,6 @@ describe 'User edits the operating hours' do
 
     login_as(user)
     visit(root_path)
-    click_on('Operating Hours')
     click_on('Sunday')
     click_on('Edit')
     select '09', from: 'operating_hour_opening_time_4i'
@@ -60,7 +60,7 @@ describe 'User edits the operating hours' do
     select '30', from: 'operating_hour_closing_time_5i'
     click_on('Update Operating hour')
 
-    expect(current_path).to eq(establishment_operating_hours_path(estab.id))
+    expect(current_path).to eq(root_path)
     expect(page).to have_content('Operating hour successfully updated')
     expect(page).to have_content('Sunday')
     expect(page).to have_content('09:30 - 16:30')

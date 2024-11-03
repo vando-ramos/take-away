@@ -30,7 +30,7 @@ describe 'User views the price history' do
     click_on('Pizza de Calabresa')
     click_on('Price History')
 
-    expect(current_path).to eq(establishment_dish_dish_price_history_index_path(estab.id, dish.id))
+    expect(current_path).to eq(dish_dish_price_history_index_path(dish.id))
     expect(page).to have_content('Price History')
     expect(page).to have_content('Média')
     expect(page).to have_content('R$30,00')
@@ -59,7 +59,7 @@ describe 'User views the price history' do
     click_on('Pizza de Calabresa')
     click_on('Price History')
 
-    expect(current_path).to eq(establishment_dish_dish_price_history_index_path(estab.id, dish.id))
+    expect(current_path).to eq(dish_dish_price_history_index_path(dish.id))
     expect(page).to have_content('Price History')
     expect(page).to have_content('There are no prices in the history')
   end
@@ -93,7 +93,7 @@ describe 'User views the price history' do
     click_on('Limonada')
     click_on('Price History')
 
-    expect(current_path).to eq(establishment_drink_drink_price_history_index_path(estab.id, drink.id))
+    expect(current_path).to eq(drink_drink_price_history_index_path(drink.id))
     expect(page).to have_content('Price History')
     expect(page).to have_content('500ml')
     expect(page).to have_content('R$10,00')
@@ -122,7 +122,7 @@ describe 'User views the price history' do
     click_on('Limonada')
     click_on('Price History')
 
-    expect(current_path).to eq(establishment_drink_drink_price_history_index_path(estab.id, drink.id))
+    expect(current_path).to eq(drink_drink_price_history_index_path(drink.id))
     expect(page).to have_content('Price History')
     expect(page).to have_content('There are no prices in the history')
   end

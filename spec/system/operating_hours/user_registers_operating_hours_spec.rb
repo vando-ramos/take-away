@@ -10,8 +10,9 @@ describe 'User registers the operating hours' do
   end
 
   it 'from the menu' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
@@ -19,7 +20,6 @@ describe 'User registers the operating hours' do
 
     login_as(user)
     visit(root_path)
-    click_on('Operating Hours')
     click_on('Register Operating Hour')
 
     expect(current_path).to eq(new_establishment_operating_hour_path(estab.id))
@@ -36,8 +36,9 @@ describe 'User registers the operating hours' do
   end
 
   it 'successfully' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
@@ -45,7 +46,6 @@ describe 'User registers the operating hours' do
 
     login_as(user)
     visit(root_path)
-    click_on('Operating Hours')
     click_on('Register Operating Hour')
     select 'Sunday', from: 'Day of week'
     select '08', from: 'operating_hour_opening_time_4i'
@@ -55,7 +55,7 @@ describe 'User registers the operating hours' do
     select 'Opened', from: 'Status'
     click_on('Create Operating hour')
 
-    expect(current_path).to eq(establishment_operating_hours_path(estab.id))
+    expect(current_path).to eq(root_path)
     expect(page).to have_content('Operating hour successfully registered')
     expect(page).to have_content('Sunday')
     expect(page).to have_content('08:00 - 17:00')

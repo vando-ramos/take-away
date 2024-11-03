@@ -59,17 +59,6 @@ class DishesController < ApplicationController
 
   private
 
-  # def set_establishment_and_check_user
-  #   @establishment = Establishment.find_by(id: params[:establishment_id])
-
-  #   if @establishment.nil?
-  #     return redirect_to root_path, alert: 'Establishment not found'
-  #   elsif @establishment.user != current_user
-  #     return redirect_to root_path,
-  #     alert: 'You do not have access to dishes from other establishments'
-  #   end
-  # end
-
   def set_establishment
     @establishment = current_user.establishment
   end

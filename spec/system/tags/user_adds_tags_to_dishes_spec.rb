@@ -28,7 +28,7 @@ describe 'User adds tags to dishes' do
     check 'Diet'
     click_on('Update Dish')
 
-    expect(current_path).to eq(establishment_dishes_path(estab.id))
+    expect(current_path).to eq(dishes_path)
     expect(page).to have_content('Dish successfully updated')
     expect(page).to have_content('#Vegano')
     expect(page).to have_content('#Sem Glúten')

@@ -79,8 +79,9 @@ describe 'User registers an establishment' do
   end
 
   it 'and a user can only has one establishment' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',

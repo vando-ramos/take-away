@@ -11,18 +11,21 @@ describe 'User visits the establishment page' do
 
   it 'and views their establishment information'  do
     cnpj = CNPJ.generate
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
-    establishment = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas', cnpj: cnpj,
-                                          address: 'Rua Comercial Sul', number: '123', neighborhood: 'Asa Sul', city: 'Brasília',
-                                          state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+                                  brand_name: 'Giraffas', cnpj: cnpj, address: 'Rua Comercial Sul',
+                                  number: '123', neighborhood: 'Asa Sul', city: 'Brasília',
+                                  state: 'DF', zip_code: '70300-902', phone_number: '2198765432',
+                                  email: 'contato@giraffas.com.br')
 
     login_as(user)
     visit(root_path)
-    click_on('My Establishment')
+    click_on('Giraffas Brasil S.A.')
 
-    expect(current_path).to eq(establishment_path(establishment.id))
+    expect(current_path).to eq(establishment_path(estab.id))
     expect(page).to have_content('My Establishment')
     expect(page).to have_content('Giraffas Brasil S.A.')
     expect(page).to have_content('Giraffas')
@@ -33,11 +36,13 @@ describe 'User visits the establishment page' do
   end
 
   it 'and does not view others establishments' do
-    bond = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    bond = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
-    john = User.create!(name: 'John', last_name: 'Wick', identification_number: CPF.generate, email: 'wick@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    john = User.create!(name: 'John', last_name: 'Wick', identification_number: CPF.generate,
+                        email: 'wick@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     estab1 = Establishment.create!(user: bond, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                    cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
@@ -52,7 +57,7 @@ describe 'User visits the establishment page' do
 
     expect(current_path).not_to eq(establishment_path(estab1.id))
     expect(current_path).to eq(root_path)
-    expect(page).to have_content('You do not have access to other establishments')
+    expect(page).to have_content('Establishment not found or you do not have access')
     expect(page).not_to have_content('Giraffas Brasil S.A.')
     expect(page).not_to have_content('Giraffas')
     expect(page).not_to have_content('2198765432')
@@ -71,8 +76,9 @@ describe 'User visits the establishment page' do
   end
 
   it 'and the establishment not found' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
 
     estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
@@ -82,6 +88,6 @@ describe 'User visits the establishment page' do
     visit(establishment_path(9999))
 
     expect(current_path).to eq(root_path)
-    expect(page).to have_content('Establishment not found')
+    expect(page).to have_content('Establishment not found or you do not have access')
   end
 end
