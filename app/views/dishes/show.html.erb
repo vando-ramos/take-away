@@ -1,6 +1,4 @@
-<h2><%= @dish.name %> (<%= @dish.status.humanize %>)</h2>
-
-<%= link_to 'Price History', dish_dish_price_history_index_path(@dish.id) %>
+<h1 class='title'><%= @dish.name %> (<%= @dish.status.humanize %>)</h1>
 
 <% @dish.tags.each do |tag| %>
   <span>#<%= tag.name %></span>
@@ -12,32 +10,49 @@
   <%= button_to 'Activate', active_dish_path(@dish.id) %>
 <% end %>
 
-<section>
-  <div class='img'><%= image_tag @dish.image %></div>  
-  <p><%= @dish.description %></p>
-  <p><%= @dish.calories %> cal</p>
-</section>
+<%= link_to 'Price History', dish_dish_price_history_index_path(@dish.id) %>
+
+<div class='dish-container-info'>
+  <div class='img'><%= image_tag @dish.image %></div>
+  <div class='dish-info'>
+    <p class='dish-attr'><%= @dish.description %></p>
+    <p class='dish-attr'><%= @dish.calories %> cal</p>
+  </div>
+</div>
 
 <%= link_to 'Edit', edit_dish_path(@dish.id) %>
 
 <%= button_to 'Delete', dish_path(@dish.id), 
     method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
 
-<h2>Options</h2>
+<hr>
+
+<h2>Dish Options</h2>
 
 <div><%= link_to 'Register Dish Option', new_dish_dish_option_path(@dish.id) %></div>
 
 <% if @dish.dish_options.any? %>
-  <ul>
-    <% @dish.dish_options.each do |option| %>
-      <li><%= option.description %></li>
-      <li><%= number_to_currency(option.price, unit: "R$", separator: ",", delimiter: ".") %></li>
-
-      <%= link_to 'Edit', 
-          edit_dish_dish_option_path(@dish.id, option.id), 
-          id: dom_id(option, :edit) %>
-    <% end %>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Option</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dish.dish_options.each do |option| %>
+        <tr>
+          <td><%= option.description %></td>
+          <td><%= number_to_currency(option.price, unit: "R$", separator: ",", delimiter: ".") %></td>
+          <td>
+            <%= link_to 'Edit', edit_dish_dish_option_path(@dish.id, option.id), 
+                id: dom_id(option, :edit) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
   <p>There are no registered dish options</p>
 <% end %>

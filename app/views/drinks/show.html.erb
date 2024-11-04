@@ -1,4 +1,4 @@
-<h2><%= @drink.name %> (<%= @drink.status.humanize %>)</h2>
+<h1 class='title'><%= @drink.name %> (<%= @drink.status.humanize %>)</h1>
 
 <%= link_to 'Price History', drink_drink_price_history_index_path(@drink.id) %>
 

@@ -34,7 +34,8 @@ describe 'User views the price history' do
     expect(page).to have_content('Price History')
     expect(page).to have_content('Média')
     expect(page).to have_content('R$30,00')
-    expect(page).to have_content("De #{start_date.strftime("%d/%m/%Y %H:%M")} Até #{end_date.strftime("%d/%m/%Y %H:%M")}")
+    expect(page).to have_content(start_date.strftime("%d/%m/%Y %H:%M"))
+    expect(page).to have_content(end_date.strftime("%d/%m/%Y %H:%M"))
   end
 
   it 'and price history is empty' do
@@ -97,7 +98,8 @@ describe 'User views the price history' do
     expect(page).to have_content('Price History')
     expect(page).to have_content('500ml')
     expect(page).to have_content('R$10,00')
-    expect(page).to have_content("De #{start_date.strftime("%d/%m/%Y %H:%M")} Até #{end_date.strftime("%d/%m/%Y %H:%M")}")
+    expect(page).to have_content(start_date.strftime("%d/%m/%Y %H:%M"))
+    expect(page).to have_content(end_date.strftime("%d/%m/%Y %H:%M"))
   end
 
   it 'and the history is empty' do

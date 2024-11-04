@@ -1,15 +1,15 @@
-<h1>My Establishment</h1>
+<h1 class='title'>My Establishment</h1>
 
 <section class='establishment'>
-  <div>Code: <%= @establishment.code %></div>
-  <div>Corporate Name: <%= @establishment.corporate_name %></div>
-  <div>Brand Name: <%= @establishment.brand_name %></div>
-  <div>CNPJ: <%= @establishment.cnpj %></div>
+  <div><strong>Code:</strong> <%= @establishment.code %></div>
+  <div><strong>Corporate Name:</strong> <%= @establishment.corporate_name %></div>
+  <div><strong>Brand Name:</strong> <%= @establishment.brand_name %></div>
+  <div><strong>CNPJ:</strong> <%= @establishment.cnpj %></div>
   <div>
-    Full Address: <%= @establishment.address %>, <%= @establishment.number %> - 
+    <strong>Full Address:</strong> <%= @establishment.address %>, <%= @establishment.number %> - 
                   <%= @establishment.neighborhood %> - <%= @establishment.city %> -
                   <%= @establishment.state %> - CEP: <%= @establishment.zip_code %>
   </div>
-  <div>Phone Number: <%= @establishment.phone_number %></div>
-  <div>Email: <%= @establishment.email %></div>
+  <div><strong>Phone Number:</strong> <%= @establishment.phone_number %></div>
+  <div><strong>Email:</strong> <%= @establishment.email %></div>
 </section>

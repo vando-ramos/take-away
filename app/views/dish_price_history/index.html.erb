@@ -1,21 +1,32 @@
-<h2>Price History</h2>
+<h1 class='title'>Dish Price History</h1>
 
 <% if @dish_price_histories.any? %>
   <% grouped_histories = @dish_price_histories.group_by(&:item_id) %>
 
   <% grouped_histories.each do |item_id, histories| %>
-
     <% dish_option = @dish_options[item_id] %>
-    <hr>
-    <h3><%= dish_option.description %></h3>
-    
-    <% histories.each do |history| %>
-      <p>R$<%= history.price %></p>
+    <h2><%= dish_option.description %></h2>
 
-      De <%= history.start_date.strftime("%d/%m/%Y %H:%M") %><br>
-      Até <%= history.end_date.strftime("%d/%m/%Y %H:%M") %>
-    <% end %>
-    <hr>
+    <div class='history-price-table'>
+      <table>
+        <thead>
+          <tr>
+            <th>Price</th>
+            <th>From</th>
+            <th>To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% histories.each do |history| %>
+            <tr>
+              <td>R$<%= history.price %></td>
+              <td><%= history.start_date.strftime("%d/%m/%Y %H:%M") %></td>
+              <td><%= history.end_date.strftime("%d/%m/%Y %H:%M") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   <% end %>
 <% else %>
   <p>There are no prices in the history</p>
