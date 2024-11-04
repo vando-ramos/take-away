@@ -1,5 +1,5 @@
 class OperatingHoursController < ApplicationController
-  before_action :set_establishment_and_check_user
+  before_action :set_establishment
   before_action :set_operating_hour, only: %i[show edit update]
 
   def show
@@ -34,7 +34,7 @@ class OperatingHoursController < ApplicationController
 
   private
 
-  def set_establishment_and_check_user
+  def set_establishment
     @establishment = current_user.establishment
   end
 

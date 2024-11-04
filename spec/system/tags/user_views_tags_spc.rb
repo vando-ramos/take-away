@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User views tags' do
-  it 'from the menu' do
+  it 'from the home page' do
     user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
                         email: 'bond@email.com', password: '123456abcdef',
                         password_confirmation: '123456abcdef')

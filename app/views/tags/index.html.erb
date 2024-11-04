@@ -3,11 +3,25 @@
 <div><%= link_to 'Add Tag', new_establishment_tag_path(@establishment.id) %></div>
 
 <% if @tags.any? %>
-  <ul>
-    <% @tags.each do |tag| %>
-      <li>#<%= tag.name %></li>
-    <% end %>
-  </ul>  
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @tags.each do |tag| %>
+        <tr>
+          <td><%= tag.name %></td>
+          <td>
+            <%= link_to 'Edit', edit_establishment_tag_path(@establishment.id, tag.id), 
+                id: dom_id(tag, :edit) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
   <p>There are no registered tags</p>
 <% end %>

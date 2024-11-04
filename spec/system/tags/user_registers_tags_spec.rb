@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'User register tags' do
-  it 'from the menu' do
+  it 'from the home page' do
     user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
                         email: 'bond@email.com', password: '123456abcdef',
                         password_confirmation: '123456abcdef')
@@ -45,7 +45,7 @@ describe 'User register tags' do
 
     expect(current_path).to eq(establishment_tags_path(estab.id))
     expect(page).to have_content('Tags')
-    expect(page).to have_content('#Vegano')
+    expect(page).to have_content('Vegano')
   end
 
   it "and the name can't be blank" do
