@@ -4,13 +4,13 @@ Take-Away é uma aplicação Rails desenvolvida para gerenciamento de pedidos, c
 
 Funcionalidades:
 -
-Cadastro de usuários:
-- Administrador: Tem permissões completas no sistema, podendo cadastrar e gerenciar estabelecimentos, cardápios, pratos, bebidas e pedidos.  
-- Funcionário: Possui permissões limitadas, com acesso necessário para gerenciar pedidos e atualizar o status dos mesmos.  
-Cadastro de Estabelecimentos: Permite o registro de informações do estabelecimento que utilizará o sistema.  
-Gestão de Pratos e Bebidas: Possibilita a criação, edição e exclusão de pratos e bebidas, incluindo detalhes como nome, descrição, preço e categoria.  
-Organização de Cardápios: Permite a organização dos pratos e bebidas em cardápios, facilitando a visualização e estruturação dos itens disponíveis.  
-Gerenciamento de Pedidos: Criação e acompanhamento do status dos pedidos feitos no estabelecimento, permitindo a atualização do andamento de cada pedido.  
+- **Cadastro de usuários:**
+  Administrador: Tem permissões completas no sistema, podendo cadastrar e gerenciar estabelecimentos, cardápios, pratos, bebidas e pedidos.  
+  Funcionário: Possui permissões limitadas, com acesso necessário para gerenciar pedidos e atualizar o status dos mesmos.  
+- **Cadastro de Estabelecimentos:** Permite o registro de informações do estabelecimento que utilizará o sistema.  
+- **Gestão de Pratos e Bebidas:** Possibilita a criação, edição e exclusão de pratos e bebidas, incluindo detalhes como nome, descrição, preço e categoria.  
+- **Organização de Cardápios:** Permite a organização dos pratos e bebidas em cardápios, facilitando a visualização e estruturação dos itens disponíveis.  
+- **Gerenciamento de Pedidos:** Criação e acompanhamento do status dos pedidos feitos no estabelecimento, permitindo a atualização do andamento de cada pedido.  
 
 Requisitos:
 -
