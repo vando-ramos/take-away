@@ -25,7 +25,7 @@
           </li>
           <% if current_user.establishment.present? %>
             <li class='nav-item'>
-              <%= link_to 'My Establishment', root_path %>
+              <%= link_to 'My Establishment', establishments_path %>
             </li>            
             <li class='nav-item'>
               <%= link_to 'Dishes', dishes_path %>

@@ -3,6 +3,8 @@ class Dish < ApplicationRecord
   has_many :dish_options
   has_many :dish_tags
   has_many :tags, through: :dish_tags
+  has_many :dish_menus
+  has_many :menus, through: :dish_menus
 
   has_one_attached :image
 

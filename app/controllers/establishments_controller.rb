@@ -2,6 +2,16 @@ class EstablishmentsController < ApplicationController
   before_action :set_establishment_and_check_user, only: %i[show]
   before_action :check_user_establishment, only: %i[new create]
 
+  def index
+    @establishment = current_user.establishment
+
+    if @establishment.nil?
+      return redirect_to new_establishment_path, alert: 'Please register an establishment'
+    end
+
+    @operating_hours = @establishment.operating_hours.order(:day_of_week)
+  end
+
   def show
   end
 

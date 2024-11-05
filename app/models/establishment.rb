@@ -3,6 +3,7 @@ class Establishment < ApplicationRecord
   has_many :operating_hours
   has_many :dishes
   has_many :drinks
+  has_many :menus
 
   validates :corporate_name, :brand_name, :cnpj, :address, :number, :neighborhood, :city, :state, :zip_code,
             :phone_number, :email, :code, presence: true
