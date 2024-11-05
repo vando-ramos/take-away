@@ -23,36 +23,36 @@ Configuração e Instalação:
 -
 Clone o repositório:
 
-git clone git@github.com:vando-ramos/take-away.git
-cd take-away
+```git clone git@github.com:vando-ramos/take-away.git```  
+```cd take-away```  
 
 Instale as dependências:
 -
-bundle install
+```bundle install```  
 
 Configure o banco de dados e rode as migrações:
 -
-rails db:create
-rails db:migrate
+```rails db:create```  
+```rails db:migrate```  
 
-Seeds:
+Seeds:  
 -
-O arquivo de seeds (db/seeds.rb) inclui dados iniciais para facilitar o desenvolvimento e a visualização dos recursos da aplicação. Os seeds incluem usuários, estabelecimentos, pratos, bebidas e cardápios, além de pedidos de exemplo.
+O arquivo de seeds (db/seeds.rb) inclui dados iniciais para facilitar o desenvolvimento e a visualização dos recursos da aplicação. Os seeds incluem usuários, estabelecimentos, pratos, bebidas e cardápios, além de pedidos de exemplo.  
 
-Para carregar os dados de seed no banco de dados, execute:
+Para carregar os dados de seed no banco de dados, execute:  
 
-rails db:seed
+```rails db:seed```  
 
-Execute o servidor:
+Execute o servidor:  
 -
-rails server
-Acesse a aplicação em: http://localhost:3000
+```rails server```  
+Acesse a aplicação em: http://localhost:3000  
 
-Testes:
+Testes:  
 -
-Os testes são realizados com RSpec e Capybara para garantir a funcionalidade e a usabilidade da aplicação.
+Os testes são realizados com RSpec e Capybara para garantir a funcionalidade e a usabilidade da aplicação.  
 
-Para rodar os testes:
+Para rodar os testes:  
 
-rspec
+```rspec```  
 
