@@ -4,7 +4,7 @@ Take-Away é uma aplicação Rails desenvolvida para gerenciamento de pedidos, c
 
 Funcionalidades:
 -
-- **Cadastro de usuários:**
+- **Cadastro de usuários:**  
   Administrador: Tem permissões completas no sistema, podendo cadastrar e gerenciar estabelecimentos, cardápios, pratos, bebidas e pedidos.  
   Funcionário: Possui permissões limitadas, com acesso necessário para gerenciar pedidos e atualizar o status dos mesmos.  
 - **Cadastro de Estabelecimentos:** Permite o registro de informações do estabelecimento que utilizará o sistema.  
@@ -17,8 +17,7 @@ Requisitos:
 - Ruby: 3.2.5  
 - Rails: 7.1.4.1  
 - SQLite3: >= 1.4  
-- RSpec e Capybara para testes automatizados  
-
+  
 Configuração e Instalação:
 -
 Clone o repositório:
