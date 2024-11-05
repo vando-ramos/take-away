@@ -5,7 +5,7 @@
 <% if @menus.any? %>
   <ul>
     <% @menus.each do |menu| %>
-      <li><%= link_to menu.name %></li>
+      <li><%= link_to menu.name, menu_path(menu.id) %></li>
     <% end %>
   </ul>
 <% else %>

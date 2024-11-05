@@ -27,4 +27,6 @@ Rails.application.routes.draw do
   end
 
   resources :search, only: [:index]
+
+  resources :menus
 end
