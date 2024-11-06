@@ -6,4 +6,5 @@ class Menu < ApplicationRecord
   has_many :drinks, through: :drink_menus
 
   validates :name, presence: true
+  validates :name, uniqueness: { scope: :establishment_id }
 end

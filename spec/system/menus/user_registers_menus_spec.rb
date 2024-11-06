@@ -117,4 +117,33 @@ describe 'User registers menus' do
     expect(page).to have_content('Unable to create menu')
     expect(page).to have_content("Name can't be blank")
   end
+
+  it 'and name has already been taken' do
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
+
+    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+                                  brand_name: 'Giraffas', cnpj: CNPJ.generate,
+                                  address: 'Rua Comercial Sul', number: '123',
+                                  neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
+                                  zip_code: '70300-902', phone_number: '2198765432',
+                                  email: 'contato@giraffas.com.br')
+
+    dish = Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
+                        description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
+                        calories: 265,
+                        image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+
+    Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
+
+    login_as(user)
+    visit(root_path)
+    click_on('New Menu')
+    fill_in 'Name', with: 'Lunch'
+    click_on('Create Menu')
+
+    expect(page).to have_content('Unable to create menu')
+    expect(page).to have_content('Name has already been taken')
+  end
 end
