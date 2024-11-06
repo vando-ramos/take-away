@@ -3,8 +3,8 @@ class MenusController < ApplicationController
   before_action :set_menu, only: %i[show]
 
   def show
-    @dishes = @menu.dishes.includes(:dish_options)
-    @drinks = @menu.drinks.includes(:drink_options)
+    @dishes = @menu.dishes.includes(:dish_options).where(status: Dish.statuses[:active])
+    @drinks = @menu.drinks.includes(:drink_options).where(status: Drink.statuses[:active])
   end
 
   def new
