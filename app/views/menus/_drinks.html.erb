@@ -1,0 +1,16 @@
+<ul>
+  <% @drinks.each do |drink| %>
+    <li>
+      <strong><%= drink.name %></strong>    
+      <ul>
+        <% if drink.drink_options.any? %>
+          <% drink.drink_options.each do |option| %>              
+            <li><%= option.description %> - R$<%= option.price %></li>
+          <% end %>
+        <% else %>
+            <p>There are no options registered for <%= drink.name %></p>
+        <% end %> 
+      </ul>
+    </li>
+  <% end %>
+</ul>

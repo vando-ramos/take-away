@@ -1,0 +1,16 @@
+<ul>
+  <% @dishes.each do |dish| %>
+    <li>
+      <strong><%= dish.name %></strong>        
+      <ul>
+        <% if dish.dish_options.any? %>
+          <% dish.dish_options.each do |option| %>              
+            <li><%= option.description %> - R$<%= option.price %></li>
+          <% end %>
+        <% else %>
+            <p>There are no options registered for <%= dish.name %></p>
+        <% end %> 
+      </ul>
+    </li>
+  <% end %>
+</ul>
