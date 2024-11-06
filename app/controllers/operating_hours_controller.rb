@@ -13,7 +13,7 @@ class OperatingHoursController < ApplicationController
     @operating_hour = @establishment.operating_hours.build(operating_hour_params)
 
     if @operating_hour.save
-      redirect_to root_path, notice: 'Operating hour successfully registered'
+      redirect_to establishments_path, notice: 'Operating hour successfully registered'
     else
       flash.now.alert = 'Unable to register operating hour'
       render :new, status: :unprocessable_entity
@@ -25,7 +25,7 @@ class OperatingHoursController < ApplicationController
 
   def update
     if @operating_hour.update(operating_hour_params)
-      redirect_to root_path, notice: 'Operating hour successfully updated'
+      redirect_to establishments_path, notice: 'Operating hour successfully updated'
     else
       flash.now.alert = 'Unable to update the operating hour'
       render :edit, status: :unprocessable_entity
@@ -42,7 +42,7 @@ class OperatingHoursController < ApplicationController
     @operating_hour = @establishment.operating_hours.find_by(id: params[:id])
 
     unless @operating_hour
-      return redirect_to root_path, alert: 'Operating hour not found'
+      return redirect_to establishments_path, alert: 'Operating hour not found'
     end
   end
 

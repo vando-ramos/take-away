@@ -1,15 +1,22 @@
 require 'rails_helper'
 
 describe 'User registers an establishment' do
-  it 'after authenticated' do
+  it 'if authenticated' do
+    visit(root_path)
+
+    expect(current_path).to eq(new_user_session_path)
+    expect(page).to have_field('Email')
+    expect(page).to have_field('Password')
+  end
+
+  it 'after authentication is redirected to the new establishment page' do
     user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
                         email: 'bond@email.com', password: '123456abcdef',
                         password_confirmation: '123456abcdef')
 
     login_as(user)
-    visit(root_path)
+    visit(new_establishment_path)
 
-    expect(current_path).to eq(new_establishment_path)
     expect(page).to have_content('Please register your establishment')
     expect(page).to have_field('Corporate name')
     expect(page).to have_field('Brand name')
@@ -32,7 +39,7 @@ describe 'User registers an establishment' do
     cnpj = CNPJ.generate
 
     login_as(user)
-    visit(root_path)
+    visit(new_establishment_path)
     fill_in 'Corporate name', with: 'Giraffas Brasil S.A.'
     fill_in 'Brand name', with: 'Giraffas'
     fill_in 'Cnpj', with: cnpj
@@ -62,7 +69,7 @@ describe 'User registers an establishment' do
                         password_confirmation: '123456abcdef')
 
     login_as(user)
-    visit(root_path)
+    visit(new_establishment_path)
     fill_in 'Corporate name', with: ''
     fill_in 'Brand name', with: ''
     fill_in 'Cnpj', with: ''
@@ -90,7 +97,7 @@ describe 'User registers an establishment' do
     login_as(user)
     visit(new_establishment_path)
 
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(establishments_path)
     expect(page).to have_content('You already have an establishment')
   end
 end

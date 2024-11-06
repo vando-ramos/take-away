@@ -25,6 +25,7 @@ describe "User views the establishment's operating hours" do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
 
     expect(page).to have_content('Operating Hours')
     expect(page).to have_content('Sunday')
@@ -56,6 +57,7 @@ describe "User views the establishment's operating hours" do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
 
     expect(page).to have_content('Operating Hours')
     expect(page).to have_content('There is no operating hours registered')
@@ -77,7 +79,7 @@ describe "User views the establishment's operating hours" do
     login_as(user)
     visit(establishment_operating_hour_path(estab.id, 9999))
 
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(establishments_path)
     expect(page).to have_content('Operating hour not found')
   end
 end

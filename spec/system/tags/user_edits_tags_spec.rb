@@ -24,6 +24,7 @@ describe 'User edits tags' do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
     click_on('Tags')
     find("#edit_tag_#{tag.id}").click
 
@@ -55,6 +56,7 @@ describe 'User edits tags' do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
     click_on('Tags')
     find("#edit_tag_#{tag.id}").click
     fill_in 'Name', with: 'Vegetariano'
@@ -88,6 +90,7 @@ describe 'User edits tags' do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
     click_on('Tags')
     find("#edit_tag_#{tag.id}").click
     fill_in 'Name', with: ''

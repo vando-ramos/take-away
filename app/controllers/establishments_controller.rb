@@ -36,13 +36,13 @@ class EstablishmentsController < ApplicationController
     @establishment = Establishment.find_by(id: params[:id])
 
     if @establishment.nil? || @establishment.user != current_user
-      return redirect_to root_path, alert: 'Establishment not found or you do not have access'
+      return redirect_to establishments_path, alert: 'Establishment not found or you do not have access'
     end
   end
 
   def check_user_establishment
     if current_user.establishment.present?
-      return redirect_to root_path, alert: 'You already have an establishment'
+      return redirect_to establishments_path, alert: 'You already have an establishment'
     end
   end
 

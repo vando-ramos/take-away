@@ -17,7 +17,7 @@ RSpec.describe "Establishments", type: :request do
         login_as(user)
 
         get new_establishment_path
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(establishments_path)
         follow_redirect!
         expect(flash[:alert]).to eq('You already have an establishment')
       end
@@ -57,7 +57,7 @@ RSpec.describe "Establishments", type: :request do
 
         post establishments_path, params: establishment_params
 
-        expect(response).to redirect_to(root_path)
+        expect(response).to redirect_to(establishments_path)
         follow_redirect!
         expect(flash[:alert]).to eq('You already have an establishment')
         expect(Establishment.count).to eq(1)

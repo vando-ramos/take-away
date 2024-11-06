@@ -24,6 +24,7 @@ describe 'User edits the operating hours' do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
     click_on('Sunday')
     click_on('Edit')
 
@@ -52,6 +53,7 @@ describe 'User edits the operating hours' do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
     click_on('Sunday')
     click_on('Edit')
     select '09', from: 'operating_hour_opening_time_4i'
@@ -60,7 +62,7 @@ describe 'User edits the operating hours' do
     select '30', from: 'operating_hour_closing_time_5i'
     click_on('Update Operating hour')
 
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(establishments_path)
     expect(page).to have_content('Operating hour successfully updated')
     expect(page).to have_content('Sunday')
     expect(page).to have_content('09:30 - 16:30')

@@ -15,6 +15,7 @@ describe 'User register tags' do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
     click_on('Tags')
     click_on('Add Tag')
 
@@ -38,6 +39,7 @@ describe 'User register tags' do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
     click_on('Tags')
     click_on('Add Tag')
     fill_in 'Name', with: 'Vegano'
@@ -62,6 +64,7 @@ describe 'User register tags' do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
     click_on('Tags')
     click_on('Add Tag')
     fill_in 'Name', with: ''

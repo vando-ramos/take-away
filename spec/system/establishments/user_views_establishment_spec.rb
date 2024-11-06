@@ -23,6 +23,7 @@ describe 'User visits the establishment page' do
 
     login_as(user)
     visit(root_path)
+    click_on('My Establishment')
     click_on('Giraffas Brasil S.A.')
 
     expect(current_path).to eq(establishment_path(estab.id))
@@ -56,7 +57,7 @@ describe 'User visits the establishment page' do
     visit(establishment_path(estab1.id))
 
     expect(current_path).not_to eq(establishment_path(estab1.id))
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(establishments_path)
     expect(page).to have_content('Establishment not found or you do not have access')
     expect(page).not_to have_content('Giraffas Brasil S.A.')
     expect(page).not_to have_content('Giraffas')
@@ -69,10 +70,9 @@ describe 'User visits the establishment page' do
                         password: '123456abcdef', password_confirmation: '123456abcdef')
 
     login_as(user)
-    visit(root_path)
+    visit(new_establishment_path)
 
-    expect(current_path).to eq(new_establishment_path)
-    expect(page).to have_content('Please register an establishment')
+    expect(page).to have_content('Please register your establishment')
   end
 
   it 'and the establishment not found' do
@@ -87,7 +87,7 @@ describe 'User visits the establishment page' do
     login_as(user)
     visit(establishment_path(9999))
 
-    expect(current_path).to eq(root_path)
+    expect(current_path).to eq(establishments_path)
     expect(page).to have_content('Establishment not found or you do not have access')
   end
 end
