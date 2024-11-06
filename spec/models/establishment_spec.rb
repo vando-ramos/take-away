@@ -239,5 +239,6 @@ RSpec.describe Establishment, type: :model do
     it { should have_many(:operating_hours) }
     it { should have_many(:dishes) }
     it { should have_many(:drinks) }
+    it { should have_many(:menus) }
   end
 end

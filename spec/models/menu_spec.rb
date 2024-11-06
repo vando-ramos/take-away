@@ -47,4 +47,12 @@ RSpec.describe Menu, type: :model do
       expect(menu.valid?).to eq false
     end
   end
+
+  describe 'associations' do
+    it { should belong_to(:establishment) }
+    it { should have_many(:dish_menus) }
+    it { should have_many(:dishes) }
+    it { should have_many(:drink_menus) }
+    it { should have_many(:drinks) }
+  end
 end
