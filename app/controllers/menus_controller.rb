@@ -1,6 +1,6 @@
 class MenusController < ApplicationController
   before_action :set_establishment
-  before_action :set_menu, only: %i[show]
+  before_action :set_menu, only: %i[show edit update]
 
   def show
     @dishes = @menu.dishes.includes(:dish_options).where(status: Dish.statuses[:active])
@@ -23,6 +23,23 @@ class MenusController < ApplicationController
     else
       flash.now.alert = 'Unable to create menu'
       render :new, status: :unprocessable_entity
+    end
+  end
+
+  def edit
+    @dishes = @establishment.dishes.includes(:dish_options).order(:name)
+    @drinks = @establishment.drinks.includes(:drink_options).order(:name)
+  end
+
+  def update
+    if @menu.update(menu_params)
+      redirect_to @menu, notice: 'Menu successfully updated'
+    else
+      @dishes = @establishment.dishes.includes(:dish_options).order(:name)
+      @drinks = @establishment.drinks.includes(:drink_options).order(:name)
+
+      flash.now.alert = 'Unable to update menu'
+      render :edit, status: :unprocessable_entity
     end
   end
 

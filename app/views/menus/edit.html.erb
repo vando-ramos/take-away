@@ -1,0 +1,11 @@
+<h1>Edit <%= @menu.name %></h1>
+
+<% if @menu.errors.any? %>
+  <ul>
+    <% @menu.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>
