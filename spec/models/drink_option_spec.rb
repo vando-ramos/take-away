@@ -71,7 +71,7 @@ RSpec.describe DrinkOption, type: :model do
         price_history = PriceHistory.create!(price: '10,00', start_date: start_date, end_date: end_date,
                                              item_type: 'drink_option', item_id: drink_option.id)
 
-        expect(price_history.price).to eq('10,00')
+        expect(price_history.price).to eq(10.00)
         expect(price_history.start_date).to eq(price_history.start_date)
         expect(price_history.end_date).to eq(price_history.end_date)
         expect(price_history.item_type).to eq('drink_option')

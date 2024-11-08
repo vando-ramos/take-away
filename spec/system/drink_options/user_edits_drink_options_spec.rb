@@ -26,7 +26,7 @@ describe 'User edits drink options' do
     expect(current_path).to eq(edit_drink_drink_option_path(drink.id, drink_option.id))
     expect(page).to have_content('Edit Drink Option')
     expect(page).to have_field('Description', with: '300ml')
-    expect(page).to have_field('Price', with: '5,00')
+    expect(page).to have_field('Price', with: 'R$5,00')
     expect(page).to have_button('Update Drink option')
   end
 

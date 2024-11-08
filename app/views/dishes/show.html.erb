@@ -44,7 +44,7 @@
       <% @dish.dish_options.each do |option| %>
         <tr>
           <td><%= option.description %></td>
-          <td><%= number_to_currency(option.price, unit: "R$", separator: ",", delimiter: ".") %></td>
+          <td><%= number_to_currency(option.price) %></td>
           <td>
             <%= link_to 'Edit', edit_dish_dish_option_path(@dish.id, option.id), 
                 id: dom_id(option, :edit) %>

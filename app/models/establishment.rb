@@ -4,6 +4,7 @@ class Establishment < ApplicationRecord
   has_many :dishes
   has_many :drinks
   has_many :menus
+  has_many :orders
 
   validates :corporate_name, :brand_name, :cnpj, :address, :number, :neighborhood, :city, :state, :zip_code,
             :phone_number, :email, :code, presence: true

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User registers options' do
+describe 'User registers dish options' do
   it 'from the dish details page' do
     user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
                         email: 'bond@email.com',

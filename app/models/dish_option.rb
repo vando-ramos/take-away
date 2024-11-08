@@ -9,6 +9,7 @@ class DishOption < ApplicationRecord
   private
 
   def save_price_history
-    price_histories.create(price: price_was, start_date: created_at, end_date: updated_at, item_type: 'dish_option')
+    price_histories.create(price: price_was, start_date: created_at,
+                           end_date: updated_at, item_type: 'dish_option')
   end
 end

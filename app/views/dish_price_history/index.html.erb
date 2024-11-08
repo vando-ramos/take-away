@@ -19,7 +19,7 @@
         <tbody>
           <% histories.each do |history| %>
             <tr>
-              <td>R$<%= history.price %></td>
+              <td><%= number_to_currency(history.price) %></td>
               <td><%= history.start_date.strftime("%d/%m/%Y %H:%M") %></td>
               <td><%= history.end_date.strftime("%d/%m/%Y %H:%M") %></td>
             </tr>

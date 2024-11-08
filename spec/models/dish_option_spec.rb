@@ -53,9 +53,12 @@ RSpec.describe DishOption, type: :model do
                             email: 'bond@email.com', password: '123456abcdef',
                             password_confirmation: '123456abcdef')
 
-        estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
-                                      cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
-                                      neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+        estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+                                      brand_name: 'Giraffas', cnpj: CNPJ.generate,
+                                      address: 'Rua Comercial Sul', number: '123',
+                                      neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
+                                      zip_code: '70300-902', phone_number: '2198765432',
+                                      email: 'contato@giraffas.com.br')
 
         dish = Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
                             description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
@@ -71,7 +74,7 @@ RSpec.describe DishOption, type: :model do
         price_history = PriceHistory.create!(price: '30,00', start_date: start_date, end_date: end_date,
                                              item_type: 'dish_option', item_id: dish_option.id)
 
-        expect(price_history.price).to eq('30,00')
+        expect(price_history.price).to eq(30.00)
         expect(price_history.start_date).to eq(price_history.start_date)
         expect(price_history.end_date).to eq(price_history.end_date)
         expect(price_history.item_type).to eq('dish_option')

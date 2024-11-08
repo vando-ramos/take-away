@@ -26,7 +26,7 @@ describe 'User edits dish options' do
     expect(current_path).to eq(edit_dish_dish_option_path(dish.id, dish_option.id))
     expect(page).to have_content('Edit Dish Option')
     expect(page).to have_field('Description', with: 'Média (26cm)')
-    expect(page).to have_field('Price', with: '30,00')
+    expect(page).to have_field('Price', with: 'R$30,00')
     expect(page).to have_button('Update Dish option')
   end
 

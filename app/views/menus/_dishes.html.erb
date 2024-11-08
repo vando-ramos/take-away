@@ -5,7 +5,7 @@
       <ul>
         <% if dish.dish_options.any? %>
           <% dish.dish_options.each do |option| %>              
-            <li><%= option.description %> - R$<%= option.price %></li>
+            <li><%= option.description %> - <%= number_to_currency(option.price) %></li>
           <% end %>
         <% else %>
             <p>There are no options registered for <%= dish.name %></p>

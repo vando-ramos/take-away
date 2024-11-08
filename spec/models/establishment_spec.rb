@@ -225,8 +225,9 @@ RSpec.describe Establishment, type: :model do
                                      address: 'Rua Comercial Sul', number: '123', neighborhood: 'Asa Sul', city: 'Brasília',
                                      state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
-      estab2 = Establishment.new(user: john, corporate_name: 'KFC Brasil S.A.', brand_name: 'KFC', cnpj: CNPJ.generate,
-                                     address: 'Av Paulista', number: '1234', neighborhood: 'Centro', city: 'São Paulo', state: 'SP', zip_code: '10010-100', phone_number: '1140041234', email: 'contato@kfc.com.br')
+      estab2 = Establishment.new(user: john, corporate_name: 'KFC Brasil S.A.', brand_name: 'KFC',
+                                 cnpj: CNPJ.generate, address: 'Av Paulista', number: '1234',
+                                 neighborhood: 'Centro', city: 'São Paulo', state: 'SP', zip_code: '10010-100', phone_number: '1140041234', email: 'contato@kfc.com.br')
 
       estab2.save!
 
@@ -240,5 +241,6 @@ RSpec.describe Establishment, type: :model do
     it { should have_many(:dishes) }
     it { should have_many(:drinks) }
     it { should have_many(:menus) }
+    it { should have_many(:orders) }
   end
 end

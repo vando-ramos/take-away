@@ -10,7 +10,7 @@
     <h3><%= drink_option.description %></h3>
     
     <% histories.each do |history| %>
-      <p>R$<%= history.price %></p>
+      <p><td><%= number_to_currency(history.price) %></td></p>
 
       De <%= history.start_date.strftime("%d/%m/%Y %H:%M") %><br>
       Até <%= history.end_date.strftime("%d/%m/%Y %H:%M") %>

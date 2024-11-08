@@ -28,7 +28,7 @@
   <ul>
     <% @drink.drink_options.each do |option| %>
       <li><%= option.description %></li>
-      <li><%= number_to_currency(option.price, unit: "R$", separator: ",", delimiter: ".") %></li>
+      <li><%= number_to_currency(option.price) %></li>
 
       <%= link_to 'Edit', 
           edit_drink_drink_option_path(@drink.id, option.id), 

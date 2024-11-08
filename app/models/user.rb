@@ -4,12 +4,13 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  has_one :establishment
+  has_many :orders
+
   validates :name, :last_name, :identification_number, presence: true
   validates :identification_number, uniqueness: true
   validates :identification_number, length: { is: 11 }, numericality: { only_integer: true }
   validate :valid_cpf
-
-  has_one :establishment
 
   private
 

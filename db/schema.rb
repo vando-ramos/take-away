@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_05_131502) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_08_194453) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_05_131502) do
   create_table "dish_options", force: :cascade do |t|
     t.integer "dish_id", null: false
     t.text "description"
-    t.string "price"
+    t.decimal "price", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["dish_id"], name: "index_dish_options_on_dish_id"
@@ -90,7 +90,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_05_131502) do
   create_table "drink_options", force: :cascade do |t|
     t.integer "drink_id", null: false
     t.text "description"
-    t.string "price"
+    t.decimal "price", precision: 8, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["drink_id"], name: "index_drink_options_on_drink_id"
@@ -147,8 +147,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_05_131502) do
     t.index ["establishment_id"], name: "index_operating_hours_on_establishment_id"
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.integer "establishment_id", null: false
+    t.integer "user_id", null: false
+    t.string "customer_name"
+    t.string "customer_cpf"
+    t.string "customer_email"
+    t.string "customer_phone"
+    t.decimal "total_value", precision: 8, scale: 2
+    t.string "code"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["establishment_id"], name: "index_orders_on_establishment_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "price_histories", force: :cascade do |t|
-    t.string "price"
+    t.decimal "price", precision: 8, scale: 2
     t.integer "item_type"
     t.integer "item_id"
     t.datetime "created_at", null: false
@@ -194,4 +210,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_05_131502) do
   add_foreign_key "establishments", "users"
   add_foreign_key "menus", "establishments"
   add_foreign_key "operating_hours", "establishments"
+  add_foreign_key "orders", "establishments"
+  add_foreign_key "orders", "users"
 end

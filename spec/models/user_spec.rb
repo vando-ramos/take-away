@@ -24,8 +24,8 @@ RSpec.describe User, type: :model do
     end
 
     it "identification number must be valid" do
-      user = User.new(name: 'James', last_name: 'Bond', identification_number: '11122233344', email: 'bond@email.com',
-                      password: '123456abcdef', password_confirmation: '123456abcdef')
+      user = User.new(name: 'James', last_name: 'Bond', identification_number: '11122233344',
+                      email: 'bond@email.com', password: '123456abcdef', password_confirmation: '123456abcdef')
 
       expect(user.valid?).to eq false
       expect(user.errors[:identification_number]).to include("is not valid")
@@ -63,5 +63,6 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { should have_one(:establishment) }
+    it { should have_many(:orders) }
   end
 end
