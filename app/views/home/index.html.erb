@@ -1,7 +1,5 @@
 <h1 class='title'>Menus</h1>
 
-<hr>
-
 <div><%= link_to 'New Menu', new_menu_path %></div>
 
 <% if @menus.any? %>
@@ -13,5 +11,7 @@
 <% else %>
   <p>There are not registered menus</p>
 <% end %>
+
+<div><%= link_to 'New Order', new_order_path %></div>
 
 

@@ -60,3 +60,9 @@ DrinkOption.create!(drink: drink1, price: '5,00', description: '300ml')
 DrinkOption.create!(drink: drink1, price: '8,00', description: '500ml')
 DrinkOption.create!(drink: drink2, price: '15,00', description: '300ml')
 DrinkOption.create!(drink: drink2, price: '20,00', description: '500ml')
+
+Menu.create!(establishment: estab1, name: 'Dinner', dishes: [dish1, dish2], drinks: [drink1, drink2])
+
+order = Order.create!(user: bond, establishment: estab1, customer_name: 'Tony Stark',
+                      customer_cpf: CPF.generate, customer_email: 'stark@email.com',
+                      customer_phone: '21987654321', total_value: '55,00')

@@ -1,8 +1,11 @@
 class Order < ApplicationRecord
   belongs_to :establishment
-  belongs_to :user
+  has_many :order_dishes, dependent: :destroy
+  has_many :dishes, through: :order_dishes
+  has_many :order_drinks, dependent: :destroy
+  has_many :drinks, through: :order_drinks
 
-  validates :customer_name, :total_value, presence: true
+  validates :customer_name, presence: true
   validates :customer_phone, presence: true, unless: -> { customer_email.present? }
   validates :customer_email, presence: true, unless: -> { customer_phone.present? }
   validates :customer_email, format: { with: /\A[^@\s]+@([^@\s]+\.)+(com|br|org)\z/,
@@ -13,6 +16,13 @@ class Order < ApplicationRecord
 
   enum status: { awaiting_kitchen_confirmation: 0, in_preparation: 1, canceled: 2,
                  ready: 3, delivered: 4 }
+
+  def total_price
+    total_dishes = order_dishes.sum(&:total_price)
+    total_drinks = order_drinks.sum(&:total_price)
+
+    total_dishes + total_drinks
+  end
 
   private
 

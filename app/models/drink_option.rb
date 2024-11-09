@@ -1,6 +1,7 @@
 class DrinkOption < ApplicationRecord
   belongs_to :drink
   has_many :price_histories, -> { where(item_type: 'drink_option') }, foreign_key: :item_id
+  has_many :order_drinks
 
   validates :description, :price, presence: true
 

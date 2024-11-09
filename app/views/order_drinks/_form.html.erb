@@ -1,0 +1,21 @@
+<%= form_with model: [@order, @order_drink] do |f| %>
+  <div>
+    <%= f.label :drinks %>
+    <%= f.collection_select :drink_id, @drinks, :id, :name %>
+  </div>
+  <div>
+    <%= f.label :drink_options %>
+    <%= f.collection_select :drink_option_id, @drink_options, :id, :description %>
+  </div>
+  <div>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity %>
+  </div>
+  <div>
+    <%= f.label :observation %>
+    <%= f.text_field :observation %>
+  </div>    
+  <div>
+    <%= f.submit 'Add Drink' %>
+  </div>
+<% end %>

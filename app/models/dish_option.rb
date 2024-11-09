@@ -1,6 +1,7 @@
 class DishOption < ApplicationRecord
   belongs_to :dish
   has_many :price_histories, -> { where(item_type: 'dish_option') }, foreign_key: :item_id
+  has_many :order_dishes
 
   validates :description, :price, presence: true
 

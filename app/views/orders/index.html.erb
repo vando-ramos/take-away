@@ -1,10 +1,22 @@
-<h1>Orders</h1>
+<h1 class='title'>Orders</h1>
 
-<ul>
-  <% @orders.each do |order| %>
-    <li><%= order.code %></li>
-    <li><%= order.customer_name %></li>
-    <li><%= number_to_currency(order.total_value) %></li> 
-    <li><%= order.status.humanize %></li>
-  <% end %>
-</ul>
+<table>
+  <thead>
+    <tr>
+      <th>Code</th>
+      <th>Customer Name</th>
+      <th>Total Value</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td><%= link_to order.code, order_path(order.id) %></td>
+        <td><%= order.customer_name %></td>
+        <td><%= number_to_currency(order.total_value) %></td>
+        <td><%= order.status.humanize %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

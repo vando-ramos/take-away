@@ -1,0 +1,21 @@
+<%= form_with model: @order do |f| %>
+  <div>
+    <%= f.label :customer_name %>
+    <%= f.text_field :customer_name %>
+  </div>
+  <div>
+    <%= f.label :customer_cpf %>
+    <%= f.text_field :customer_cpf %>
+  </div>
+  <div>
+    <%= f.label :customer_phone %>
+    <%= f.text_field :customer_phone %>
+  </div>
+  <div>
+    <%= f.label :customer_email %>
+    <%= f.text_field :customer_email %>
+  </div>    
+  <div>
+    <%= f.submit 'Start Order' %>
+  </div>
+<% end %>

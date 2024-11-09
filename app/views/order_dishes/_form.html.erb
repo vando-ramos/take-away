@@ -1,0 +1,21 @@
+<%= form_with model: [@order, @order_dish] do |f| %>
+  <div>
+    <%= f.label :dishes %>
+    <%= f.collection_select :dish_id, @dishes, :id, :name %>
+  </div>
+  <div>
+    <%= f.label :dish_options %>
+    <%= f.collection_select :dish_option_id, @dish_options, :id, :description %>
+  </div>
+  <div>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity %>
+  </div>
+  <div>
+    <%= f.label :observation %>
+    <%= f.text_field :observation %>
+  </div>    
+  <div>
+    <%= f.submit 'Add Dish' %>
+  </div>
+<% end %>

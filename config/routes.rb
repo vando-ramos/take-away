@@ -29,6 +29,9 @@ Rails.application.routes.draw do
   resources :search, only: [:index]
 
   resources :menus
-  
-  resources :orders
+
+  resources :orders do
+    resources :order_dishes, only: %i[new create]
+    resources :order_drinks, only: %i[new create]
+  end
 end

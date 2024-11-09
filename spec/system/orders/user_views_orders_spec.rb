@@ -64,17 +64,17 @@ describe 'User views orders' do
     Menu.create!(establishment: estab1, name: 'Drinks', drinks: [drink1], dishes: [dish1])
     Menu.create!(establishment: estab2, name: 'Drinks', drinks: [drink2], dishes: [dish2])
 
-    order1 = Order.create!(user: bond, establishment: estab1, customer_name: 'Tony Stark',
+    order1 = Order.create!(establishment: estab1, customer_name: 'Tony Stark',
                            customer_cpf: CPF.generate, customer_email: 'stark@email.com',
                            customer_phone: '21987654321', total_value: '58,00',
                            status: 'awaiting_kitchen_confirmation')
 
-    order2 = Order.create!(user: bond, establishment: estab1, customer_name: 'Wanda Maximoff',
+    order2 = Order.create!(establishment: estab1, customer_name: 'Wanda Maximoff',
                            customer_cpf: CPF.generate, customer_email: 'wanda@email.com',
                            customer_phone: '21986427531', total_value: '35,00',
                            status: 'in_preparation')
 
-    order3 = Order.create!(user: wick, establishment: estab2, customer_name: 'Bruce Wayne',
+    order3 = Order.create!(establishment: estab2, customer_name: 'Bruce Wayne',
                            customer_cpf: CPF.generate, customer_email: 'wayne@email.com',
                            customer_phone: '21975318642', total_value: '30,00',
                            status: 'canceled')
@@ -94,5 +94,63 @@ describe 'User views orders' do
     expect(page).to have_content('In preparation')
     expect(page).not_to have_content(order3.code)
     expect(page).not_to have_content('Canceled')
+  end
+
+  it 'and sees details of an order' do
+    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef')
+
+    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+                                  brand_name: 'Giraffas', cnpj: CNPJ.generate,
+                                  address: 'Rua Comercial Sul', number: '123',
+                                  neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
+                                  zip_code: '70300-902', phone_number: '2198765432',
+                                  email: 'contato@giraffas.com.br')
+
+    dish = Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
+                        description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
+                        calories: 265,
+                        image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+
+    drink = Drink.create!(establishment: estab, name: 'Mojito',
+                          description: 'Um coquetel clássico cubano feito com rum branco, limão, hortelã, açúcar e água com gás',
+                          calories: 150, is_alcoholic: 'yes',
+                          image: fixture_file_upload(Rails.root.join('spec/fixtures/files/mojito.jpg'), 'image/jpg'))
+
+    DishOption.create!(dish: dish, price: '30,00', description: 'Média')
+    DrinkOption.create!(drink: drink, price: '25,00', description: '500ml')
+
+    Menu.create!(establishment: estab, name: 'Dinner', dishes: [dish], drinks: [drink])
+
+    cpf = CPF.generate
+    order = Order.create!(establishment: estab, customer_name: 'Tony Stark',
+                           customer_cpf: cpf, customer_email: 'stark@email.com',
+                           customer_phone: '21987654321', total_value: '55,00',
+                           status: 'awaiting_kitchen_confirmation')
+
+    OrderDish.create!(dish: dish, order: order, quantity: 1)
+
+    OrderDrink.create!(drink: drink, order: order, quantity: 1, observation: 'Sem açúcar')
+
+    login_as(user)
+    visit(root_path)
+    click_on('Orders')
+    click_on(order.code)
+
+    expect(page).to have_content("Order #{order.code}")
+    expect(page).to have_content('Tony Stark')
+    expect(page).to have_content(cpf)
+    expect(page).to have_content('stark@email.com')
+    expect(page).to have_content('21987654321')
+    expect(page).to have_content('Pizza de Calabresa Média')
+    expect(page).to have_content('R$30.00')
+    expect(page).to have_content('1')
+    expect(page).to have_content('Mojito 500ml')
+    expect(page).to have_content('R$25.00')
+    expect(page).to have_content('1')
+    expect(page).to have_content('Sem açúcar')
+    expect(page).to have_content('R$55,00')
+    expect(page).to have_content('Awaiting kitchen confirmation')
   end
 end

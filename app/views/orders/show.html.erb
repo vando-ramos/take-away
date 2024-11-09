@@ -1,0 +1,61 @@
+<h1 class='title'>Order <%= @order.code %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Customer Name</th>
+      <th>CPF</th>
+      <th>Phone</th>
+      <th>Email</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @order.customer_name %></td>
+      <td><%= @order.customer_cpf %></td>
+      <td><%= @order.customer_phone %></td>
+      <td><%= @order.customer_email %></td>
+      <td><%= @order.status.humanize %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Order Items</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Option</th>
+      <th>Quantity</th>
+      <th>Observation</th>
+      <th>Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @order.order_dishes.each do |od| %>
+      <tr>
+        <td><%= od.dish.name %></td>
+        <td><%= od.dish_option.description %></td>
+        <td><%= od.quantity %></td>
+        <td><%= od.observation %></td>
+        <td><%= number_to_currency(od.total_price) %></td>
+      </tr>
+    <% end %>  
+    <% @order.order_drinks.each do |od| %>
+      <tr>
+        <td><%= od.drink.name %></td>
+        <td><%= od.drink_option.description %></td>
+        <td><%= od.quantity %></td>
+        <td><%= od.observation %></td>
+        <td><%= number_to_currency(od.total_price) %></td>
+      </tr>
+    <% end %>  
+  </tbody>
+</table>
+
+<%= link_to 'Add Dish', new_order_order_dish_path(@order.id) %>
+<%= link_to 'Add Drink', new_order_order_drink_path(@order.id) %>
+
+<h2>Total: <%= number_to_currency(@order.total_price) %></h2>

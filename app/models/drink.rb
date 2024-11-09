@@ -1,8 +1,10 @@
 class Drink < ApplicationRecord
   belongs_to :establishment
-  has_many :drink_options
+  has_many :drink_options, dependent: :destroy
   has_many :drink_menus
   has_many :menus, through: :drink_menus
+  has_many :order_drinks
+  has_many :orders, through: :order_drinks
 
   has_one_attached :image
 

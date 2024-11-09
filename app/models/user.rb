@@ -5,7 +5,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one :establishment
-  has_many :orders
 
   validates :name, :last_name, :identification_number, presence: true
   validates :identification_number, uniqueness: true

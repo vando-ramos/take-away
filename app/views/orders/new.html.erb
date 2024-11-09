@@ -1,0 +1,11 @@
+<h1 class='title'>New Order</h1>
+
+<% if @order.errors.any? %>
+  <ul>
+    <% @order.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>

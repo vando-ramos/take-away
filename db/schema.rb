@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_08_194453) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_09_155554) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -147,9 +147,34 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_08_194453) do
     t.index ["establishment_id"], name: "index_operating_hours_on_establishment_id"
   end
 
+  create_table "order_dishes", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "dish_id", null: false
+    t.string "observation"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "dish_option_id", null: false
+    t.index ["dish_id"], name: "index_order_dishes_on_dish_id"
+    t.index ["dish_option_id"], name: "index_order_dishes_on_dish_option_id"
+    t.index ["order_id"], name: "index_order_dishes_on_order_id"
+  end
+
+  create_table "order_drinks", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "drink_id", null: false
+    t.string "observation"
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "drink_option_id", null: false
+    t.index ["drink_id"], name: "index_order_drinks_on_drink_id"
+    t.index ["drink_option_id"], name: "index_order_drinks_on_drink_option_id"
+    t.index ["order_id"], name: "index_order_drinks_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "establishment_id", null: false
-    t.integer "user_id", null: false
     t.string "customer_name"
     t.string "customer_cpf"
     t.string "customer_email"
@@ -160,7 +185,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_08_194453) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["establishment_id"], name: "index_orders_on_establishment_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "price_histories", force: :cascade do |t|
@@ -210,6 +234,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_08_194453) do
   add_foreign_key "establishments", "users"
   add_foreign_key "menus", "establishments"
   add_foreign_key "operating_hours", "establishments"
+  add_foreign_key "order_dishes", "dish_options"
+  add_foreign_key "order_dishes", "dishes"
+  add_foreign_key "order_dishes", "orders"
+  add_foreign_key "order_drinks", "drink_options"
+  add_foreign_key "order_drinks", "drinks"
+  add_foreign_key "order_drinks", "orders"
   add_foreign_key "orders", "establishments"
-  add_foreign_key "orders", "users"
 end
