@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_establishment
-  before_action :set_order, only: %i[show]
+  before_action :set_order, only: %i[show in_preparation canceled ready delivered]
 
   def index
     @orders = @establishment.orders
@@ -22,6 +22,26 @@ class OrdersController < ApplicationController
       flash.now.alert = 'Unable to start order'
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def in_preparation
+    @order.in_preparation!
+    redirect_to @order
+  end
+
+  def canceled
+    @order.canceled!
+    redirect_to @order
+  end
+
+  def ready
+    @order.ready!
+    redirect_to @order
+  end
+
+  def delivered
+    @order.delivered!
+    redirect_to @order
   end
 
   private

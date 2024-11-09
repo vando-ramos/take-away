@@ -33,5 +33,10 @@ Rails.application.routes.draw do
   resources :orders do
     resources :order_dishes, only: %i[new create]
     resources :order_drinks, only: %i[new create]
+
+    post 'in_preparation', on: :member
+    post 'canceled', on: :member
+    post 'ready', on: :member
+    post 'delivered', on: :member
   end
 end

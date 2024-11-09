@@ -58,4 +58,17 @@
 <%= link_to 'Add Dish', new_order_order_dish_path(@order.id) %>
 <%= link_to 'Add Drink', new_order_order_drink_path(@order.id) %>
 
+<% if @order.awaiting_kitchen_confirmation? %>
+  <%= button_to 'In preparation', in_preparation_order_path(@order.id) %>
+  <%= button_to 'Canceled', canceled_order_path(@order.id) %>
+<% elsif @order.in_preparation? %>
+  <%= button_to 'Canceled', canceled_order_path(@order.id) %>
+  <%= button_to 'Ready', ready_order_path(@order.id) %>
+<% elsif @order.ready? %>
+  <%= button_to 'Canceled', canceled_order_path(@order.id) %>
+  <%= button_to 'Delivered', delivered_order_path(@order.id) %>
+<% end %>
+
+
+
 <h2>Total: <%= number_to_currency(@order.total_price) %></h2>

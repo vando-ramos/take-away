@@ -118,8 +118,8 @@ describe 'User views orders' do
                           calories: 150, is_alcoholic: 'yes',
                           image: fixture_file_upload(Rails.root.join('spec/fixtures/files/mojito.jpg'), 'image/jpg'))
 
-    DishOption.create!(dish: dish, price: '30,00', description: 'Média')
-    DrinkOption.create!(drink: drink, price: '25,00', description: '500ml')
+    dish_option = DishOption.create!(dish: dish, price: '30,00', description: 'Média')
+    drink_option = DrinkOption.create!(drink: drink, price: '25,00', description: '500ml')
 
     Menu.create!(establishment: estab, name: 'Dinner', dishes: [dish], drinks: [drink])
 
@@ -129,9 +129,9 @@ describe 'User views orders' do
                            customer_phone: '21987654321', total_value: '55,00',
                            status: 'awaiting_kitchen_confirmation')
 
-    OrderDish.create!(dish: dish, order: order, quantity: 1)
+    OrderDish.create!(dish: dish, dish_option: dish_option, order: order, quantity: 1, observation: 'Sem queijo')
 
-    OrderDrink.create!(drink: drink, order: order, quantity: 1, observation: 'Sem açúcar')
+    OrderDrink.create!(drink: drink, drink_option: drink_option, order: order, quantity: 1, observation: 'Sem açúcar')
 
     login_as(user)
     visit(root_path)
@@ -143,14 +143,17 @@ describe 'User views orders' do
     expect(page).to have_content(cpf)
     expect(page).to have_content('stark@email.com')
     expect(page).to have_content('21987654321')
-    expect(page).to have_content('Pizza de Calabresa Média')
-    expect(page).to have_content('R$30.00')
+    expect(page).to have_content('Awaiting kitchen confirmation')
+    expect(page).to have_content('Pizza de Calabresa')
+    expect(page).to have_content('Média')
+    expect(page).to have_content('R$30,00')
     expect(page).to have_content('1')
-    expect(page).to have_content('Mojito 500ml')
-    expect(page).to have_content('R$25.00')
+    expect(page).to have_content('Sem queijo')
+    expect(page).to have_content('Mojito')
+    expect(page).to have_content('500ml')
+    expect(page).to have_content('R$25,00')
     expect(page).to have_content('1')
     expect(page).to have_content('Sem açúcar')
-    expect(page).to have_content('R$55,00')
-    expect(page).to have_content('Awaiting kitchen confirmation')
+    expect(page).to have_content('Total: R$55,00')
   end
 end

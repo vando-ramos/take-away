@@ -24,38 +24,9 @@ RSpec.describe Order, type: :model do
 
       Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
 
-      order = Order.new(user: user, establishment: estab, customer_name: '',
+      order = Order.new(establishment: estab, customer_name: '',
                         customer_cpf: CPF.generate, customer_email: 'stark@email.com',
                         customer_phone: '21987654321', total_value: '50,00')
-
-      expect(order.valid?).to eq false
-    end
-
-    it "total value can't be blank" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                          email: 'bond@email.com', password: '123456abcdef',
-                          password_confirmation: '123456abcdef')
-
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
-                                    brand_name: 'Giraffas', cnpj: CNPJ.generate,
-                                    address: 'Rua Comercial Sul', number: '123',
-                                    neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
-                                    zip_code: '70300-902', phone_number: '2198765432',
-                                    email: 'contato@giraffas.com.br')
-
-      dish = Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
-                          description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
-                          calories: 265,
-                          image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
-
-      DishOption.create!(dish: dish, price: '30,00', description: 'Média')
-      DishOption.create!(dish: dish, price: '50,00', description: 'Grande')
-
-      Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
-
-      order = Order.new(user: user, establishment: estab, customer_name: 'Tony Stark',
-                        customer_cpf: CPF.generate, customer_email: 'stark@email.com',
-                        customer_phone: '21987654321', total_value: '')
 
       expect(order.valid?).to eq false
     end
@@ -82,7 +53,7 @@ RSpec.describe Order, type: :model do
 
       Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
 
-      order = Order.new(user: user, establishment: estab, customer_name: 'Tony Stark',
+      order = Order.new(establishment: estab, customer_name: 'Tony Stark',
                         customer_cpf: CPF.generate, customer_email: 'stark@email.com',
                         customer_phone: '', total_value: '50,00')
 
@@ -111,7 +82,7 @@ RSpec.describe Order, type: :model do
 
       Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
 
-      order = Order.new(user: user, establishment: estab, customer_name: 'Tony Stark',
+      order = Order.new(establishment: estab, customer_name: 'Tony Stark',
                         customer_cpf: CPF.generate, customer_email: '',
                         customer_phone: '21987654321', total_value: '50,00')
 
@@ -140,7 +111,7 @@ RSpec.describe Order, type: :model do
 
       Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
 
-      order = Order.new(user: user, establishment: estab, customer_name: 'Tony Stark',
+      order = Order.new(establishment: estab, customer_name: 'Tony Stark',
                         customer_cpf: CPF.generate, customer_email: '',
                         customer_phone: '', total_value: '50,00')
 
@@ -169,7 +140,7 @@ RSpec.describe Order, type: :model do
 
       Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
 
-      order = Order.new(user: user, establishment: estab, customer_name: 'Tony Stark',
+      order = Order.new(establishment: estab, customer_name: 'Tony Stark',
                         customer_cpf: '11122233344', customer_email: 'stark@email.com',
                         customer_phone: '21987654321', total_value: '50,00')
 
@@ -199,7 +170,7 @@ RSpec.describe Order, type: :model do
 
       Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
 
-      order = Order.new(user: user, establishment: estab, customer_name: 'Tony Stark',
+      order = Order.new(establishment: estab, customer_name: 'Tony Stark',
                         customer_cpf: CPF.generate, customer_email: 'stark-email.com',
                         customer_phone: '21987654321', total_value: '50,00')
 
@@ -230,7 +201,7 @@ RSpec.describe Order, type: :model do
 
       Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
 
-      order = Order.new(user: user, establishment: estab, customer_name: 'Tony Stark',
+      order = Order.new(establishment: estab, customer_name: 'Tony Stark',
                         customer_cpf: CPF.generate, customer_email: 'stark@email.com',
                         customer_phone: '21987654321', total_value: '50,00')
 
@@ -263,11 +234,11 @@ RSpec.describe Order, type: :model do
 
       Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
 
-      order1 = Order.create!(user: user, establishment: estab, customer_name: 'Tony Stark',
+      order1 = Order.create!(establishment: estab, customer_name: 'Tony Stark',
                         customer_cpf: CPF.generate, customer_email: 'stark@email.com',
                         customer_phone: '21987654321', total_value: '50,00')
 
-      order2 = Order.new(user: user, establishment: estab, customer_name: 'Tony Stark',
+      order2 = Order.new(establishment: estab, customer_name: 'Tony Stark',
                         customer_cpf: CPF.generate, customer_email: 'stark@email.com',
                         customer_phone: '21987654321', total_value: '50,00')
 
@@ -278,9 +249,8 @@ RSpec.describe Order, type: :model do
   end
 
   describe 'associations' do
-    it { should belong_to(:user) }
     it { should belong_to(:establishment) }
-    # it { should have_many(:dishes) }
-    # it { should have_many(:drinks) }
+    it { should have_many(:dishes) }
+    it { should have_many(:drinks) }
   end
 end

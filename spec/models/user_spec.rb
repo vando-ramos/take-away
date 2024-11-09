@@ -63,6 +63,5 @@ RSpec.describe User, type: :model do
 
   describe 'associations' do
     it { should have_one(:establishment) }
-    it { should have_many(:orders) }
   end
 end
