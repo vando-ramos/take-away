@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_11_09_155554) do
+ActiveRecord::Schema[7.1].define(version: 2024_11_10_183030) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -187,6 +187,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_09_155554) do
     t.index ["establishment_id"], name: "index_orders_on_establishment_id"
   end
 
+  create_table "pre_registrations", force: :cascade do |t|
+    t.integer "establishment_id", null: false
+    t.string "email"
+    t.string "cpf"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["establishment_id"], name: "index_pre_registrations_on_establishment_id"
+  end
+
   create_table "price_histories", force: :cascade do |t|
     t.decimal "price", precision: 8, scale: 2
     t.integer "item_type"
@@ -215,6 +225,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_09_155554) do
     t.string "identification_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -241,4 +252,5 @@ ActiveRecord::Schema[7.1].define(version: 2024_11_09_155554) do
   add_foreign_key "order_drinks", "drinks"
   add_foreign_key "order_drinks", "orders"
   add_foreign_key "orders", "establishments"
+  add_foreign_key "pre_registrations", "establishments"
 end

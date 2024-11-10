@@ -39,4 +39,6 @@ Rails.application.routes.draw do
     post 'ready', on: :member
     post 'delivered', on: :member
   end
+
+  resources :pre_registrations
 end

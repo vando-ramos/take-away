@@ -152,3 +152,15 @@ li {
 .img {
   width: 300px;
 }
+
+.add-items-link {
+  display: flex;
+}
+
+.add-items-link a {
+  margin: 10px;
+}
+
+.total-price {
+  margin: 20px;
+}

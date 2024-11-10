@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_one :establishment
 
+  enum role: { normal: 0, admin: 1 }
+
   validates :name, :last_name, :identification_number, presence: true
   validates :identification_number, uniqueness: true
   validates :identification_number, length: { is: 11 }, numericality: { only_integer: true }

@@ -1,0 +1,15 @@
+<div class='form-container'>
+  <%= form_with model: @pre_registration do |f| %>
+    <div>
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :cpf %>
+      <%= f.text_field :cpf %>
+    </div>    
+    <div>
+      <%= f.submit 'Create User' %>
+    </div>
+  <% end %>
+</div>
