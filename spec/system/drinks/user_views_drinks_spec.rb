@@ -10,12 +10,13 @@ describe 'User views the drinks' do
   end
 
   it 'from the menu' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
-
-    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+    estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
                                   neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+
+    user = User.create!(establishment: estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef', role: 'admin')
 
     Drink.create!(establishment: estab, name: 'Limonada',
                  description: 'Uma refrescante bebida feita com limões frescos, açúcar e água',
@@ -46,13 +47,14 @@ describe 'User views the drinks' do
   end
 
   it 'and there is no drinks registered' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
-
-    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+    estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
                                   neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902',
                                   phone_number: '2198765432', email: 'contato@giraffas.com.br')
+
+    user = User.create!(establishment: estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef', role: 'admin')
 
     login_as(user)
     visit(root_path)
@@ -64,12 +66,13 @@ describe 'User views the drinks' do
   end
 
   it 'and the drink not found' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
-
-    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+    estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                   cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
                                   neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+
+    user = User.create!(establishment: estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef', role: 'admin')
 
     Drink.create!(establishment: estab, name: 'Limonada',
                   description: 'Uma refrescante bebida feita com limões frescos, açúcar e água',
@@ -84,19 +87,21 @@ describe 'User views the drinks' do
   end
 
   it 'and does not view drinks from other establishments' do
-    bond = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
-
-    john = User.create!(name: 'John', last_name: 'Wick', identification_number: CPF.generate, email: 'wick@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
-
-    bond_estab = Establishment.create!(user: bond, corporate_name: 'Giraffas Brasil S.A.',
+    bond_estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                        brand_name: 'Giraffas', cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123', neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432',
                                        email: 'contato@giraffas.com.br')
 
-    john_estab = Establishment.create!(user: john, corporate_name: 'KFC Brasil S.A.', brand_name: 'KFC',
+    john_estab = Establishment.create!(corporate_name: 'KFC Brasil S.A.', brand_name: 'KFC',
                                        cnpj: CNPJ.generate, address: 'Av Paulista', number: '1234',
                                        neighborhood: 'Centro', city: 'São Paulo', state: 'SP', zip_code: '10010-100', phone_number: '1140041234', email: 'contato@kfc.com.br')
+
+    bond = User.create!(establishment: bond_estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef', role: 'admin')
+
+    john = User.create!(establishment: john_estab, name: 'John', last_name: 'Wick', cpf: CPF.generate,
+                        email: 'wick@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef', role: 'admin')
 
     drink = Drink.create!(establishment: john_estab, name: 'Limonada',
                           description: 'Uma refrescante bebida feita com limões frescos, açúcar e água',
@@ -111,12 +116,13 @@ describe 'User views the drinks' do
   end
 
   it 'from the search' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate, email: 'bond@email.com',
-                        password: '123456abcdef', password_confirmation: '123456abcdef')
-
-    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+    estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                   brand_name: 'Giraffas', cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123', neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432',
                                   email: 'contato@giraffas.com.br')
+
+    user = User.create!(establishment: estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef', role: 'admin')
 
     Drink.create!(establishment: estab, name: 'Limonada',
                   description: 'Uma refrescante bebida feita com limões frescos, açúcar e água',

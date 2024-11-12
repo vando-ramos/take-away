@@ -1,4 +1,6 @@
 class DishPriceHistoryController < ApplicationController
+  before_action :authorize_admin!
+  
   def index
     @dish_price_histories = PriceHistory.where(item_type: :dish_option)
 

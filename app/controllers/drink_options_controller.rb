@@ -1,4 +1,5 @@
 class DrinkOptionsController < ApplicationController
+  before_action :authorize_admin!
   before_action :set_establishment
   before_action :set_drink
   before_action :set_drink_option, only: %i[edit update]

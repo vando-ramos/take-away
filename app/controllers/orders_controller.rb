@@ -3,7 +3,7 @@ class OrdersController < ApplicationController
   before_action :set_order, only: %i[show in_preparation canceled ready delivered]
 
   def index
-    @orders = @establishment.orders
+    @orders = @establishment.orders.order(:status)
   end
 
   def show

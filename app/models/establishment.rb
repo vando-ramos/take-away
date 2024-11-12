@@ -1,5 +1,5 @@
 class Establishment < ApplicationRecord
-  belongs_to :user
+  has_many :users
   has_many :operating_hours
   has_many :dishes
   has_many :drinks

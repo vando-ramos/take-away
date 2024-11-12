@@ -10,74 +10,66 @@ describe 'User views orders' do
   end
 
   it 'that belong to their establishment' do
-    bond = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+    bond_estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
+                                        brand_name: 'Giraffas', cnpj: CNPJ.generate,
+                                        address: 'Rua Comercial Sul', number: '123',
+                                        neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
+                                        zip_code: '70300-902', phone_number: '2198765432',
+                                        email: 'contato@giraffas.com.br')
+
+    wick_estab = Establishment.create!(corporate_name: 'KFC Brasil S.A.', brand_name: 'KFC',
+                                       cnpj: CNPJ.generate, address: 'Av Paulista', number: '1234',
+                                       neighborhood: 'Centro', city: 'São Paulo', state: 'SP',
+                                       zip_code: '10010-100', phone_number: '1140041234',
+                                       email: 'contato@kfc.com.br')
+
+    bond = User.create!(establishment: bond_estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
                         email: 'bond@email.com', password: '123456abcdef',
-                        password_confirmation: '123456abcdef')
+                        password_confirmation: '123456abcdef', role: 'admin')
 
-    wick = User.create!(name: 'John', last_name: 'Wick', identification_number: CPF.generate,
+    wick = User.create!(establishment: wick_estab, name: 'John', last_name: 'Wick', cpf: CPF.generate,
                         email: 'wick@email.com', password: '123456789aaa',
-                        password_confirmation: '123456789aaa')
+                        password_confirmation: '123456789aaa', role: 'admin')
 
-    estab1 = Establishment.create!(user: bond, corporate_name: 'Giraffas Brasil S.A.',
-                                  brand_name: 'Giraffas', cnpj: CNPJ.generate,
-                                  address: 'Rua Comercial Sul', number: '123',
-                                  neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
-                                  zip_code: '70300-902', phone_number: '2198765432',
-                                  email: 'contato@giraffas.com.br')
-
-    estab2 = Establishment.create!(user: wick, corporate_name: 'KFC Brasil S.A.', brand_name: 'KFC',
-                                  cnpj: CNPJ.generate, address: 'Av Paulista', number: '1234',
-                                  neighborhood: 'Centro', city: 'São Paulo', state: 'SP',
-                                  zip_code: '10010-100', phone_number: '1140041234',
-                                  email: 'contato@kfc.com.br')
-
-    dish1 = Dish.create!(establishment: estab1, name: 'Pizza de Calabresa',
+    dish = Dish.create!(establishment: bond_estab, name: 'Pizza de Calabresa',
                         description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
                         calories: 265,
                         image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
 
-    dish2 = Dish.create!(establishment: estab2, name: 'Macarrão Carbonara',
-                        description: 'Macarrão com molho cremoso à base de ovos, queijo e bacon',
-                        calories: 550,
-                        image: fixture_file_upload(Rails.root.join('spec/fixtures/files/carbonara.jpg'), 'image/jpg'))
-
-    drink1 = Drink.create!(establishment: estab1, name: 'Limonada',
-                          description: 'Uma refrescante bebida feita com limões frescos, açúcar e água',
-                          calories: 120, is_alcoholic: 'no',
-                          image: fixture_file_upload(Rails.root.join('spec/fixtures/files/limonada.jpg'), 'image/jpg'))
-
-    drink2 = Drink.create!(establishment: estab2, name: 'Mojito',
+    drink = Drink.create!(establishment: wick_estab, name: 'Mojito',
                           description: 'Um coquetel clássico cubano feito com rum branco, limão, hortelã, açúcar e água com gás',
                           calories: 150, is_alcoholic: 'yes',
                           image: fixture_file_upload(Rails.root.join('spec/fixtures/files/mojito.jpg'), 'image/jpg'))
 
-    DishOption.create!(dish: dish1, price: '30,00', description: 'Média')
-    DishOption.create!(dish: dish1, price: '50,00', description: 'Grande')
-    DishOption.create!(dish: dish2, price: '15,00', description: 'Pequeno')
-    DishOption.create!(dish: dish2, price: '25,00', description: 'Médio')
-    DrinkOption.create!(drink: drink1, price: '5,00', description: '300ml')
-    DrinkOption.create!(drink: drink1, price: '8,00', description: '500ml')
-    DrinkOption.create!(drink: drink2, price: '15,00', description: '300ml')
-    DrinkOption.create!(drink: drink2, price: '25,00', description: '500ml')
+    dish_option1 = DishOption.create!(dish: dish, price: '30,00', description: 'Média')
+    dish_option2 = DishOption.create!(dish: dish, price: '50,00', description: 'Grande')
+    drink_option1 = DrinkOption.create!(drink: drink, price: '15,00', description: '300ml')
+    drink_option2 = DrinkOption.create!(drink: drink, price: '25,00', description: '500ml')
 
-    Menu.create!(establishment: estab1, name: 'Lunch', dishes: [dish1], drinks: [drink1])
-    Menu.create!(establishment: estab1, name: 'Drinks', drinks: [drink1], dishes: [dish1])
-    Menu.create!(establishment: estab2, name: 'Drinks', drinks: [drink2], dishes: [dish2])
+    Menu.create!(establishment: bond_estab, name: 'Lunch', dishes: [dish], drinks: [drink])
+    Menu.create!(establishment: bond_estab, name: 'Drinks', drinks: [drink], dishes: [dish])
+    Menu.create!(establishment: wick_estab, name: 'Drinks', drinks: [drink], dishes: [dish])
 
-    order1 = Order.create!(establishment: estab1, customer_name: 'Tony Stark',
+    order1 = Order.create!(establishment: bond_estab, customer_name: 'Tony Stark',
                            customer_cpf: CPF.generate, customer_email: 'stark@email.com',
-                           customer_phone: '21987654321', total_value: '58,00',
+                           customer_phone: '21987654321',
                            status: 'awaiting_kitchen_confirmation')
 
-    order2 = Order.create!(establishment: estab1, customer_name: 'Wanda Maximoff',
+    order2 = Order.create!(establishment: bond_estab, customer_name: 'Wanda Maximoff',
                            customer_cpf: CPF.generate, customer_email: 'wanda@email.com',
-                           customer_phone: '21986427531', total_value: '35,00',
+                           customer_phone: '21986427531',
                            status: 'in_preparation')
 
-    order3 = Order.create!(establishment: estab2, customer_name: 'Bruce Wayne',
+    order3 = Order.create!(establishment: wick_estab, customer_name: 'Bruce Wayne',
                            customer_cpf: CPF.generate, customer_email: 'wayne@email.com',
-                           customer_phone: '21975318642', total_value: '30,00',
+                           customer_phone: '21975318642',
                            status: 'canceled')
+
+    OrderDish.create!(dish: dish, dish_option: dish_option1, order: order1, quantity: 1, observation: 'Sem queijo')
+    OrderDrink.create!(drink: drink, drink_option: drink_option1, order: order1, quantity: 1, observation: 'Sem açúcar')
+
+    OrderDish.create!(dish: dish, dish_option: dish_option2, order: order2, quantity: 1, observation: 'Sem queijo')
+    OrderDrink.create!(drink: drink, drink_option: drink_option2, order: order2, quantity: 1, observation: 'Sem açúcar')
 
     login_as(bond)
     visit(root_path)
@@ -86,27 +78,27 @@ describe 'User views orders' do
     expect(page).to have_content('Orders')
     expect(page).to have_content(order1.code)
     expect(page).to have_content('Tony Stark')
-    expect(page).to have_content('R$58,00')
+    expect(page).to have_content('R$45,00')
     expect(page).to have_content('Awaiting kitchen confirmation')
     expect(page).to have_content(order2.code)
     expect(page).to have_content('Wanda Maximoff')
-    expect(page).to have_content('R$35,00')
+    expect(page).to have_content('R$75,00')
     expect(page).to have_content('In preparation')
     expect(page).not_to have_content(order3.code)
     expect(page).not_to have_content('Canceled')
   end
 
   it 'and sees details of an order' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                        email: 'bond@email.com', password: '123456abcdef',
-                        password_confirmation: '123456abcdef')
-
-    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+    estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                   brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                   address: 'Rua Comercial Sul', number: '123',
                                   neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
                                   zip_code: '70300-902', phone_number: '2198765432',
                                   email: 'contato@giraffas.com.br')
+
+    user = User.create!(establishment: estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef', role: 'admin')
 
     dish = Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
                         description: 'Pizza com molho de tomate, queijo, calabresa e orégano',

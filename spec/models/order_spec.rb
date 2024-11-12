@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe Order, type: :model do
   describe '#valid' do
     it "customer name can't be blank" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                           email: 'bond@email.com', password: '123456abcdef',
-                          password_confirmation: '123456abcdef')
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
@@ -32,11 +32,11 @@ RSpec.describe Order, type: :model do
     end
 
     it "customer phone can't be blank if customer email not present" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                           email: 'bond@email.com', password: '123456abcdef',
-                          password_confirmation: '123456abcdef')
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
@@ -61,11 +61,11 @@ RSpec.describe Order, type: :model do
     end
 
     it "customer email can't be blank if customer phone not present" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                           email: 'bond@email.com', password: '123456abcdef',
-                          password_confirmation: '123456abcdef')
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
@@ -90,11 +90,11 @@ RSpec.describe Order, type: :model do
     end
 
     it "customer email or customer phone must be present" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                           email: 'bond@email.com', password: '123456abcdef',
-                          password_confirmation: '123456abcdef')
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
@@ -119,11 +119,11 @@ RSpec.describe Order, type: :model do
     end
 
     it "cpf must be valid" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                           email: 'bond@email.com', password: '123456abcdef',
-                          password_confirmation: '123456abcdef')
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
@@ -149,11 +149,11 @@ RSpec.describe Order, type: :model do
     end
 
     it "email must be valid" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                           email: 'bond@email.com', password: '123456abcdef',
-                          password_confirmation: '123456abcdef')
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
@@ -180,11 +180,11 @@ RSpec.describe Order, type: :model do
 
   describe 'generates a random code' do
     it 'when register an order' do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                           email: 'bond@email.com', password: '123456abcdef',
-                          password_confirmation: '123456abcdef')
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
@@ -213,11 +213,11 @@ RSpec.describe Order, type: :model do
     end
 
     it 'and the code must be unique' do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                           email: 'bond@email.com', password: '123456abcdef',
-                          password_confirmation: '123456abcdef')
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',

@@ -4,15 +4,16 @@ RSpec.describe "Establishments", type: :request do
   describe "GET /establishments/new" do
     context 'when user already has an establishment' do
       it "redirect to root_path" do
-        user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                            email: 'bond@email.com', password: '123456abcdef',
-                            password_confirmation: '123456abcdef')
-
-        estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+        estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                       brand_name: 'Giraffas', cnpj:CNPJ.generate,
                                       address: 'Rua Comercial Sul', number: '123',
                                       neighborhood: 'Asa Sul', city: 'Brasília',
-                                      state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+                                      state: 'DF', zip_code: '70300-902', phone_number: '2198765432',
+                                      email: 'contato@giraffas.com.br')
+
+        user = User.create!(establishment:estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                            email: 'bond@email.com', password: '123456abcdef',
+                            password_confirmation: '123456abcdef', role: 'admin')
 
         login_as(user)
 
@@ -27,15 +28,16 @@ RSpec.describe "Establishments", type: :request do
   describe "POST /establishments" do
     context 'when user already has an establishment' do
       it "redirect to root_path" do
-        user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                             email: 'bond@email.com', password: '123456abcdef',
-                             password_confirmation: '123456abcdef')
-
-        estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+        estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                         brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                         address: 'Rua Comercial Sul', number: '123',
                                         neighborhood: 'Asa Sul', city: 'Brasília',
-                                        state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
+                                        state: 'DF', zip_code: '70300-902', phone_number: '2198765432',
+                                        email: 'contato@giraffas.com.br')
+
+        user = User.create!(establishment:estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                             email: 'bond@email.com', password: '123456abcdef',
+                             password_confirmation: '123456abcdef', role: 'admin')
 
         login_as(user)
 
@@ -60,7 +62,8 @@ RSpec.describe "Establishments", type: :request do
         expect(response).to redirect_to(establishments_path)
         follow_redirect!
         expect(flash[:alert]).to eq('You already have an establishment')
-        expect(Establishment.count).to eq(1)
+        expect(Establishment.where(id: user.establishment.id).count).to eq(1)
+        expect(user.establishment).to eq(estab)
       end
     end
   end

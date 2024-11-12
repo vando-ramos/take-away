@@ -14,7 +14,7 @@
       <tr>
         <td><%= link_to order.code, order_path(order.id) %></td>
         <td><%= order.customer_name %></td>
-        <td><%= number_to_currency(order.total_value) %></td>
+        <td><%= number_to_currency(order.total_price) %></td>
         <td><%= order.status.humanize %></td>
       </tr>
     <% end %>

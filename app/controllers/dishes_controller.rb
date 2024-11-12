@@ -1,4 +1,5 @@
 class DishesController < ApplicationController
+  before_action :authorize_admin!
   before_action :set_establishment
   before_action :set_dish, only: %i[show edit update destroy active inactive]
 

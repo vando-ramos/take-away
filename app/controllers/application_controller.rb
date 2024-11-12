@@ -17,6 +17,10 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name last_name identification_number])
+    devise_parameter_sanitizer.permit(:sign_up, keys: %i[name last_name cpf])
+  end
+
+  def authorize_admin!
+    redirect_to root_path, alert: 'Access denied' unless current_user&.admin?
   end
 end

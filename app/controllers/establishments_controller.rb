@@ -1,4 +1,5 @@
 class EstablishmentsController < ApplicationController
+  before_action :authorize_admin!, only: %i[new create]
   before_action :set_establishment_and_check_user, only: %i[show]
   before_action :check_user_establishment, only: %i[new create]
 
@@ -35,7 +36,7 @@ class EstablishmentsController < ApplicationController
   def set_establishment_and_check_user
     @establishment = Establishment.find_by(id: params[:id])
 
-    if @establishment.nil? || @establishment.user != current_user
+    if @establishment.nil? || !@establishment.users.include?(current_user)
       return redirect_to establishments_path, alert: 'Establishment not found or you do not have access'
     end
   end

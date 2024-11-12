@@ -1,11 +1,15 @@
 <h1 class='title'><%= link_to @establishment.corporate_name, establishment_path(@establishment.id) %></h1>
 
-<h2><%= link_to 'Tags', establishment_tags_path(@establishment.id) %></h2>
+<% if current_user.admin? %>
+  <h2><%= link_to 'Tags', establishment_tags_path(@establishment.id) %></h2>
+<% end %>
 <hr>
 
 <h2>Operating Hours</h2>
 
-<div><%= link_to 'Register Operating Hour', new_establishment_operating_hour_path(@establishment.id) %></div>
+<% if current_user.admin? %>
+  <div><%= link_to 'Register Operating Hour', new_establishment_operating_hour_path(@establishment.id) %></div>
+<% end %>
 
 <div class='table-container'>
   <% if @operating_hours.any? %>

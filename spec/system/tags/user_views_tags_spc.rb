@@ -2,16 +2,16 @@ require 'rails_helper'
 
 describe 'User views tags' do
   it 'from the home page' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                        email: 'bond@email.com', password: '123456abcdef',
-                        password_confirmation: '123456abcdef')
-
-    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+    estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                   brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                   address: 'Rua Comercial Sul', number: '123',
                                   neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
                                   zip_code: '70300-902', phone_number: '2198765432',
                                   email: 'contato@giraffas.com.br')
+
+    user = User.create!(establishment: estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef', role: 'admin')
 
     Tag.create!(name: 'Vegano')
     Tag.create!(name: 'Sem glúten')
@@ -29,16 +29,16 @@ describe 'User views tags' do
   end
 
   it 'and there are no registered tags' do
-    user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                        email: 'bond@email.com', password: '123456abcdef',
-                        password_confirmation: '123456abcdef')
-
-    estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+    estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                   brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                   address: 'Rua Comercial Sul', number: '123',
                                   neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
                                   zip_code: '70300-902', phone_number: '2198765432',
                                   email: 'contato@giraffas.com.br')
+
+    user = User.create!(establishment: estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                        email: 'bond@email.com', password: '123456abcdef',
+                        password_confirmation: '123456abcdef', role: 'admin')
 
     login_as(user)
     visit(root_path)

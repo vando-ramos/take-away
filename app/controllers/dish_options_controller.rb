@@ -1,4 +1,5 @@
 class DishOptionsController < ApplicationController
+  before_action :authorize_admin!
   before_action :set_establishment
   before_action :set_dish
   before_action :set_dish_option, only: %i[edit update]

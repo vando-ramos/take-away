@@ -1,4 +1,5 @@
 class OperatingHoursController < ApplicationController
+  before_action :authorize_admin!, only: %i[new create edit update]
   before_action :set_establishment
   before_action :set_operating_hour, only: %i[show edit update]
 

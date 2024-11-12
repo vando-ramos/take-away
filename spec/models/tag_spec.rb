@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe Tag, type: :model do
   describe '#valid' do
     it "name can't be black" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                         email: 'bond@email.com', password: '123456abcdef',
-                        password_confirmation: '123456abcdef')
+                        password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
@@ -20,11 +20,11 @@ RSpec.describe Tag, type: :model do
     end
 
     it 'and the tag must be unique' do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
                         email: 'bond@email.com', password: '123456abcdef',
-                        password_confirmation: '123456abcdef')
+                        password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
                                     brand_name: 'Giraffas', cnpj: CNPJ.generate,
                                     address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',

@@ -1,4 +1,5 @@
 class DrinksController < ApplicationController
+  before_action :authorize_admin!
   before_action :set_establishment
   before_action :set_drink, only: %i[show edit update destroy active inactive]
 

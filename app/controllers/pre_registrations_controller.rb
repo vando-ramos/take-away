@@ -1,4 +1,5 @@
 class PreRegistrationsController < ApplicationController
+  before_action :authorize_admin!
   before_action :set_establishment
 
   def index

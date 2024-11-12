@@ -3,10 +3,11 @@ require 'rails_helper'
 RSpec.describe Drink, type: :model do
   describe '#valid' do
     it "Name can't be blank" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                          email: 'bond@email.com', password: '123456abcdef', password_confirmation: '123456abcdef')
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                          email: 'bond@email.com', password: '123456abcdef',
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                     cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
@@ -19,10 +20,11 @@ RSpec.describe Drink, type: :model do
     end
 
     it "Description can't be blank" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                          email: 'bond@email.com', password: '123456abcdef', password_confirmation: '123456abcdef')
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                          email: 'bond@email.com', password: '123456abcdef',
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                     cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
@@ -35,10 +37,11 @@ RSpec.describe Drink, type: :model do
     end
 
     it "Calories can't be blank" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                          email: 'bond@email.com', password: '123456abcdef', password_confirmation: '123456abcdef')
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                          email: 'bond@email.com', password: '123456abcdef',
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                     cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
@@ -51,10 +54,11 @@ RSpec.describe Drink, type: :model do
     end
 
     it "Is alcoholic can't be blank" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                          email: 'bond@email.com', password: '123456abcdef', password_confirmation: '123456abcdef')
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                          email: 'bond@email.com', password: '123456abcdef',
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                     cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
@@ -67,10 +71,11 @@ RSpec.describe Drink, type: :model do
     end
 
     it "Image can't be blank" do
-      user = User.create!(name: 'James', last_name: 'Bond', identification_number: CPF.generate,
-                          email: 'bond@email.com', password: '123456abcdef', password_confirmation: '123456abcdef')
+      user = User.create!(name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                          email: 'bond@email.com', password: '123456abcdef',
+                          password_confirmation: '123456abcdef', role: 'admin')
 
-      estab = Establishment.create!(user: user, corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.', brand_name: 'Giraffas',
                                     cnpj: CNPJ.generate, address: 'Rua Comercial Sul', number: '123',
                                     neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF', zip_code: '70300-902', phone_number: '2198765432', email: 'contato@giraffas.com.br')
 
