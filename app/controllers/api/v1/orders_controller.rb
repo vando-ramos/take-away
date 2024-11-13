@@ -1,7 +1,8 @@
 class Api::V1::OrdersController < Api::V1::ApiController
   include ActionView::Helpers::NumberHelper
+  
   before_action :set_establishment
-  before_action :set_order, only: %i[show]
+  before_action :set_order, only: %i[show in_preparation ready]
 
   def index
     orders = @establishment.orders
@@ -10,7 +11,37 @@ class Api::V1::OrdersController < Api::V1::ApiController
   end
 
   def show
-    order_data = {
+    render status: 200, json: order_data
+  end
+
+  def in_preparation
+    if @order.update(status: 'in_preparation')
+      render status: 200, json: { message: 'Order updated to in preparation' }
+    else
+      render status: 422, json: { errors: @order.errors.full_messages }
+    end
+  end
+
+  def ready
+    if @order.update(status: 'ready')
+      render status: 200, json: { message: 'Order updated to ready' }
+    else
+      render status: 422, json: { errors: @order.errors.full_messages }
+    end
+  end
+
+  private
+
+  def set_establishment
+    @establishment = Establishment.find_by!(code: params[:establishment_code])
+  end
+
+  def set_order
+    @order = @establishment.orders.find_by!(code: params[:code])
+  end
+
+  def order_data
+    {
       establishment_code: @establishment.code,
       order_code: @order.code,
       customer_name: @order.customer_name,
@@ -40,17 +71,5 @@ class Api::V1::OrdersController < Api::V1::ApiController
         }
       end
     }
-
-    render json: order_data, status: :ok
-  end
-
-  private
-
-  def set_establishment
-    @establishment = Establishment.find_by!(code: params[:establishment_code])
-  end
-
-  def set_order
-    @order = @establishment.orders.find_by!(code: params[:code])
   end
 end

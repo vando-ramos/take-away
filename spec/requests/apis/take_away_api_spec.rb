@@ -97,4 +97,84 @@ describe 'Take Away API', type: :request do
       expect(json_response.keys).not_to include('updated_at')
     end
   end
+
+  context 'PATCH /api/v1/establishments/:establishment_code/orders/:code/in_preparation' do
+    it 'success' do
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
+                                          brand_name: 'Giraffas', cnpj: CNPJ.generate,
+                                          address: 'Rua Comercial Sul', number: '123',
+                                          neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
+                                          zip_code: '70300-902', phone_number: '2198765432',
+                                          email: 'contato@giraffas.com.br')
+
+      user = User.create!(establishment: estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                          email: 'bond@email.com', password: '123456abcdef',
+                          password_confirmation: '123456abcdef', role: 'admin')
+
+      dish = Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
+                          description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
+                          calories: 265,
+                          image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+
+      dish_option = DishOption.create!(dish: dish, price: '30,00', description: 'Média')
+
+      Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
+
+      cpf = CPF.generate
+      order = Order.create!(establishment: estab, customer_name: 'Tony Stark',
+                            customer_cpf: cpf, customer_email: 'stark@email.com',
+                            customer_phone: '21987654321',
+                            status: 'awaiting_kitchen_confirmation')
+
+      OrderDish.create!(dish: dish, dish_option: dish_option, order: order, quantity: 1, observation: '')
+
+      patch "/api/v1/establishments/#{estab.code}/orders/#{order.code}/in_preparation"
+
+      expect(response.status).to eq(200)
+      expect(response.content_type).to include('application/json')
+      json_response = JSON.parse(response.body)
+      expect(json_response['message']).to eq('Order updated to in preparation')
+      expect(order.reload.status).to eq('in_preparation')
+    end
+  end
+
+  context 'PATCH /api/v1/establishments/:establishment_code/orders/:code/ready' do
+    it 'success' do
+      estab = Establishment.create!(corporate_name: 'Giraffas Brasil S.A.',
+                                          brand_name: 'Giraffas', cnpj: CNPJ.generate,
+                                          address: 'Rua Comercial Sul', number: '123',
+                                          neighborhood: 'Asa Sul', city: 'Brasília', state: 'DF',
+                                          zip_code: '70300-902', phone_number: '2198765432',
+                                          email: 'contato@giraffas.com.br')
+
+      user = User.create!(establishment: estab, name: 'James', last_name: 'Bond', cpf: CPF.generate,
+                          email: 'bond@email.com', password: '123456abcdef',
+                          password_confirmation: '123456abcdef', role: 'admin')
+
+      dish = Dish.create!(establishment: estab, name: 'Pizza de Calabresa',
+                          description: 'Pizza com molho de tomate, queijo, calabresa e orégano',
+                          calories: 265,
+                          image: fixture_file_upload(Rails.root.join('spec/fixtures/files/pizza-calabresa.jpg'), 'image/jpg'))
+
+      dish_option = DishOption.create!(dish: dish, price: '30,00', description: 'Média')
+
+      Menu.create!(establishment: estab, name: 'Lunch', dishes: [dish])
+
+      cpf = CPF.generate
+      order = Order.create!(establishment: estab, customer_name: 'Tony Stark',
+                            customer_cpf: cpf, customer_email: 'stark@email.com',
+                            customer_phone: '21987654321',
+                            status: 'awaiting_kitchen_confirmation')
+
+      OrderDish.create!(dish: dish, dish_option: dish_option, order: order, quantity: 1, observation: '')
+
+      patch "/api/v1/establishments/#{estab.code}/orders/#{order.code}/ready"
+
+      expect(response.status).to eq(200)
+      expect(response.content_type).to include('application/json')
+      json_response = JSON.parse(response.body)
+      expect(json_response['message']).to eq('Order updated to ready')
+      expect(order.reload.status).to eq('ready')
+    end
+  end
 end

@@ -47,7 +47,7 @@ Rails.application.routes.draw do
       resources :establishments, param: :code, only: [] do
         resources :orders, param: :code, only: %i[index show] do
           member do
-            patch :prepare
+            patch :in_preparation
             patch :ready
           end
         end
