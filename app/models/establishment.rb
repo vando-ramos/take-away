@@ -16,6 +16,8 @@ class Establishment < ApplicationRecord
 
   before_validation :generate_code, on: :create
 
+  after_create :assign_to_admin
+
   private
 
   def generate_code
@@ -26,5 +28,10 @@ class Establishment < ApplicationRecord
     unless CNPJ.valid?(cnpj)
       errors.add(:cnpj, 'is not valid')
     end
+  end
+
+  def assign_to_admin
+    admin_without_establishment = User.admin.find_by(establishment: nil)
+    admin_without_establishment.update(establishment: self) if admin_without_establishment
   end
 end

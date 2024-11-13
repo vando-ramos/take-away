@@ -24,6 +24,7 @@ class EstablishmentsController < ApplicationController
     @establishment = current_user.build_establishment(establishment_params)
 
     if @establishment.save
+      current_user.update(establishment: @establishment)
       redirect_to establishment_path(@establishment), notice: 'Establishment successfully registered'
     else
       flash.now.alert = 'Unable to register establishment'
