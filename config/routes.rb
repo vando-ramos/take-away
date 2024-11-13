@@ -41,4 +41,17 @@ Rails.application.routes.draw do
   end
 
   resources :pre_registrations
+
+  namespace :api do
+    namespace :v1 do
+      resources :establishments, param: :code, only: [] do
+        resources :orders, param: :code, only: %i[index show] do
+          member do
+            patch :prepare
+            patch :ready
+          end
+        end
+      end
+    end
+  end
 end

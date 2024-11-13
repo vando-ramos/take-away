@@ -2,21 +2,25 @@
 
 <%= link_to 'Register User', new_pre_registration_path %>
 
-<table>
-  <thead>
-    <tr>
-      <th>User</th>
-      <th>Cpf</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @pre_registrations.each do |pr| %>    
-    <tr>
-      <td><%= pr.email %></td>
-      <td><%= pr.cpf %></td>
-      <td><%= pr.status.humanize %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
+<% if @pre_registrations.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Cpf</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @pre_registrations.each do |pr| %>    
+      <tr>
+        <td><%= pr.email %></td>
+        <td><%= pr.cpf %></td>
+        <td><%= pr.status.humanize %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No users registered</p>
+<% end %>

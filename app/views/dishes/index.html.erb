@@ -2,17 +2,17 @@
 
 <div class='register'><%= link_to 'Register Dish', new_dish_path %></div>
 
-<div class='tag-filter'>
-  <%= form_with(url: dishes_path, method: :get) do %>
-    <%= label_tag :tag_id, 'Filter by Tag' %>
-    <%= select_tag :tag_id, options_from_collection_for_select(@tags, :id, :name, params[:tag_id]),
-                    include_blank: 'All' %>
-  
-    <%= submit_tag 'Filter' %>
-  <% end %>
-</div>
-
 <% if @dishes.any? %>
+  <div class='tag-filter'>
+    <%= form_with(url: dishes_path, method: :get) do %>
+      <%= label_tag :tag_id, 'Filter by Tag' %>
+      <%= select_tag :tag_id, options_from_collection_for_select(@tags, :id, :name, params[:tag_id]),
+                      include_blank: 'All' %>
+    
+      <%= submit_tag 'Filter' %>
+    <% end %>
+  </div>
+
   <ul class='dish-list'>
     <% @dishes.each do |dish| %>
       <div class='dish-container'>
