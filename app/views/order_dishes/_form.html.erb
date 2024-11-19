@@ -1,11 +1,11 @@
 <%= form_with model: [@order, @order_dish] do |f| %>
   <div>
     <%= f.label :dishes %>
-    <%= f.collection_select :dish_id, @dishes, :id, :name %>
+    <%= f.collection_select :dish_id, @dishes || [], :id, :name, { prompt: "Select a dish" }, { id: "dish-select" } %>
   </div>
   <div>
     <%= f.label :dish_options %>
-    <%= f.collection_select :dish_option_id, @dish_options, :id, :description %>    
+    <%= f.collection_select :dish_option_id, [], :id, :description, { prompt: "Select a dish option" }, { id: "dish-options-select" } %>
   </div>
   <div>
     <%= f.label :quantity %>
@@ -19,3 +19,5 @@
     <%= f.submit 'Add Dish' %>
   </div>
 <% end %>
+
+<%= javascript_include_tag "order_dish_form" %>

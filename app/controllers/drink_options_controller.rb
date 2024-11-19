@@ -4,6 +4,12 @@ class DrinkOptionsController < ApplicationController
   before_action :set_drink
   before_action :set_drink_option, only: %i[edit update]
 
+  def index
+    drink = Drink.find(params[:drink_id])
+    drink_options = drink.drink_options.select(:id, :description)
+    render json: drink_options
+  end
+
   def new
     @drink_option = @drink.drink_options.build
     @drinks = Drink.all

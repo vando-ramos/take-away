@@ -1,17 +1,19 @@
 class Api::V1::OrdersController < Api::V1::ApiController
   include ActionView::Helpers::NumberHelper
-  
+
   before_action :set_establishment
-  before_action :set_order, only: %i[show in_preparation ready]
+  before_action :set_order, only: %i[show in_preparation ready canceled]
 
   def index
     orders = @establishment.orders
-    orders = orders.where(status: params[:status]) if params[:status].present? && Order.statuses.keys.include?(params[:status])
-    render status: 200, json: orders
+    orders = orders.where(status: params[:status]) if params[:status].present? &&
+             Order.statuses.keys.include?(params[:status])
+
+    render status: 200, json: orders.map { |order| format_order_data(order) }
   end
 
   def show
-    render status: 200, json: order_data
+    render status: 200, json: format_order_data(@order).merge(order_data)
   end
 
   def in_preparation
@@ -25,6 +27,14 @@ class Api::V1::OrdersController < Api::V1::ApiController
   def ready
     if @order.update(status: 'ready')
       render status: 200, json: { message: 'Order updated to ready' }
+    else
+      render status: 422, json: { errors: @order.errors.full_messages }
+    end
+  end
+
+  def canceled
+    if @order.update(status: 'canceled', cancellation_reason: params[:order][:cancellation_reason])
+      render status: 200, json: { message: 'Order updated to canceled', order: @order }
     else
       render status: 422, json: { errors: @order.errors.full_messages }
     end
@@ -49,11 +59,10 @@ class Api::V1::OrdersController < Api::V1::ApiController
       customer_phone: @order.customer_phone,
       customer_email: @order.customer_email,
       status: @order.status,
-      total_value: number_to_currency(@order.total_price),
+      total_value: number_to_currency(@order.total_value),
       dishes: @order.order_dishes.map do |order_dish|
         {
           name: order_dish.dish.name,
-          description: order_dish.dish.description,
           quantity: order_dish.quantity,
           option_description: order_dish.dish_option.description,
           price: number_to_currency(order_dish.total_price),
@@ -63,13 +72,22 @@ class Api::V1::OrdersController < Api::V1::ApiController
       drinks: @order.order_drinks.map do |order_drink|
         {
           name: order_drink.drink.name,
-          description: order_drink.drink.description,
           quantity: order_drink.quantity,
           option_description: order_drink.drink_option.description,
           price: number_to_currency(order_drink.total_price),
           observation: order_drink.observation
         }
       end
+    }
+  end
+
+  def format_order_data(order)
+    {
+      code: order.code,
+      customer_name: order.customer_name,
+      status: order.status,
+      cancellation_reason: order.cancellation_reason,
+      total_value: number_to_currency(order.total_value)
     }
   end
 end

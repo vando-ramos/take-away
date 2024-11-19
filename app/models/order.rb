@@ -24,6 +24,10 @@ class Order < ApplicationRecord
     total_dishes + total_drinks
   end
 
+  def update_total_value!
+    self.update!(total_value: total_price)
+  end
+
   private
 
   def generate_code

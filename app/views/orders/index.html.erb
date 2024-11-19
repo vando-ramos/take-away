@@ -8,6 +8,7 @@
         <th>Customer Name</th>
         <th>Total Value</th>
         <th>Status</th>
+        <th>Cancelation Reason</th>
       </tr>
     </thead>
     <tbody>
@@ -15,8 +16,9 @@
         <tr>
           <td><%= link_to order.code, order_path(order.id) %></td>
           <td><%= order.customer_name %></td>
-          <td><%= number_to_currency(order.total_price) %></td>
+          <td><%= number_to_currency(order.total_value) %></td>
           <td><%= order.status.humanize %></td>
+          <td><%= order.cancellation_reason %></td>
         </tr>
       <% end %>
     </tbody>

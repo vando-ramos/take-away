@@ -4,6 +4,12 @@ class DishOptionsController < ApplicationController
   before_action :set_dish
   before_action :set_dish_option, only: %i[edit update]
 
+  def index
+    dish = Dish.find(params[:dish_id])
+    dish_options = dish.dish_options.select(:id, :description)
+    render json: dish_options
+  end
+
   def new
     @dish_option = @dish.dish_options.build
     @dishes = Dish.all

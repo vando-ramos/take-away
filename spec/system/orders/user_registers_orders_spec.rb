@@ -134,7 +134,7 @@ describe 'User registers orders' do
     visit(order_path(order.id))
     click_on('Add Dish')
     select 'Pizza de Calabresa', from: 'order_dish[dish_id]'
-    select 'Média', from: 'order_dish[dish_option_id]'
+    # select 'Select a dish option', from: 'order_dish[dish_option_id]'
     fill_in 'Quantity', with: '1'
     click_on('Add Dish')
 

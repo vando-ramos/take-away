@@ -56,6 +56,6 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:customer_name, :customer_cpf, :customer_email, :customer_phone,
-                                  :status, :code, :total_value)
+                                  :status, :code, :total_value, :cancellation_reason)
   end
 end
