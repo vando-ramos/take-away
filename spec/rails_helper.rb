@@ -79,3 +79,8 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+
+Capybara.configure do |config|
+  config.default_driver = :selenium_chrome_headless
+  config.javascript_driver = :selenium_chrome_headless
+end

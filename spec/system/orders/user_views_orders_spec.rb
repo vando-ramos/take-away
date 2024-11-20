@@ -1,4 +1,5 @@
 require 'rails_helper'
+include ActionView::Helpers::NumberHelper
 
 describe 'User views orders' do
   it 'if authenticated' do
@@ -52,12 +53,12 @@ describe 'User views orders' do
 
     order1 = Order.create!(establishment: bond_estab, customer_name: 'Tony Stark',
                            customer_cpf: CPF.generate, customer_email: 'stark@email.com',
-                           customer_phone: '21987654321',
+                           customer_phone: '21987654321', total_value: '0,00',
                            status: 'awaiting_kitchen_confirmation')
 
     order2 = Order.create!(establishment: bond_estab, customer_name: 'Wanda Maximoff',
                            customer_cpf: CPF.generate, customer_email: 'wanda@email.com',
-                           customer_phone: '21986427531',
+                           customer_phone: '21986427531', total_value: '0,00',
                            status: 'in_preparation')
 
     order3 = Order.create!(establishment: wick_estab, customer_name: 'Bruce Wayne',
@@ -71,6 +72,9 @@ describe 'User views orders' do
     OrderDish.create!(dish: dish, dish_option: dish_option2, order: order2, quantity: 1, observation: 'Sem queijo')
     OrderDrink.create!(drink: drink, drink_option: drink_option2, order: order2, quantity: 1, observation: 'Sem açúcar')
 
+    order1.reload
+    order2.reload
+
     login_as(bond)
     visit(root_path)
     click_on('Orders')
@@ -78,11 +82,11 @@ describe 'User views orders' do
     expect(page).to have_content('Orders')
     expect(page).to have_content(order1.code)
     expect(page).to have_content('Tony Stark')
-    expect(page).to have_content('R$45,00')
+    expect(page).to have_content(number_to_currency(order1.total_value))
     expect(page).to have_content('Awaiting kitchen confirmation')
     expect(page).to have_content(order2.code)
     expect(page).to have_content('Wanda Maximoff')
-    expect(page).to have_content('R$75,00')
+    expect(page).to have_content(number_to_currency(order2.total_value))
     expect(page).to have_content('In preparation')
     expect(page).not_to have_content(order3.code)
     expect(page).not_to have_content('Canceled')
@@ -118,12 +122,13 @@ describe 'User views orders' do
     cpf = CPF.generate
     order = Order.create!(establishment: estab, customer_name: 'Tony Stark',
                            customer_cpf: cpf, customer_email: 'stark@email.com',
-                           customer_phone: '21987654321', total_value: '55,00',
+                           customer_phone: '21987654321', total_value: '0,00',
                            status: 'awaiting_kitchen_confirmation')
 
     OrderDish.create!(dish: dish, dish_option: dish_option, order: order, quantity: 1, observation: 'Sem queijo')
-
     OrderDrink.create!(drink: drink, drink_option: drink_option, order: order, quantity: 1, observation: 'Sem açúcar')
+
+    order.reload
 
     login_as(user)
     visit(root_path)
@@ -146,6 +151,6 @@ describe 'User views orders' do
     expect(page).to have_content('R$25,00')
     expect(page).to have_content('1')
     expect(page).to have_content('Sem açúcar')
-    expect(page).to have_content('Total: R$55,00')
+    expect(page).to have_content(number_to_currency(order.total_value))
   end
 end

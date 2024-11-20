@@ -14,6 +14,9 @@ Rails.application.routes.draw do
 
     resources :dish_options, only: %i[index new create edit update]
 
+    # Nova rota para carregar as opções de prato com base no prato selecionado
+    get 'dish_options', on: :member  # Rota para buscar as opções do prato
+
     resources :dish_price_history, only: %i[index]
   end
 

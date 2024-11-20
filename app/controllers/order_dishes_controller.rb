@@ -5,7 +5,7 @@ class OrderDishesController < ApplicationController
   def new
     @order_dish = OrderDish.new
     @dishes = @establishment.dishes.where(status: Dish.statuses[:active])
-    @dish_options = DishOption.all
+    @dish_options = [] if @dish_option.nil?
   end
 
   def create
@@ -15,7 +15,8 @@ class OrderDishesController < ApplicationController
       redirect_to order_path(@order.id), notice: 'Dish successfully added'
     else
       @dishes = @establishment.dishes.where(status: Dish.statuses[:active])
-      @dish_options = DishOption.all
+      @dish_options = DishOption.where(dish_id: order_dish_params[:dish_id])
+
       flash.now.alert = 'Unable to add dish'
       render :new, status: :unprocessable_entity
     end
