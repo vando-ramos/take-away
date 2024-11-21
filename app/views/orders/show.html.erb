@@ -1,14 +1,14 @@
-<h1 class='title'>Order <%= @order.code %></h1>
+<h1 class='title'><%= "#{Order.model_name.human(count: 1)} #{@order.code}" %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Customer Name</th>
+      <th><%= t('activerecord.attributes.order.customer_name') %></th>
       <th>CPF</th>
-      <th>Phone</th>
+      <th><%= t('activerecord.attributes.order.customer_phone') %></th>
       <th>Email</th>
-      <th>Status</th>
-      <th>Cancelation Reason</th>
+      <th><%= t('activerecord.attributes.order.status') %></th>
+      <th><%= t('activerecord.attributes.order.cancellation_reason') %></th>
     </tr>
   </thead>
   <tbody>
@@ -23,16 +23,16 @@
   </tbody>
 </table>
 
-<h2>Order Items</h2>
+<h2><%= t('views.order_items') %></h2>
 
 <table>
   <thead>
     <tr>
       <th>Item</th>
-      <th>Option</th>
-      <th>Quantity</th>
-      <th>Observation</th>
-      <th>Price</th>
+      <th><%= t('views.option') %></th>
+      <th><%= t('views.quantity') %></th>
+      <th><%= t('views.observation') %></th>
+      <th><%= t('views.price') %></th>
     </tr>
   </thead>
   <tbody>
@@ -58,19 +58,19 @@
 </table>
 
 <div class='add-items-link'>
-  <%= link_to 'Add Dish', new_order_order_dish_path(@order.id) %>
-  <%= link_to 'Add Drink', new_order_order_drink_path(@order.id) %>
+  <%= link_to t('actions.add_dish'), new_order_order_dish_path(@order.id) %>
+  <%= link_to t('actions.add_drink'), new_order_order_drink_path(@order.id) %>
 </div>
 
 <% if @order.awaiting_kitchen_confirmation? %>
-  <%= button_to 'In preparation', in_preparation_order_path(@order.id) %>
-  <%= button_to 'Canceled', canceled_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.order_status.in_preparation'), in_preparation_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.order_status.canceled'), canceled_order_path(@order.id) %>
 <% elsif @order.in_preparation? %>
-  <%= button_to 'Canceled', canceled_order_path(@order.id) %>
-  <%= button_to 'Ready', ready_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.order_status.canceled'), canceled_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.order_status.ready'), ready_order_path(@order.id) %>
 <% elsif @order.ready? %>
-  <%= button_to 'Canceled', canceled_order_path(@order.id) %>
-  <%= button_to 'Delivered', delivered_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.order_status.canceled'), canceled_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.order_status.delivered'), delivered_order_path(@order.id) %>
 <% end %>
 
 <h2 class='total-price'>Total: <%= number_to_currency(@order.total_value) %></h2>

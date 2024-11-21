@@ -1,0 +1,120 @@
+en:
+  activerecord:
+    models:
+      dish_menu:
+        one: 'Dish Menu'
+        other: 'Dish Menus'
+      dish_option:
+        one: 'Dish Option'
+        other: 'Dish Options'
+      dish_tag:
+        one: 'Dish Tag'
+        other: 'Dish Tags'
+      dish:
+        one: 'Dish'
+        other: 'Dishes'
+      drink_menu:
+        one: 'Drink Menu'
+        other: 'Drink Menus'
+      drink_option:
+        one: 'Drink Option'
+        other: 'Drink Options'
+      drink_tag:
+        one: 'Drink Tag'
+        other: 'Drink Tags'
+      drink:
+        one: 'Drink'
+        other: 'Drinks'
+      establishment:
+        one: 'Establishment'
+        other: 'Establishments'
+      menu:
+        one: 'Menu'
+        other: 'Menus'
+      operating_hour:
+        one: 'Operating Hour'
+        other: 'Operating Hours'
+      order_dish:
+        one: 'Order Dish'
+        other: 'Order Dishes'
+      order_drink:
+        one: 'Order Drink'
+        other: 'Order Drinks'
+      order:
+        one: 'Order'
+        other: 'Orders'
+      pre_registration:
+        one: 'Pre Registration'
+        other: 'Pre Registrations'
+      price_history:
+        one: 'Price History'
+        other: 'Price Histories'
+      tag:
+        one: 'Tag'
+        other: 'Tags'
+      user:
+        one: 'User'
+        other: 'Users'
+    attributes:
+      dish_menu:
+        dish_id: 'Dish'
+        menu_id: 'Menu'
+      dish_option:
+        dish_id: 'Dish'
+      dish_tag:
+        dish_id: 'Dish'
+        tag_id: 'Tag'
+      dish:
+        establishment_id: 'Establishment'
+      drink_menu:
+        drink_id: 'Drink'
+        menu_id: 'Menu'
+      drink_option:
+        drink_id: 'Drink'
+      drink_tag:
+        drink_id: 'Drink'
+        tag_id: 'Tag'
+      drink:
+        establishment_id: 'Establishment'
+      establishment:
+        brand_name: 'Brand Name'
+        corporate_name: 'Corporate Name'
+        phone_number: 'Phone Number'
+        zip_code: 'Zip Code'
+      menu:
+        establishment_id: 'Establishment'
+      operating_hour:
+        closing_time: 'Closing Time'
+        day_of_week: 'Day of Week'
+        establishment_id: 'Establishment'
+        opening_time: 'Opening Time'
+      order_dish:
+        dish_option_id: 'Dish Option'
+        dish_id: 'Dish'
+        order_id: 'Order'
+      order_drink:
+        drink_option_id: 'Drink Option'
+        drink_id: 'Drink'
+        order_id: 'Order'
+      order:
+        cancellation_reason: 'Cancellation Reason'
+        customer_cpf: 'CPF'
+        customer_email: 'Email'
+        customer_name: 'Customer Name'
+        customer_phone: 'Customer Phone'
+        establishment_id: 'Establishment'
+        status:
+          awaiting_kitchen_confirmation: 'Awaiting Kitchen Confirmation'
+          in_preparation: 'In Preparation'
+          canceled: 'Canceled'
+          ready: 'Ready'
+          delivered: 'Delivered'
+        total_value: 'Total Value'
+      pre_registration:
+        establishment_id: 'Establishment'
+      price_history:
+        end_date: 'End Date'
+        item_id: 'Item'
+        item_type: 'Item Type'
+        start_date: 'Start Date'
+      

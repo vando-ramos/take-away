@@ -8,7 +8,7 @@
             <li><%= option.description %> - <%= number_to_currency(option.price) %></li>
           <% end %>
         <% else %>
-            <p>There are no options registered for <%= drink.name %></p>
+            <p><%= "#{t('messages.no_option_registered')} #{drink.name}" %></p>
         <% end %> 
       </ul>
     </li>

@@ -1,15 +1,15 @@
-<h1 class='title'>My Establishment</h1>
+<h1 class='title'><%=t('views.my_establishment') %></h1>
 
 <section class='establishment'>
-  <div><strong>Code:</strong> <%= @establishment.code %></div>
-  <div><strong>Corporate Name:</strong> <%= @establishment.corporate_name %></div>
-  <div><strong>Brand Name:</strong> <%= @establishment.brand_name %></div>
+  <div><strong><%= t('activerecord.attributes.establishment.code') %>:</strong> <%= @establishment.code %></div>
+  <div><strong><%= t('activerecord.attributes.establishment.corporate_name') %>:</strong> <%= @establishment.corporate_name %></div>
+  <div><strong><%= t('activerecord.attributes.establishment.brand_name') %>:</strong> <%= @establishment.brand_name %></div>
   <div><strong>CNPJ:</strong> <%= @establishment.cnpj %></div>
   <div>
-    <strong>Full Address:</strong> <%= @establishment.address %>, <%= @establishment.number %> - 
+    <strong><%= t('views.full_address') %>:</strong> <%= @establishment.address %>, <%= @establishment.number %> - 
                   <%= @establishment.neighborhood %> - <%= @establishment.city %> -
-                  <%= @establishment.state %> - CEP: <%= @establishment.zip_code %>
+                  <%= @establishment.state %> - <%= t('activerecord.attributes.establishment.zip_code') %>: <%= @establishment.zip_code %>
   </div>
-  <div><strong>Phone Number:</strong> <%= @establishment.phone_number %></div>
+  <div><strong><%= t('activerecord.attributes.establishment.phone_number') %>:</strong> <%= @establishment.phone_number %></div>
   <div><strong>Email:</strong> <%= @establishment.email %></div>
 </section>

@@ -1,14 +1,14 @@
 <h1 class='title'><%= link_to @establishment.corporate_name, establishment_path(@establishment.id) %></h1>
 
 <% if current_user.admin? %>
-  <h2><%= link_to 'Tags', establishment_tags_path(@establishment.id) %></h2>
+  <h2><%= link_to Tag.model_name.human(count: 2), establishment_tags_path(@establishment.id) %></h2>
 <% end %>
 <hr>
 
-<h2>Operating Hours</h2>
+<h2><%= OperatingHour.model_name.human(count: 2) %> </h2>
 
 <% if current_user.admin? %>
-  <div><%= link_to 'Register Operating Hour', new_establishment_operating_hour_path(@establishment.id) %></div>
+  <div><%= link_to t('views.new_operating_hour'), new_establishment_operating_hour_path(@establishment.id) %></div>
 <% end %>
 
 <div class='table-container'>
@@ -16,9 +16,9 @@
     <table>
       <thead>      
         <tr>
-          <th>Day of week</th>
-          <th>Operating Hour</th>
-          <th>Status</th>
+          <th><%= t('activerecord.attributes.operating_hour.day_of_week') %></th>
+          <th><%= OperatingHour.model_name.human(count: 1) %></th>
+          <th><%= t('activerecord.attributes.operating_hour.status') %></th>
         </tr>           
       </thead>
       <tbody>

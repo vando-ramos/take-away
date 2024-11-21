@@ -1,6 +1,6 @@
-<h1 class='title'>Menus</h1>
+<h1 class='title'><%= Menu.model_name.human(count: 2) %></h1>
 
-<div><%= link_to 'New Menu', new_menu_path %></div>
+<div><%= link_to t('views.new_menu'), new_menu_path %></div>
 
 <% if @menus.any? %>
   <ul>
@@ -9,9 +9,9 @@
     <% end %>
   </ul>
 <% else %>
-  <p>There are not registered menus</p>
+  <p><%= t('messages.no_menu_registered') %></p>
 <% end %>
 
-<div><%= link_to 'New Order', new_order_path %></div>
+<div><%= link_to t('views.new_order'), new_order_path %></div>
 
 

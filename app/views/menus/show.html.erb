@@ -9,8 +9,8 @@
 <% end %>
 
 <% unless @dishes.any? || @drinks.any? %>
-  <p>There are no items on the menu</p>
+  <p><%= t('messages.no_item_registered') %></p>
 <% end %>
 
-<div><%= link_to 'Edit', edit_menu_path(@menu.id) %></div>
+<div><%= link_to t('actions.edit'), edit_menu_path(@menu.id) %></div>
 

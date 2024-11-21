@@ -1,5 +1,3 @@
-# Additional translations at https://github.com/heartcombo/devise/wiki/I18n
-
 en:
   devise:
     confirmations:
@@ -46,7 +44,10 @@ en:
       updated: "Your account has been updated successfully."
       updated_but_not_signed_in: "Your account has been updated successfully, but since your password was changed, you need to sign in again."
     sessions:
+      sign_up: "Sign up"
+      sign_in: "Sign in"
       signed_in: "Signed in successfully."
+      sign_out: "Sign out"
       signed_out: "Signed out successfully."
       already_signed_out: "Signed out successfully."
     unlocks:

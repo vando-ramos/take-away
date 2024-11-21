@@ -21,25 +21,25 @@
         <% if user_signed_in? %>
           <li class='nav-item'>
             <%= current_user.email %>
-            <%= button_to 'Sign out', destroy_user_session_path, method: :delete %>
+            <%= button_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete %>
           </li>
           <% if current_user.establishment.present? %>
             <li class='nav-item'>
-              <%= link_to 'My Establishment', establishments_path %>
+              <%= link_to t('views.my_establishment'), establishments_path %>
             </li>
             <li class='nav-item'>
-              <%= link_to 'Orders', orders_path %>
+              <%= link_to Order.model_name.human(count: 2), orders_path %>
             </li>
             
             <% if current_user.admin? %>
               <li class='nav-item'>
-                <%= link_to 'Dishes', dishes_path %>
+                <%= link_to Dish.model_name.human(count: 2), dishes_path %>
               </li>
               <li class='nav-item'>
-                <%= link_to 'Drinks', drinks_path %>
+                <%= link_to Drink.model_name.human(count: 2), drinks_path %>
               </li>
               <li class='nav-item'>
-                <%= link_to 'Users', pre_registrations_path %>
+                <%= link_to User.model_name.human(count: 2), pre_registrations_path %>
               </li>
             <% end %>
           <% end %>
@@ -50,10 +50,9 @@
     <main>
       <% if user_signed_in? && current_user.establishment.present? && current_user.admin? %>
         <div class='search'>
-          <%= form_with url: search_index_path, method: :get do |f| %>
-            <%= f.label :query, 'Search' %>
-            <%= f.text_field :query, placeholder: 'Search dishes and drinks' %>
-            <%= f.submit 'Search' %>
+          <%= form_with url: search_index_path, method: :get do |f| %>            
+            <%= f.text_field :query, placeholder: t('views.search_dishes_drinks') %>
+            <%= f.submit t('views.search') %>
           <% end %>
         </div>
       <% end %>

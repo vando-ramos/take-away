@@ -1,0 +1,129 @@
+pt-BR:
+  activerecord:
+    models:
+      dish_menu:
+        one: 'Cardápio de Prato'
+        other: 'Cardápios de Pratos'
+      dish_option:
+        one: 'Opção de Prato'
+        other: 'Opções de Pratos'
+      dish_tag:
+        one: 'Marcador de Prato'
+        other: 'Marcadores de Pratos'
+      dish:
+        one: 'Prato'
+        other: 'Pratos'
+      drink_menu:
+        one: 'Cardápio de Bebida'
+        other: 'Cardápios de Bebidas'
+      drink_option:
+        one: 'Drink Option'
+        other: 'Drink Options'
+      drink_tag:
+        one: 'Marcador de Bebida'
+        other: 'Marcadores de Bebida'
+      drink:
+        one: 'Bebida'
+        other: 'Bebidas'
+      establishment:
+        one: 'Estabelecimento'
+        other: 'Estabelecimentos'
+      menu:
+        one: 'Cardápio'
+        other: 'Cardápios'
+      operating_hour:
+        one: 'Horário de Funcionamento'
+        other: 'Horários de Funcionamento'
+      order_dish:
+        one: 'Prato do Pedido'
+        other: 'Pratos do Pedido'
+      order_drink:
+        one: 'Bebida do Pedido'
+        other: 'Bebidas do Pedido'
+      order:
+        one: 'Pedido'
+        other: 'Pedidos'
+      pre_registration:
+        one: 'Pré-Cadastro'
+        other: 'Pré-Cadastros'
+      price_history:
+        one: 'Histórico de Preço'
+        other: 'Histórico de Preços'
+      tag:
+        one: 'Marcador'
+        other: 'Marcadores'
+      user:
+        one: 'Usuário'
+        other: 'Usuários'
+    attributes:
+      dish_menu:
+        dish_id: 'Prato'
+        menu_id: 'Cardápio'
+      dish_option:
+        dish_id: 'Prato'
+      dish_tag:
+        dish_id: 'Prato'
+        tag_id: 'Marcador'
+      dish:
+        establishment_id: 'Estabelecimento'
+      drink_menu:
+        drink_id: 'Bebida'
+        menu_id: 'Cardápio'
+      drink_option:
+        drink_id: 'Bebida'
+      drink_tag:
+        drink_id: 'Bebida'
+        tag_id: 'Marcador'
+      drink:
+        establishment_id: 'Estabelecimento'
+      establishment:
+        brand_name: 'Nome Fantasia'
+        code: 'Código'
+        corporate_name: 'Razão Social'
+        phone_number: 'Telefone'
+        zip_code: 'CEP'
+      menu:
+        establishment_id: 'Estabelecimento'
+        name: 'Nome'
+      operating_hour:
+        closing_time: 'Horário de Fechamento'
+        day_of_week: 'Dia da Semana'
+        establishment_id: 'Estabelecimento'
+        opening_time: 'Horário de Abertura'
+        status: 'Situação'
+      order_dish:
+        dish_option_id: 'Opção de Prato'
+        dish_id: 'Prato'
+        observation: 'Observação'
+        order_id: 'Order'
+        quantity: 'Quantidade'
+      order_drink:
+        drink_option_id: 'Opção de Bebida'
+        drink_id: 'Bebida'
+        observation: 'Observação'
+        order_id: 'Pedido'
+        quantity: 'Quantidade'
+      order:
+        cancellation_reason: 'Motivo do Cancelamento'
+        code: 'Código'
+        customer_cpf: 'CPF'
+        customer_email: 'Email'
+        customer_name: 'Nome do Cliente'
+        customer_phone: 'Telefone do Cliente'
+        establishment_id: 'Estabelecimento'
+        status: 'Situação'
+        order_status:
+          awaiting_kitchen_confirmation: 'Aguardando Confirmação da Cozinha'
+          in_preparation: 'Em Preparação'
+          canceled: 'Cancelado'
+          ready: 'Pronto'
+          delivered: 'Entregue'
+        total_value: 'Valor Total'
+      pre_registration:
+        establishment_id: 'Estabelecimento'
+      price_history:
+        end_date: 'Data Inicial'
+        item_id: 'Item'
+        item_type: 'Tipo de Item'
+        start_date: 'Data Final'
+      

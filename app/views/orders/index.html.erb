@@ -1,14 +1,14 @@
-<h1 class='title'>Orders</h1>
+<h1 class='title'><%= Order.model_name.human(count: 2) %></h1>
 
 <% if @orders.any? %>
   <table>
     <thead>
       <tr>
-        <th>Code</th>
-        <th>Customer Name</th>
-        <th>Total Value</th>
-        <th>Status</th>
-        <th>Cancelation Reason</th>
+        <th><%= t('activerecord.attributes.order.code') %></th>
+        <th><%= t('activerecord.attributes.order.customer_name') %></th>
+        <th><%= t('activerecord.attributes.order.total_value') %></th>
+        <th><%= t('activerecord.attributes.order.status') %></th>
+        <th><%= t('activerecord.attributes.order.cancellation_reason') %></th>
       </tr>
     </thead>
     <tbody>

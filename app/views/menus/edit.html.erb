@@ -1,4 +1,4 @@
-<h1>Edit <%= @menu.name %></h1>
+<h1 class='title'><%= "#{t('actions.edit')} #{@menu.name}" %></h1>
 
 <% if @menu.errors.any? %>
   <ul>

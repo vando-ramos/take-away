@@ -1,8 +1,75 @@
 pt-BR:
-  number:
-    currency:
-      format:
-        unit: "R$"
-        separator: ","
-        delimiter: "."
-        format: "%u%n"
+  views:
+    home: 'Início'
+    new_menu: 'Novo Cardápio'
+    new_operating_hour: 'Cadastrar Horário de Funcionamento'
+    new_order: 'Novo Pedido'
+    location: 'Localização'
+    search: 'Pesquisar'
+    search_dishes_drinks: 'Pesquisar Pratos e Pedidos'
+    are_you_sure: 'Você tem certeza?'
+    english: 'Inglês'
+    portuguese: 'Português'
+    my_establishment: 'Meu Estabelecimento'
+    full_address: 'Endereço'
+    order_items: 'Itens do Pedido'
+    option: 'Opção'
+    quantity: 'Quantidade'
+    observation: 'Observação'
+    select_dish: 'Selecione um Prato'
+    select_dish_option: 'Selecione uma Opção'
+    price: 'Preço'
+    found:
+      one: "1 pedido encontrado"
+      other: "%{count} pedidos encontrados"
+  status:
+    pending: 'Pendente'
+    delivered: 'Entregue'
+    canceled: 'Cancelado'
+  actions:
+    add_dish: 'Adicionar Prato'
+    add_drink: 'Adicionar Bebida'
+    edit: 'Editar'
+    delete: 'Deletar'
+    confirm_dispatch: 'Confirmar Despacho'
+    delivered: 'Entregue'
+    canceled: 'Cancelado'
+  messages:
+    no_item_registered: 'Nenhum Item Cadastrado'
+    no_menu_registered: 'Nenhum Cardápio Cadastrado'
+    no_option_registered: 'Nenhuma Opção Cadastrado para'
+  notices:
+    warehouse:
+      registered: 'Galpão cadastrado com sucesso'
+      updated: 'Galpão atualizado com sucesso'
+      deleted: 'Galpão deletado com sucesso'
+    supplier:
+      registered: 'Fornecedor cadastrado com sucesso'
+      updated: 'Fornecedor atualizado com sucesso'
+      deleted: 'Fornecedor deletado com sucesso'
+    product_model:
+      registered: 'Modelo de produto cadastrado com sucesso'
+      updated: 'Modelo de  produto atualizado com sucesso'
+      deleted: 'Modelo de  produto deletado com sucesso'
+    order:
+      registered: 'Pedido cadastrado com sucesso'
+      updated: 'Pedido atualizado com sucesso'
+      deleted: 'Pedido deletado com sucesso'
+    order_item:
+      added: 'Item adicionado com sucesso'
+  alerts:
+    warehouse: 
+      register_fail: 'Não foi possível cadastrar galpão'
+      update_fail: 'Não foi possível atualizar galpão'
+    supplier:
+      register_fail: 'Não foi possível cadastrar fornecedor'
+      update_fail: 'Não foi possível atualizar fornecedor'
+    product_model:
+      register_fail: 'Não foi possível cadastrar modelo de produto'
+      update_fail: 'Não foi possível atualizar modelo de produto'
+    order:
+      register_fail: 'Não foi possível cadastrar pedido'
+      update_fail: 'Não foi possível atualizar pedido'
+    order_item:
+      add_fail: 'Não foi possível adicionar item'
+    

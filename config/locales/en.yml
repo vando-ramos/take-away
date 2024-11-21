@@ -1,18 +1,66 @@
-# en:
-#   number:
-#     currency:
-#       format:
-#         unit: "$"
-#         separator: "."
-#         delimiter: ","
-#         format: "%u%n"
-
-# config de moeda provisória
 en:
+  messages:
+    no_item_registered: 'No Item Registered'
+    no_menu_registered: 'No Menu Registered'
+    no_option_registered: 'No Option Registered for'
+  views:
+    new_menu: 'New Menu'
+    new_operating_hour: 'Register Operating Hour'
+    new_order: 'New Order'
+    warehouse_id: 'Destination Warehouse'
+    add_item: 'Add Item'
+    stock_deduct: 'Stock Deduct'
+    search_dishes_drinks: 'Search Dishes and Drinks'
+    search: 'Search'
+    are_you_sure: 'Are you sure?'
+    select_dish: 'Select a Dish'
+    select_dish_option: 'Select a Option'
+    found:
+      one: "1 order found"
+      other: "%{count} orders found"
+  actions:
+    add_dish: 'Add Dish'
+    add_drink: 'Add Drink'
+  notices:
+    warehouse:
+      registered: 'Warehouse successfully registered'
+      updated: 'Warehouse successfully updated'
+      deleted: 'Warehouse successfully deleted'
+    supplier:
+      registered: 'Supplier successfully registered'
+      updated: 'Supplier successfully updated'
+      deleted: 'Supplier successfully deleted'
+    product_model:
+      registered: 'Product model successfully registered'
+      updated: 'Product model successfully updated'
+      deleted: 'Product model successfully deleted'
+    order:
+      registered: 'Order successfully registered'
+      updated: 'Order successfully updated'
+      deleted: 'Order successfully deleted'
+    order_item:
+      added: 'Item successfully added'
+  alerts:
+    warehouse: 
+      register_fail: 'Unable to register warehouse'
+      update_fail: 'Unable to update warehouse'
+    supplier:
+      register_fail: 'Unable to register supplier'
+      update_fail: 'Unable to update supplier'
+    product_model:
+      register_fail: 'Unable to register product model'
+      update_fail: 'Unable to update product model'
+    order:
+      register_fail: 'Unable to register order'
+      update_fail: 'Unable to update order'
+    order_item:
+      add_fail: 'Unable to add item'
   number:
     currency:
       format:
-        unit: "R$"
-        separator: ","
-        delimiter: "."
+        unit: "$"
+        separator: "."
+        delimiter: ","
         format: "%u%n"
+  
+  
