@@ -18,6 +18,8 @@ pt-BR:
     observation: 'Observação'
     select_dish: 'Selecione um Prato'
     select_dish_option: 'Selecione uma Opção'
+    select_drink: 'Selecione uma Bebida'
+    select_drink_option: 'Selecione uma Opção'
     price: 'Preço'
     found:
       one: "1 pedido encontrado"

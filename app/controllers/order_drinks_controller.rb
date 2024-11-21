@@ -5,7 +5,7 @@ class OrderDrinksController < ApplicationController
   def new
     @order_drink = OrderDrink.new
     @drinks = @establishment.drinks.where(status: Drink.statuses[:active])
-    @drink_options = DrinkOption.all
+    @drink_options = [] if @drink_option.nil?
   end
 
   def create
@@ -14,6 +14,9 @@ class OrderDrinksController < ApplicationController
     if @order_drink.save
       redirect_to order_path(@order.id), notice: 'Drink successfully added'
     else
+      @drinks = @establishment.drinks.where(status: Drink.statuses[:active])
+      @drink_options = DrinkOption.where(drink_id: order_drink_params[:drink_id])
+
       flash.now.alert = 'Unable to add drink'
       render :new, status: :unprocessable_entity
     end

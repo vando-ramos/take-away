@@ -1,11 +1,11 @@
 <%= form_with model: [@order, @order_drink] do |f| %>
   <div>
-    <%= f.label :drinks %>
-    <%= f.collection_select :drink_id, @drinks, :id, :name, { prompt: "Select a drink" }, { id: "drink-select" } %>
+    <%= f.label :drinks, Drink.model_name.human(count: 2) %>
+    <%= f.collection_select :drink_id, @drinks || [], :id, :name, { prompt: t('views.select_drink') }, { id: "drink-select" } %>
   </div>
   <div>
-    <%= f.label :drink_options %>
-    <%= f.collection_select :drink_option_id, [], :id, :description, { prompt: "Select a drink option" }, { id: "drink-options-select" } %>
+    <%= f.label :drink_options, DrinkOption.model_name.human(count: 2) %>
+    <%= f.collection_select :drink_option_id, @drink_options || [], :id, :description, { prompt: t('views.select_drink_option') }, { id: "drink-options-select" } %>
   </div>
   <div>
     <%= f.label :quantity %>
@@ -16,7 +16,7 @@
     <%= f.text_field :observation %>
   </div>    
   <div>
-    <%= f.submit 'Add Drink' %>
+    <%= f.submit t('actions.add_drink') %>
   </div>
 <% end %>
 

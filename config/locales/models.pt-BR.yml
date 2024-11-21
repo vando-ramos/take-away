@@ -17,8 +17,8 @@ pt-BR:
         one: 'Cardápio de Bebida'
         other: 'Cardápios de Bebidas'
       drink_option:
-        one: 'Drink Option'
-        other: 'Drink Options'
+        one: 'Opção de Bebida'
+        other: 'Opções de Bebidas'
       drink_tag:
         one: 'Marcador de Bebida'
         other: 'Marcadores de Bebida'
