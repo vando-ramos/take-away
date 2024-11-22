@@ -7,7 +7,7 @@ class OperatingHour < ApplicationRecord
   enum status: { opened: 0, closed: 1 }
 
   def translated_status
-    I18n.t("activerecord.attributes.operating_hour.oh_status.#{status}")
+    I18n.t("activerecord.attributes.operating_hour.statuses.#{status}")
   end
 
   def translated_day_of_week

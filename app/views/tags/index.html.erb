@@ -1,9 +1,9 @@
 <h1 class='title'><%= Tag.model_name.human(count: 2) %></h1>
 
-<div><%= link_to t('views.new_tag'), new_establishment_tag_path(@establishment.id) %></div>
+<div><%= link_to t('views.new_tag'), new_establishment_tag_path(@establishment.id), class: 'new-button' %></div>
 
 <% if @tags.any? %>
-  <table>
+  <table class='table-container'>
     <thead>
       <tr>
         <th><%= t('activerecord.attributes.tag.name') %></th>
@@ -16,7 +16,7 @@
           <td><%= tag.name %></td>
           <td>
             <%= link_to t('actions.edit'), edit_establishment_tag_path(@establishment.id, tag.id), 
-                id: dom_id(tag, :edit) %>
+                id: dom_id(tag, :edit), class: 'edit-button' %>
           </td>
         </tr>
       <% end %>

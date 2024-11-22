@@ -1,4 +1,4 @@
-<h1 class='title'><%= @drink.name %> (<%= @drink.translated_status %>)</h1>
+<h1 class='title'><%= @drink.name %> (<%= @drink.status.humanize %>)</h1>
 
 <%= link_to PriceHistory.model_name.human(count: 2), drink_drink_price_history_index_path(@drink.id) %>
 

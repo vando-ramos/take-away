@@ -31,6 +31,7 @@ en:
     passwords:
       no_token: "You can't access this page without coming from a password reset email. If you do come from a password reset email, please make sure you used the full URL provided."
       send_instructions: "You will receive an email with instructions on how to reset your password in a few minutes."
+      send_me_instructions: 'Send me reset password instructions'
       send_paranoid_instructions: "If your email address exists in our database, you will receive a password recovery link at your email address in a few minutes."
       updated: "Your password has been changed successfully. You are now signed in."
       updated_not_active: "Your password has been changed successfully."
@@ -46,10 +47,10 @@ en:
     sessions:
       sign_up: "Sign up"
       sign_in: "Sign in"
-      signed_in: "Signed in successfully."
+      signed_in: "Signed in successfully"
       sign_out: "Sign out"
-      signed_out: "Signed out successfully."
-      already_signed_out: "Signed out successfully."
+      signed_out: "Signed out successfully"
+      already_signed_out: "Signed out successfully"
     unlocks:
       send_instructions: "You will receive an email with instructions for how to unlock your account in a few minutes."
       send_paranoid_instructions: "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes."

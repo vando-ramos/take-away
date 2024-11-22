@@ -1,24 +1,24 @@
 <%= form_with model: @menu do |f| %>
-  <div>
+  <div class='form-group'>
     <%= f.label :name %>
     <%= f.text_field :name %>
   </div>
-  <div>
+  <div class="checkbox-section">
     <%= f.label :dishes, Dish.model_name.human(count: 2) %>
-    <div>
+    <div class="checkbox-group">
       <%= f.collection_check_boxes :dish_ids, @dishes, :id, :name do |box| %>
-        <div>
+        <div class="checkbox-item">
           <%= box.check_box %>
           <%= box.label %>
         </div>
       <% end %>
     </div>      
   </div>
-  <div>
+  <div class="checkbox-section">
     <%= f.label :drinks, Drink.model_name.human(count: 2) %>
-    <div>
+    <div class="checkbox-group">
       <%= f.collection_check_boxes :drink_ids, @drinks, :id, :name do |box| %>
-        <div>
+        <div class="checkbox-item">
           <%= box.check_box %>
           <%= box.label %>
         </div>
@@ -26,6 +26,6 @@
     </div>
   </div>
   <div>
-    <%= f.submit %>
+    <%= f.submit class: 'submit-button' %>
   </div>
 <% end %>

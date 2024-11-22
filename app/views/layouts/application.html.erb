@@ -14,14 +14,14 @@
   <body>
     <nav class='navbar'>
       <%= link_to root_path do %>
-        <h1>Take Away</h1>
+        <h1 class='title'>Take Away</h1>
       <% end %>
 
       <ul class='nav-list'>
         <% if user_signed_in? %>
           <li class='nav-item'>
             <%= current_user.email %>
-            <%= button_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete %>
+            <%= button_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'sign-out-button' %>
           </li>
           <% if current_user.establishment.present? %>
             <li class='nav-item'>
@@ -50,14 +50,18 @@
     <main>
       <% if user_signed_in? && current_user.establishment.present? && current_user.admin? %>
         <div class='search'>
-          <%= form_with url: search_index_path, method: :get do |f| %>            
-            <%= f.text_field :query, placeholder: t('views.search_dishes_drinks') %>
-            <%= f.submit t('views.search') %>
+          <%= form_with url: search_index_path, method: :get, class: 'search-form' do |f| %>            
+            <%= f.text_field :query, placeholder: t('views.search_dishes_drinks'), class: 'search-field' %>
+            <%= f.submit t('views.search'), class: 'search-button' %>
           <% end %>
         </div>
       <% end %>
 
-      <p><%= notice || alert %></p>
+      <% if notice.present? || alert.present? %>
+        <div class="<%= notice.present? ? 'success-message' : 'error-message' %>">
+          <%= notice || alert %>
+        </div>
+      <% end %>  
 
       <%= yield %>
     </main>

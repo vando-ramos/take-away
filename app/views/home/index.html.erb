@@ -1,17 +1,22 @@
 <h1 class='title'><%= Menu.model_name.human(count: 2) %></h1>
 
-<div><%= link_to t('views.new_menu'), new_menu_path %></div>
+<hr>
+
+<div class='menu-buttons'>
+  <%= link_to t('views.new_menu'), new_menu_path, class: 'new-button' %>
+  <%= link_to t('views.new_order'), new_order_path, class: 'new-button' %>
+</div>
+
+<hr>
 
 <% if @menus.any? %>
   <ul>
     <% @menus.each do |menu| %>
-      <li><%= link_to menu.name, menu_path(menu.id) %></li>
+      <li>
+        <h2 class='menu-card'><%= link_to menu.name, menu_path(menu.id) %></h2>
+      </li>
     <% end %>
   </ul>
 <% else %>
   <p><%= t('messages.no_menu_registered') %></p>
 <% end %>
-
-<div><%= link_to t('views.new_order'), new_order_path %></div>
-
-

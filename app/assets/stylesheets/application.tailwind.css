@@ -33,10 +33,6 @@ body {
   margin-bottom: 20px;
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
 h2 {
   font-size: 20px;
 }
@@ -44,7 +40,162 @@ h2 {
 hr {  
   width: 90%;
   border: 1px solid rgba(0, 0, 0, 0.200);
+  margin: 10px 0;
+}
+
+.success-message {
+  color: green;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.error-message {
+  color: #e74c3c;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  margin-top: 30px;
+}
+
+/* buttons */
+
+.edit-button {
+  border: 1px solid #0d6efd;
+  padding: 3px 5px;
+  background-color: yellow;
+  color: #0d6efd;
+  margin: 10px;
+}
+
+.edit-button:hover {
+  background-color: #0d6efd;
+  color: yellow;
+}
+
+.new-button {
+  border: 1px solid #0d6efd;
+  padding: 10px;
+  background-color: #0d6efd;
+  color: white;
+  margin: 10px;
+}
+
+.new-button:hover {
+  background-color: #0056b3;
+}
+
+.search-button {
+  border: 1px solid black;
+  height: 40px;
+  padding: 0 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.search-button:hover {
+  background-color: rgba(0, 0, 0, 0.800);
+  cursor: pointer;
+}
+
+.sign-out-button {
+  border: 1px solid black;
+  height: 40px;
+  padding: 0 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.sign-out-button:hover {
+  background-color: rgba(0, 0, 0, 0.800);
+  cursor: pointer;
+}
+
+.submit-button {
+  border: 1px solid black;
+  height: 40px;
+  padding: 0 10px;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.submit-button:hover {
+  background-color: rgba(0, 0, 0, 0.800);
+  cursor: pointer;
+}
+
+/* form */
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.checkbox-section {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.checkbox-section label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.checkbox-group {  
+  gap: 15px;
+}
+
+.checkbox-item input {
+  margin-right: 10px;
+}
+
+/* establishment */
+
+.operating-hour-title {
+  margin: 20px;
+}
+
+/* menu */
+
+.menu-buttons {
   margin: 20px 0;
+  padding: 10px;
+}
+
+.menu-card {
+  border: 1px solid black;
+  height: 40px;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-card:hover {
+  background-color: rgba(0, 0, 0, 0.100);
+  text-decoration: underline;
 }
 
 /* navbar */
@@ -67,6 +218,10 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.nav-item:hover {
+  text-decoration: underline;
 }
 
 /* tag-filter */
@@ -113,6 +268,10 @@ main {
 
 /* table */
 
+.table-container {
+  margin: 30px 0;
+}
+
 table {  
   width: 100%;
   border-collapse: collapse;
@@ -129,6 +288,14 @@ td {
 
 .history-price-table {
   margin-bottom: 20px;
+}
+
+.day-link:hover {
+  text-decoration: underline;
+}
+
+.order-link:hover {
+  text-decoration: underline;
 }
 
 
@@ -163,4 +330,15 @@ li {
 
 .total-price {
   margin: 20px;
+}
+
+/* search */
+
+.search-field {
+  height: 40px;
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
 }

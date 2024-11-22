@@ -16,7 +16,7 @@
       <tr>
         <td><%= pr.email %></td>
         <td><%= pr.cpf %></td>
-        <td><%= pr.translated_status %></td>
+        <td><%= pr.status.humanize %></td>
       </tr>
       <% end %>
     </tbody>

@@ -104,7 +104,7 @@ en:
         customer_name: 'Customer Name'
         customer_phone: 'Customer Phone'
         establishment_id: 'Establishment'
-        status:
+        statuses:
           awaiting_kitchen_confirmation: 'Awaiting Kitchen Confirmation'
           in_preparation: 'In Preparation'
           canceled: 'Canceled'

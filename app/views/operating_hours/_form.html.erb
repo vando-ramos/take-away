@@ -1,23 +1,23 @@
 <div class='form-container'>
   <%= form_with model: [@establishment, @operating_hour] do |f| %>
-    <div>
+    <div class='form-group'>
       <%= f.label :day_of_week %>
       <%= f.select :day_of_week, OperatingHour.day_of_weeks.keys.map { |day| [OperatingHour.new(day_of_week: day).translated_day_of_week, day] } %>
     </div>
-    <div>
+    <div class='form-group'>
       <%= f.label :opening_time %>
       <%= f.time_select :opening_time %>
     </div>
-    <div>
+    <div class='form-group'>
       <%= f.label :closing_time %>
       <%= f.time_select :closing_time %>
     </div>
-    <div>
+    <div class='form-group'>
       <%= f.label :status %>
-      <%= f.select :status, OperatingHour.statuses.keys.map { |key| [OperatingHour.new(status: key).translated_status, key] } %>
+      <%= f.select :status, OperatingHour.statuses.keys.map { |key| [key.humanize, key] } %>
     </div> 
     <div>
-      <%= f.submit %>
+      <%= f.submit class: 'submit-button' %>
     </div>
   <% end %>
 </div>

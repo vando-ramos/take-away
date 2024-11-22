@@ -1,14 +1,14 @@
 <h1 class='title'><%= link_to @establishment.corporate_name, establishment_path(@establishment.id) %></h1>
 
 <% if current_user.admin? %>
-  <h2><%= link_to Tag.model_name.human(count: 2), establishment_tags_path(@establishment.id) %></h2>
+  <h2 class='menu-card'><%= link_to Tag.model_name.human(count: 2), establishment_tags_path(@establishment.id), class: 'menu-buttons' %></h2>
 <% end %>
 <hr>
 
-<h2><%= OperatingHour.model_name.human(count: 2) %> </h2>
+<h2 class='operating-hour-title'><%= OperatingHour.model_name.human(count: 2) %> </h2>
 
 <% if current_user.admin? %>
-  <div><%= link_to t('views.new_operating_hour'), new_establishment_operating_hour_path(@establishment.id) %></div>
+  <div><%= link_to t('views.new_operating_hour'), new_establishment_operating_hour_path(@establishment.id), class: 'new-button' %></div>
 <% end %>
 
 <div class='table-container'>
@@ -26,12 +26,12 @@
           <tr>
             <td>
               <%= link_to oh.translated_day_of_week, 
-                  establishment_operating_hour_path(@establishment.id, oh.id) %>
+                  establishment_operating_hour_path(@establishment.id, oh.id), class: 'day-link' %>
             </td>
             <td>
               <%= oh.opening_time.strftime("%H:%M") %> - <%= oh.closing_time.strftime("%H:%M") %>
             </td>
-            <td><%= oh.translated_status %></td>
+            <td><%= oh.status.humanize %></td>
           </tr>
         <% end %>
       </tbody>

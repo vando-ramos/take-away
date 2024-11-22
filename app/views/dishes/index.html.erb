@@ -5,11 +5,11 @@
 <% if @dishes.any? %>
   <div class='tag-filter'>
     <%= form_with(url: dishes_path, method: :get) do %>
-      <%= label_tag :tag_id, t('views.filter_tag') %>
+      <%= label_tag :tag_id %>
       <%= select_tag :tag_id, options_from_collection_for_select(@tags, :id, :name, params[:tag_id]),
                       include_blank: t('views.all') %>
     
-      <%= submit_tag t('views.filter') %>
+      <%= submit_tag 'Filter' %>
     <% end %>
   </div>
 
@@ -18,7 +18,7 @@
       <div class='dish-container'>
         <li>
           <%= link_to dish_path(dish.id) do %>
-            <h2><%= dish.name %> (<%= dish.translated_status %>)</h2>
+            <h2><%= dish.name %> (<%= dish.status.humanize %>)</h2>
             <div class='img'><%= image_tag dish.image %></div>
           <% end %>
         </li>

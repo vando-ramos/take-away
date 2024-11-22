@@ -14,7 +14,7 @@
       <td><%= @operating_hour.opening_time.strftime("%H:%M") %></td>
       <td><%= @operating_hour.closing_time.strftime("%H:%M") %></td>
       <td><%= @operating_hour.translated_status %></td>
-      <td><%= link_to t('actions.edit'), edit_establishment_operating_hour_path %></td>
+      <td><%= link_to t('actions.edit'), edit_establishment_operating_hour_path, class: 'edit-button' %></td>
     </tr>
   </tbody>
 </table>

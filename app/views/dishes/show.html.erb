@@ -1,4 +1,4 @@
-<h1 class='title'><%= @dish.name %> (<%= @dish.translated_status %>)</h1>
+<h1 class='title'><%= @dish.name %> (<%= @dish.status.humanize %>)</h1>
 
 <% @dish.tags.each do |tag| %>
   <span>#<%= tag.name %></span>

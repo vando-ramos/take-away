@@ -112,9 +112,10 @@ pt-BR:
         closing_time: 'Horário de Fechamento'
         day_of_week: 'Dia da Semana'
         establishment_id: 'Estabelecimento'
-        oh_status:
-          closed: 'Fechado'
+        status: 'Situação'
+        statuses:
           opened: 'Aberto'
+          closed: 'Fechado'
         opening_time: 'Horário de Abertura'
         status: 'Situação'
       order_dish:
@@ -164,5 +165,7 @@ pt-BR:
       user:
         cpf: 'CPF'
         last_name: 'Sobrenome'
-        name: 'Name'
+        name: 'Nome'
+        password: 'Senha'
+        password_confirmation: "Confirmação de senha"
       

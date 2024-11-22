@@ -5,7 +5,7 @@ Take-Away é uma aplicação Rails desenvolvida para gerenciamento de pedidos, c
 Funcionalidades:
 -
 - **Cadastro de usuários:**  
-  Administrador: Tem permissões completas no sistema, podendo cadastrar e gerenciar estabelecimentos, cardápios, pratos, bebidas e pedidos.  
+  Administrador: Tem permissões completas no sistema, podendo cadastrar e gerenciar estabelecimentos, cardápios, pratos, bebidas e pedidos. O admin só pode ser criado via console ou seed. 
   Funcionário: Possui permissões limitadas, com acesso necessário para gerenciar pedidos e atualizar o status dos mesmos.  
 - **Cadastro de Estabelecimentos:** Permite o registro de informações do estabelecimento que utilizará o sistema.  
 - **Gestão de Pratos e Bebidas:** Possibilita a criação, edição e exclusão de pratos e bebidas, incluindo detalhes como nome, descrição, preço e categoria.  
@@ -36,7 +36,7 @@ Configure o banco de dados e rode as migrações:
 
 Seeds:  
 -
-O arquivo de seeds (db/seeds.rb) inclui dados iniciais para facilitar o desenvolvimento e a visualização dos recursos da aplicação. Os seeds incluem usuários, estabelecimentos, pratos, bebidas e cardápios, além de pedidos de exemplo.  
+O arquivo de seeds (db/seeds.rb) inclui dados iniciais para facilitar o desenvolvimento e a visualização dos recursos da aplicação. Os seeds incluem usuários(admin só pode ser criado via console ou seed), estabelecimentos, pratos, bebidas e cardápios, além de pedidos de exemplo.  
 
 Para carregar os dados de seed no banco de dados, execute:  
 
@@ -49,7 +49,7 @@ Acesse a aplicação em: http://localhost:3000
 
 Testes:  
 -
-Os testes são realizados com RSpec e Capybara para garantir a funcionalidade e a usabilidade da aplicação.  
+Os testes são realizados com RSpec e Capybara para garantir a funcionalidade e a usabilidade da aplicação. Rode os teste com app em inglês.
 
 Para rodar os testes:  
 
