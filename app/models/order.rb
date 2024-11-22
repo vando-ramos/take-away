@@ -28,6 +28,10 @@ class Order < ApplicationRecord
     self.update!(total_value: total_price)
   end
 
+  def translated_status
+    I18n.t("activerecord.attributes.order.statuses.#{status}")
+  end
+
   private
 
   def generate_code

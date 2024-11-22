@@ -17,12 +17,12 @@
           <td><%= link_to order.code, order_path(order.id) %></td>
           <td><%= order.customer_name %></td>
           <td><%= number_to_currency(order.total_value) %></td>
-          <td><%= order.status.humanize %></td>
+          <td><%= order.translated_status %></td>
           <td><%= order.cancellation_reason %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>No orders registered</p>
+  <p><%= t('messages.no_order_registered') %></p>
 <% end %>

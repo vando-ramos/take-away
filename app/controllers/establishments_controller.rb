@@ -25,9 +25,9 @@ class EstablishmentsController < ApplicationController
 
     if @establishment.save
       current_user.update(establishment: @establishment)
-      redirect_to establishment_path(@establishment), notice: 'Establishment successfully registered'
+      redirect_to establishment_path(@establishment), notice: t('notices.establishment.registered')
     else
-      flash.now.alert = 'Unable to register establishment'
+      flash.now.alert = t('alerts.establishment.register_fail')
       render :new, status: :unprocessable_entity
     end
   end

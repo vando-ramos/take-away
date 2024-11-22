@@ -19,9 +19,9 @@ class DishOptionsController < ApplicationController
     @dish_option = @dish.dish_options.build(dish_option_params)
 
     if @dish_option.save
-      redirect_to dish_path(@dish.id), notice: 'Dish option successfully registered'
+      redirect_to dish_path(@dish.id), notice: t('notices.dish_option.registered')
     else
-      flash.now.alert = 'Unable to register dish option'
+      flash.now.alert = t('alerts.dish_option.register_fail')
       render :new, status: :unprocessable_entity
     end
   end
@@ -31,9 +31,9 @@ class DishOptionsController < ApplicationController
 
   def update
     if @dish_option.update(dish_option_params)
-      redirect_to dish_path(@dish.id), notice: 'Dish option successfully updated'
+      redirect_to dish_path(@dish.id), notice: t('notices.dish_option.updated')
     else
-      flash.now.alert = 'Unable to update dish option'
+      flash.now.alert = t('alerts.dish_option.update_fail')
       render :edit, status: :unprocessable_entity
     end
   end

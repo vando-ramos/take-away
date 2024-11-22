@@ -1,14 +1,14 @@
-<h1 class='title'>Users</h1>
+<h1 class='title'><%= PreRegistration.model_name.human(count: 2) %></h1>
 
-<%= link_to 'Register User', new_pre_registration_path %>
+<%= link_to t('views.new_user'), new_pre_registration_path %>
 
 <% if @pre_registrations.any? %>
   <table>
     <thead>
       <tr>
-        <th>User</th>
-        <th>Cpf</th>
-        <th>Status</th>
+        <th><%= User.model_name.human(count: 1) %></th>
+        <th><%= t('activerecord.attributes.user.cpf') %></th>
+        <th><%= t('activerecord.attributes.pre_registration.status') %></th>
       </tr>
     </thead>
     <tbody>
@@ -16,11 +16,11 @@
       <tr>
         <td><%= pr.email %></td>
         <td><%= pr.cpf %></td>
-        <td><%= pr.status.humanize %></td>
+        <td><%= pr.translated_status %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-  <p>No users registered</p>
+  <p><%= t('messages.no_user_registered') %></p>
 <% end %>

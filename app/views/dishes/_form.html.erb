@@ -17,7 +17,7 @@
       <%= f.file_field :image %>
     </div> 
     <div>
-      <%= f.label :tags %>
+      <%= f.label :tags, Tag.model_name.human(count: 2) %>
       <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :name do |box| %>
         <div>
           <%= box.check_box %>

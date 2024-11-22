@@ -16,9 +16,9 @@ class MenusController < ApplicationController
     @menu = @establishment.menus.build(menu_params)
 
     if @menu.save
-      redirect_to root_path, notice: 'Menu successfully created'
+      redirect_to root_path, notice: t('notices.menu.created')
     else
-      flash.now.alert = 'Unable to create menu'
+      flash.now.alert = t('alerts.menu.create_fail')
       render :new, status: :unprocessable_entity
     end
   end
@@ -28,9 +28,9 @@ class MenusController < ApplicationController
 
   def update
     if @menu.update(menu_params)
-      redirect_to @menu, notice: 'Menu successfully updated'
+      redirect_to @menu, notice: t('notices.menu.updated')
     else
-      flash.now.alert = 'Unable to update menu'
+      flash.now.alert = t('alerts.menu.update_fail')
       render :edit, status: :unprocessable_entity
     end
   end

@@ -14,9 +14,9 @@ class PreRegistrationsController < ApplicationController
     @pre_registration = @establishment.pre_registrations.build(pre_registration_params)
 
     if @pre_registration.save
-      redirect_to pre_registrations_path, notice: 'User successfully registered'
+      redirect_to pre_registrations_path, notice: t('notices.pre_registration.registered')
     else
-      flash.now.alert = 'Unable to register user'
+      flash.now.alert = t('alerts.pre_registration.register_fail')
       render :new, status: :unprocessable_entity
     end
   end

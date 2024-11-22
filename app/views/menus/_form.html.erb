@@ -4,7 +4,7 @@
     <%= f.text_field :name %>
   </div>
   <div>
-    <%= f.label :dishes %>
+    <%= f.label :dishes, Dish.model_name.human(count: 2) %>
     <div>
       <%= f.collection_check_boxes :dish_ids, @dishes, :id, :name do |box| %>
         <div>
@@ -15,7 +15,7 @@
     </div>      
   </div>
   <div>
-    <%= f.label :drinks %>
+    <%= f.label :drinks, Drink.model_name.human(count: 2) %>
     <div>
       <%= f.collection_check_boxes :drink_ids, @drinks, :id, :name do |box| %>
         <div>

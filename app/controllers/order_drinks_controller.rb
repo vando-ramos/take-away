@@ -12,12 +12,12 @@ class OrderDrinksController < ApplicationController
     @order_drink = @order.order_drinks.build(order_drink_params)
 
     if @order_drink.save
-      redirect_to order_path(@order.id), notice: 'Drink successfully added'
+      redirect_to order_path(@order.id), notice: t('notices.order_drink.added')
     else
       @drinks = @establishment.drinks.where(status: Drink.statuses[:active])
       @drink_options = DrinkOption.where(drink_id: order_drink_params[:drink_id])
 
-      flash.now.alert = 'Unable to add drink'
+      flash.now.alert = t('alerts.order_drink.added_fail')
       render :new, status: :unprocessable_entity
     end
   end

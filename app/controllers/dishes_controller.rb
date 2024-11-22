@@ -24,9 +24,9 @@ class DishesController < ApplicationController
     @dish = @establishment.dishes.build(dish_params)
 
     if @dish.save
-      redirect_to dishes_path, notice: 'Dish successfully registered'
+      redirect_to dishes_path, notice: t('notices.dish.registered')
     else
-      flash.now.alert = 'Unable to register dish'
+      flash.now.alert = t('alerts.dish.register_fail')
       render :new, status: :unprocessable_entity
     end
   end
@@ -36,26 +36,26 @@ class DishesController < ApplicationController
 
   def update
     if @dish.update(dish_params)
-      redirect_to dishes_path, notice: 'Dish successfully updated'
+      redirect_to dishes_path, notice: t('notices.dish.updated')
     else
-      flash.now.alert = 'Unable to update dish'
+      flash.now.alert = t('alerts.dish.update_fail')
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @dish.destroy
-    redirect_to dishes_path, notice: 'Dish successfully deleted'
+    redirect_to dishes_path, notice: t('notices.dish.deleted')
   end
 
   def active
     @dish.active!
-    redirect_to dish_path(@dish.id), notice: 'Dish successfully activated'
+    redirect_to dish_path(@dish.id), notice: t('notices.dish.activated')
   end
 
   def inactive
     @dish.inactive!
-    redirect_to dish_path(@dish.id), notice: 'Dish successfully deactivated'
+    redirect_to dish_path(@dish.id), notice: t('notices.dish.deactivated')
   end
 
   private

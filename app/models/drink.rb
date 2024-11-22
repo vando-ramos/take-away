@@ -12,4 +12,12 @@ class Drink < ApplicationRecord
   enum status: { active: 0, inactive: 1 }
 
   validates :name, :description, :calories, :image, :is_alcoholic, presence: true
+
+  def translated_is_alcoholic
+    I18n.t("activerecord.attributes.drink.is_alcoholics.#{is_alcoholic}")
+  end
+
+  def translated_status
+    I18n.t("activerecord.attributes.drink.statuses.#{status}")
+  end
 end

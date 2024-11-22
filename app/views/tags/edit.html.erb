@@ -1,4 +1,4 @@
-<h1 class='title'>Edit Tag</h1>
+<h1 class='title'><%= "#{t('actions.edit')} #{@tag.name}" %></h1>
 
 <% if @tag.errors.any? %>
   <ul>

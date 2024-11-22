@@ -12,12 +12,12 @@ class OrderDishesController < ApplicationController
     @order_dish = @order.order_dishes.build(order_dish_params)
 
     if @order_dish.save
-      redirect_to order_path(@order.id), notice: 'Dish successfully added'
+      redirect_to order_path(@order.id), notice: t('notices.order_dish.added')
     else
       @dishes = @establishment.dishes.where(status: Dish.statuses[:active])
       @dish_options = DishOption.where(dish_id: order_dish_params[:dish_id])
 
-      flash.now.alert = 'Unable to add dish'
+      flash.now.alert = t('alerts.order_dish.added_fail')
       render :new, status: :unprocessable_entity
     end
   end

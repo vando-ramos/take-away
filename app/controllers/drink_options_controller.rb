@@ -19,9 +19,9 @@ class DrinkOptionsController < ApplicationController
     @drink_option = @drink.drink_options.build(drink_option_params)
 
     if @drink_option.save
-      redirect_to drink_path(@drink.id), notice: 'Drink option successfully registered'
+      redirect_to drink_path(@drink.id), notice: t('notices.drink_option.registered')
     else
-      flash.now.alert = 'Unable to register drink option'
+      flash.now.alert = t('alerts.drink_option.register_fail')
       render :new, status: :unprocessable_entity
     end
   end
@@ -31,9 +31,9 @@ class DrinkOptionsController < ApplicationController
 
   def update
     if @drink_option.update(drink_option_params)
-      redirect_to drink_path(@drink.id), notice: 'Drink option successfully updated'
+      redirect_to drink_path(@drink.id), notice: t('notices.drink_option.updated')
     else
-      flash.now.alert = 'Unable to update drink option'
+      flash.now.alert = t('alerts.drink_option.update_fail')
       render :edit, status: :unprocessable_entity
     end
   end

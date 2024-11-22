@@ -18,9 +18,9 @@ class DrinksController < ApplicationController
     @drink = @establishment.drinks.build(drink_params)
 
     if @drink.save
-      redirect_to drinks_path, notice: 'Drink successfully registered'
+      redirect_to drinks_path, notice: t('notices.drink.registered')
     else
-      flash.now.alert = 'Unable to register drink'
+      flash.now.alert = t('alerts.drink.register_fail')
       render :new, status: :unprocessable_entity
     end
   end
@@ -30,26 +30,26 @@ class DrinksController < ApplicationController
 
   def update
     if @drink.update(drink_params)
-      redirect_to drinks_path, notice: 'Drink successfully updated'
+      redirect_to drinks_path, notice: t('notices.drink.updated')
     else
-      flash.now.alert = 'Unable to update drink'
+      flash.now.alert = t('alerts.drink.update_fail')
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @drink.destroy
-    redirect_to drinks_path, notice: 'Drink successfully deleted'
+    redirect_to drinks_path, notice: t('notices.drink.deleted')
   end
 
   def active
     @drink.active!
-    redirect_to drink_path(@drink.id), notice: 'Drink successfully activated'
+    redirect_to drink_path(@drink.id), notice: t('notices.drink.activated')
   end
 
   def inactive
     @drink.inactive!
-    redirect_to drink_path(@drink.id), notice: 'Drink successfully deactivated'
+    redirect_to drink_path(@drink.id), notice: t('notices.drink.deactivated')
   end
 
   private

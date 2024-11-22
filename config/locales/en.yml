@@ -1,12 +1,25 @@
 en:
   messages:
+    no_dish_registered: 'No Dish Registered'
+    no_drink_registered: 'No Drink Registered'
     no_item_registered: 'No Item Registered'
     no_menu_registered: 'No Menu Registered'
+    no_operating_hour_registered: 'No Operating Hour Registered'
     no_option_registered: 'No Option Registered for'
+    no_order_registered: 'No Order Registered'
+    no_price_history_registered: 'No Price History Registered'
+    no_user_registered: 'No User Registered'
   views:
+    filter_tag: 'Filter by Tag'
+    new_dish_option: 'New Dish Option'
+    new_dish: 'New Dish'
+    new_drink_option: 'New Drink Option'
+    new_drink: 'New Drink'
     new_menu: 'New Menu'
-    new_operating_hour: 'Register Operating Hour'
+    new_operating_hour: 'New Operating Hour'
     new_order: 'New Order'
+    new_tag: 'New Tag'
+    new_user: 'New User'
     warehouse_id: 'Destination Warehouse'
     add_item: 'Add Item'
     stock_deduct: 'Stock Deduct'
@@ -22,39 +35,95 @@ en:
     add_dish: 'Add Dish'
     add_drink: 'Add Drink'
   notices:
-    warehouse:
-      registered: 'Warehouse successfully registered'
-      updated: 'Warehouse successfully updated'
-      deleted: 'Warehouse successfully deleted'
-    supplier:
-      registered: 'Supplier successfully registered'
-      updated: 'Supplier successfully updated'
-      deleted: 'Supplier successfully deleted'
-    product_model:
-      registered: 'Product model successfully registered'
-      updated: 'Product model successfully updated'
-      deleted: 'Product model successfully deleted'
+    dish_option:
+      registered: 'Dish option successfully registered'
+      updated: 'Dish option successfully updated'
+      deleted: 'Dish option successfully deleted'
+    dish:
+      registered: 'Dish successfully registered'
+      updated: 'Dish successfully updated'
+      deleted: 'Dish successfully deleted'
+      activated: Dish successfully activated
+      deactivated: 'Dish successfully deactivated'
+    drink_option:
+      registered: 'Drink option successfully registered'
+      updated: 'Drink option successfully updated'
+      deleted: 'Drink option successfully deleted'
+    drink:
+      registered: 'Drink successfully registered'
+      updated: 'Drink successfully updated'
+      deleted: 'Drink successfully deleted'
+      activated: Drink successfully activated
+      deactivated: 'Drink successfully deactivated'
+    establishment:
+      registered: 'Establishment successfully registered'
+      updated: 'Establishment successfully updated'
+      deleted: 'Establishment successfully deleted'
+    menu:
+      registered: 'Menu successfully registered'
+      updated: 'Menu successfully updated'
+      deleted: 'Menu successfully deleted'
+    operating_hour:
+      registered: 'Operating successfully registered'
+      updated: 'Operating successfully updated'
+      deleted: 'Operating successfully deleted'
+    order_dish:
+      added: 'Order dish successfully added'
+      updated: 'Order dish successfully updated'
+      deleted: 'Order dish successfully deleted'
+    order_drink:
+      added: 'Order drink successfully added'
+      updated: 'Order drink successfully updated'
+      deleted: 'Order drink successfully deleted'
     order:
-      registered: 'Order successfully registered'
+      started: 'Order successfully started'
       updated: 'Order successfully updated'
       deleted: 'Order successfully deleted'
-    order_item:
-      added: 'Item successfully added'
+    pre_registration:
+      registered: 'User successfully registered'
+      updated: 'User successfully updated'
+      deleted: 'User successfully deleted'
+    tagTag:
+      registered: 'Tag successfully registered'
+      updated: 'Tag successfully updated'
+      deleted: 'Tag successfully deleted'
   alerts:
-    warehouse: 
-      register_fail: 'Unable to register warehouse'
-      update_fail: 'Unable to update warehouse'
-    supplier:
+    dish_option: 
+      register_fail: 'Unable to register dish option'
+      update_fail: 'Unable to update dish option'
+    dish:
       register_fail: 'Unable to register supplier'
       update_fail: 'Unable to update supplier'
-    product_model:
+    drink_option:
       register_fail: 'Unable to register product model'
       update_fail: 'Unable to update product model'
-    order:
+    drink:
       register_fail: 'Unable to register order'
       update_fail: 'Unable to update order'
-    order_item:
-      add_fail: 'Unable to add item'
+    establishment:
+      register_fail: 'Unable to register establishment'
+      update_fail: 'Unable to update establishment'    
+    menu:
+      register_fail: 'Unable to register menu'
+      update_fail: 'Unable to update menu'    
+    operating_hour:
+      register_fail: 'Unable to register operating hour'
+      update_fail: 'Unable to update operating hour'
+    order_dish:
+      added_fail: 'Unable to add order dish'
+      update_fail: 'Unable to update order dish'
+    order_drink:
+      added_fail: 'Unable to add order drink'
+      update_fail: 'Unable to update order drink'
+    order:
+      started_fail: 'Unable to start order'
+      update_fail: 'Unable to update order'
+    pre_registration:
+      register_fail: 'Unable to register user'
+      update_fail: 'Unable to update user'
+    tag:
+      register_fail: 'Unable to register tag'
+      update_fail: 'Unable to update tag'
   number:
     currency:
       format:

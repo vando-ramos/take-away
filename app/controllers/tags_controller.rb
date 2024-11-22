@@ -14,9 +14,9 @@ class TagsController < ApplicationController
     @tag = Tag.new(tag_params)
 
     if @tag.save
-      redirect_to establishment_tags_path(@establishment.id), notice: 'Tag successfully registered'
+      redirect_to establishment_tags_path(@establishment.id), notice: t('notices.tag.registered')
     else
-      flash.now.alert = 'Unable to register tag'
+      flash.now.alert = t('alerts.tag.register_fail')
       render :new, status: :unprocessable_entity
     end
   end
@@ -26,9 +26,9 @@ class TagsController < ApplicationController
 
   def update
     if @tag.update(tag_params)
-      redirect_to establishment_tags_path(@establishment.id), notice: 'Tag successfully updated'
+      redirect_to establishment_tags_path(@establishment.id), notice: t('notices.tag.updated')
     else
-      flash.now.alert = 'Unable to update tag'
+      flash.now.alert = t('alerts.tag.update_fail')
       render :edit, status: :unprocessable_entity
     end
   end
@@ -47,9 +47,8 @@ class TagsController < ApplicationController
   def set_tag
     @tag = Tag.find_by(id: params[:id])
 
-    if @tag.nil? || !(@tag.dishes.exists?(establishment: @establishment))
-      return redirect_to establishment_tags_path(@establishment.id),
-      alert: 'Not found or access not authorized'
+    if @tag.nil?
+      redirect_to establishment_tags_path(@establishment.id), alert: 'Not found or access not authorized'
     end
   end
 

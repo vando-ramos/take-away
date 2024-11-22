@@ -72,10 +72,11 @@ en:
       drink_option:
         drink_id: 'Drink'
       drink_tag:
-        drink_id: 'Drink'
+        drink_id: 'Drink'        
         tag_id: 'Tag'
-      drink:
+      drink:        
         establishment_id: 'Establishment'
+        is_alcoholic: 'Is Alcoholic?'
       establishment:
         brand_name: 'Brand Name'
         corporate_name: 'Corporate Name'
@@ -117,4 +118,7 @@ en:
         item_id: 'Item'
         item_type: 'Item Type'
         start_date: 'Start Date'
+      user:
+        cpf: 'Identification Number'
+        last_name: 'Last Name'
       

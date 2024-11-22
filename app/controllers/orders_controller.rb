@@ -17,9 +17,9 @@ class OrdersController < ApplicationController
     @order = @establishment.orders.build(order_params)
 
     if @order.save
-      redirect_to @order, notice: 'Order successfully started'
+      redirect_to @order, notice: t('notices.order.started')
     else
-      flash.now.alert = 'Unable to start order'
+      flash.now.alert = t('alerts.order.started_fail')
       render :new, status: :unprocessable_entity
     end
   end

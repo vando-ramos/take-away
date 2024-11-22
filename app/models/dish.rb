@@ -13,4 +13,8 @@ class Dish < ApplicationRecord
   validates :name, :description, :calories, :image, presence: true
 
   enum status: { active: 0, inactive: 1 }
+
+  def translated_status
+    I18n.t("activerecord.attributes.dish.statuses.#{status}")
+  end
 end

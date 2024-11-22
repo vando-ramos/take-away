@@ -60,22 +60,45 @@ pt-BR:
         dish_id: 'Prato'
         menu_id: 'Cardápio'
       dish_option:
+        description: 'Descrição'
         dish_id: 'Prato'
+        price: 'Preço'
       dish_tag:
         dish_id: 'Prato'
         tag_id: 'Marcador'
       dish:
+        calories: 'Calorias'
+        description: 'Descrição'
         establishment_id: 'Estabelecimento'
+        image: 'Imagem'
+        name: 'Nome'
+        status: 'Situação'
+        statuses:
+          active: 'Ativo'
+          inactive: 'Inativo'
       drink_menu:
         drink_id: 'Bebida'
         menu_id: 'Cardápio'
       drink_option:
+        description: 'Descrição'
         drink_id: 'Bebida'
+        price: 'Preço'
       drink_tag:
         drink_id: 'Bebida'
         tag_id: 'Marcador'
-      drink:
+      drink:        
+        description: 'Descrição'        
         establishment_id: 'Estabelecimento'
+        image: 'Imagem'
+        is_alcoholic: 'É Alcóolico?'
+        is_alcoholics:
+          yes: 'Sim'
+          no: 'Não'
+        name: 'Nome'
+        status: 'Situação'
+        statuses:
+          active: 'Ativo'
+          inactive: 'Inativo'
       establishment:
         brand_name: 'Nome Fantasia'
         code: 'Código'
@@ -89,6 +112,9 @@ pt-BR:
         closing_time: 'Horário de Fechamento'
         day_of_week: 'Dia da Semana'
         establishment_id: 'Estabelecimento'
+        oh_status:
+          closed: 'Fechado'
+          opened: 'Aberto'
         opening_time: 'Horário de Abertura'
         status: 'Situação'
       order_dish:
@@ -112,7 +138,7 @@ pt-BR:
         customer_phone: 'Telefone do Cliente'
         establishment_id: 'Estabelecimento'
         status: 'Situação'
-        order_status:
+        statuses:
           awaiting_kitchen_confirmation: 'Aguardando Confirmação da Cozinha'
           in_preparation: 'Em Preparação'
           canceled: 'Cancelado'
@@ -120,10 +146,23 @@ pt-BR:
           delivered: 'Entregue'
         total_value: 'Valor Total'
       pre_registration:
+        cpf: 'CPF'
+        email: 'Email'
         establishment_id: 'Estabelecimento'
+        status: 'Situação'
+        statuses:
+          pending: 'Pendente'
+          used: 'Utilizado'
       price_history:
         end_date: 'Data Inicial'
         item_id: 'Item'
         item_type: 'Tipo de Item'
+        price: 'Preço'
         start_date: 'Data Final'
+      tag:
+        name: 'Nome'
+      user:
+        cpf: 'CPF'
+        last_name: 'Sobrenome'
+        name: 'Name'
       

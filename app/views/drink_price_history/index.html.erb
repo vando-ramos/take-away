@@ -1,4 +1,4 @@
-<h1 class='title'>Price History</h1>
+<h1 class='title'><%= PriceHistory.model_name.human(count: 2) %></h1>
 
 <% if @drink_price_histories.any? %>
   <% grouped_histories = @drink_price_histories.group_by(&:item_id) %>
@@ -18,5 +18,5 @@
     <hr>
   <% end %>
 <% else %>
-  <p>There are no prices in the history</p>
+  <p><%= t('messages.no_price_history_registered') %></p>
 <% end %>

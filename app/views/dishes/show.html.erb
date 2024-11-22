@@ -1,16 +1,16 @@
-<h1 class='title'><%= @dish.name %> (<%= @dish.status.humanize %>)</h1>
+<h1 class='title'><%= @dish.name %> (<%= @dish.translated_status %>)</h1>
 
 <% @dish.tags.each do |tag| %>
   <span>#<%= tag.name %></span>
 <% end %>
 
 <% if @dish.status == 'active' %>
-  <%= button_to 'Deactivate', inactive_dish_path(@dish.id) %>
+  <%= button_to t('actions.deactivate'), inactive_dish_path(@dish.id) %>
 <% else %>
-  <%= button_to 'Activate', active_dish_path(@dish.id) %>
+  <%= button_to t('actions.activate'), active_dish_path(@dish.id) %>
 <% end %>
 
-<%= link_to 'Price History', dish_dish_price_history_index_path(@dish.id) %>
+<%= link_to PriceHistory.model_name.human(count: 1), dish_dish_price_history_index_path(@dish.id) %>
 
 <div class='dish-container-info'>
   <div class='img'><%= image_tag @dish.image %></div>
@@ -20,24 +20,24 @@
   </div>
 </div>
 
-<%= link_to 'Edit', edit_dish_path(@dish.id) %>
+<%= link_to t('actions.edit'), edit_dish_path(@dish.id) %>
 
-<%= button_to 'Delete', dish_path(@dish.id), 
+<%= button_to t('actions.delete'), dish_path(@dish.id), 
     method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
 
 <hr>
 
-<h2>Dish Options</h2>
+<h2><%= DishOption.model_name.human(count: 2) %></h2>
 
-<div><%= link_to 'Register Dish Option', new_dish_dish_option_path(@dish.id) %></div>
+<div><%= link_to t('views.new_dish_option'), new_dish_dish_option_path(@dish.id) %></div>
 
 <% if @dish.dish_options.any? %>
   <table>
     <thead>
       <tr>
-        <th>Option</th>
-        <th>Price</th>
-        <th>Action</th>
+        <th><%= t('views.option') %></th>
+        <th><%= t('views.price') %></th>
+        <th><%= t('views.action') %></th>
       </tr>
     </thead>
     <tbody>
@@ -46,7 +46,7 @@
           <td><%= option.description %></td>
           <td><%= number_to_currency(option.price) %></td>
           <td>
-            <%= link_to 'Edit', edit_dish_dish_option_path(@dish.id, option.id), 
+            <%= link_to t('actions.edit'), edit_dish_dish_option_path(@dish.id, option.id), 
                 id: dom_id(option, :edit) %>
           </td>
         </tr>
@@ -54,5 +54,5 @@
     </tbody>
   </table>
 <% else %>
-  <p>There are no registered dish options</p>
+  <p><%= t('messages.no_dish_option_registered') %></p>
 <% end %>

@@ -1,4 +1,4 @@
-<h1 class='title'>Dish Price History</h1>
+<h1 class='title'><%= PriceHistory.model_name.human(count: 2) %></h1>
 
 <% if @dish_price_histories.any? %>
   <% grouped_histories = @dish_price_histories.group_by(&:item_id) %>
@@ -11,9 +11,9 @@
       <table>
         <thead>
           <tr>
-            <th>Price</th>
-            <th>From</th>
-            <th>To</th>
+            <th><%= t('activerecord.attributes.price_history.price') %></th>
+            <th><%= t('views.from') %></th>
+            <th><%= t('views.to') %></th>
           </tr>
         </thead>
         <tbody>
@@ -29,5 +29,5 @@
     </div>
   <% end %>
 <% else %>
-  <p>There are no prices in the history</p>
+  <p><%= t('messages.no_price_history_registered') %></p>
 <% end %>

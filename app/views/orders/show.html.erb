@@ -17,7 +17,7 @@
       <td><%= @order.customer_cpf %></td>
       <td><%= @order.customer_phone %></td>
       <td><%= @order.customer_email %></td>
-      <td><%= @order.status.humanize %></td>
+      <td><%= @order.translated_status %></td>
       <td><%= @order.cancellation_reason %></td>
     </tr>
   </tbody>
@@ -63,14 +63,14 @@
 </div>
 
 <% if @order.awaiting_kitchen_confirmation? %>
-  <%= button_to t('activerecord.attributes.order.order_status.in_preparation'), in_preparation_order_path(@order.id) %>
-  <%= button_to t('activerecord.attributes.order.order_status.canceled'), canceled_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.statuses.in_preparation'), in_preparation_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.statuses.canceled'), canceled_order_path(@order.id) %>
 <% elsif @order.in_preparation? %>
-  <%= button_to t('activerecord.attributes.order.order_status.canceled'), canceled_order_path(@order.id) %>
-  <%= button_to t('activerecord.attributes.order.order_status.ready'), ready_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.statuses.canceled'), canceled_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.statuses.ready'), ready_order_path(@order.id) %>
 <% elsif @order.ready? %>
-  <%= button_to t('activerecord.attributes.order.order_status.canceled'), canceled_order_path(@order.id) %>
-  <%= button_to t('activerecord.attributes.order.order_status.delivered'), delivered_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.statuses.canceled'), canceled_order_path(@order.id) %>
+  <%= button_to t('activerecord.attributes.order.statuses.delivered'), delivered_order_path(@order.id) %>
 <% end %>
 
 <h2 class='total-price'>Total: <%= number_to_currency(@order.total_value) %></h2>

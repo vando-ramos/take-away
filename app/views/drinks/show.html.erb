@@ -1,28 +1,28 @@
-<h1 class='title'><%= @drink.name %> (<%= @drink.status.humanize %>)</h1>
+<h1 class='title'><%= @drink.name %> (<%= @drink.translated_status %>)</h1>
 
-<%= link_to 'Price History', drink_drink_price_history_index_path(@drink.id) %>
+<%= link_to PriceHistory.model_name.human(count: 2), drink_drink_price_history_index_path(@drink.id) %>
 
 <% if @drink.status == 'active' %>
-  <%= button_to 'Deactivate', inactive_drink_path(@drink.id) %>
+  <%= button_to t('actions.deactivate'), inactive_drink_path(@drink.id) %>
 <% else %>
-  <%= button_to 'Activate', active_drink_path(@drink.id) %>
+  <%= button_to t('actions.activate'), active_drink_path(@drink.id) %>
 <% end %>
 
 <section>
   <div class='img'><%= image_tag @drink.image %></div>
   <p><%= @drink.description %></p>
   <p><%= @drink.calories %> cal</p>
-  <p>Is alcoholic? <%= @drink.is_alcoholic.humanize %></p>
+  <p><%= t('activerecord.attributes.drink.is_alcoholic') %> <%= @drink.is_alcoholic.humanize %></p>
 </section>
 
-<%= link_to 'Edit', edit_drink_path(@drink.id) %>
+<%= link_to t('actions.edit'), edit_drink_path(@drink.id) %>
 
-<%= button_to 'Delete', drink_path(@drink.id), 
+<%= button_to t('actions.delete'), drink_path(@drink.id), 
     method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
 
-<h2>Options</h2>
+<h2><%= DrinkOption.model_name.human(count: 2) %></h2>
 
-<div><%= link_to 'Register Drink Option', new_drink_drink_option_path(@drink.id) %></div>
+<div><%= link_to t('views.new_drink_option'), new_drink_drink_option_path(@drink.id) %></div>
 
 <% if @drink.drink_options.any? %>
   <ul>
@@ -30,11 +30,11 @@
       <li><%= option.description %></li>
       <li><%= number_to_currency(option.price) %></li>
 
-      <%= link_to 'Edit', 
+      <%= link_to t('actions.edit'), 
           edit_drink_drink_option_path(@drink.id, option.id), 
           id: dom_id(option, :edit) %>
     <% end %>
   </ul>
 <% else %>
-  <p>There are no registered drink options</p>
+  <p><%= t('messages.no_drink_option_registered') %></p>
 <% end %>

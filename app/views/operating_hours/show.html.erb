@@ -1,20 +1,20 @@
-<h1 class='title'><%= @operating_hour.day_of_week.humanize %></h1>
+<h1 class='title'><%= @operating_hour.translated_day_of_week %></h1>
 
 <table>
   <thead>
     <tr>
-      <th>Opening Time</th>
-      <th>Closing Time</th>
-      <th>Status</th>
-      <th>Action</th>
+      <th><%= t('activerecord.attributes.operating_hour.opening_time') %></th>
+      <th><%= t('activerecord.attributes.operating_hour.closing_time') %></th>
+      <th><%= t('activerecord.attributes.operating_hour.status') %></th>
+      <th><%= t('views.action') %></th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><%= @operating_hour.opening_time.strftime("%H:%M") %></td>
       <td><%= @operating_hour.closing_time.strftime("%H:%M") %></td>
-      <td><%= @operating_hour.status.humanize %></td>
-      <td><%= link_to 'Edit', edit_establishment_operating_hour_path %></td>
+      <td><%= @operating_hour.translated_status %></td>
+      <td><%= link_to t('actions.edit'), edit_establishment_operating_hour_path %></td>
     </tr>
   </tbody>
 </table>

@@ -1,6 +1,6 @@
-<h1 class='title'>Drinks</h1>
+<h1 class='title'><%= Drink.model_name.human(count: 2) %></h1>
 
-<%= link_to 'Register Drink', new_drink_path %>
+<%= link_to t('views.new_drink'), new_drink_path %>
 
 <% if @drinks.any? %>
   <ul>    
@@ -8,14 +8,14 @@
       <div class='container'>
         <div class='img'><%= image_tag drink.image %></div>
         <li>
-          <%= link_to drink.name, drink_path(drink.id) %> (<%= drink.status.humanize %>)
+          <%= link_to drink.name, drink_path(drink.id) %> (<%= drink.translated_status %>)
         </li>
         <p><%= drink.description %></p>
         <p><%= drink.calories %> cal</p>
-        <p>Is alcoholic? <%= drink.is_alcoholic.humanize %></p>
+        <p><%= t('activerecord.attributes.drink.is_alcoholic') %> <%= drink.is_alcoholic.humanize %></p>
       </div>
     <% end %>    
   </ul>
 <% else %>
-  <p>There is no drinks registered</p>
+  <p><%= t('messages.no_drink_registered') %></p>
 <% end %>

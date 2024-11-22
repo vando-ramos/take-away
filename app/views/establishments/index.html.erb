@@ -25,18 +25,18 @@
         <% @operating_hours.each do |oh| %>
           <tr>
             <td>
-              <%= link_to oh.day_of_week.humanize, 
+              <%= link_to oh.translated_day_of_week, 
                   establishment_operating_hour_path(@establishment.id, oh.id) %>
             </td>
             <td>
               <%= oh.opening_time.strftime("%H:%M") %> - <%= oh.closing_time.strftime("%H:%M") %>
             </td>
-            <td><%= oh.status.humanize %></td>
+            <td><%= oh.translated_status %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
   <% else %>
-    <p>There is no operating hours registered</p>
+    <p><%= t('messages.no_operating_hour_registered') %></p>
   <% end %>
 </div>
