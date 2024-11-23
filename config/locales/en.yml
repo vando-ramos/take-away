@@ -1,4 +1,45 @@
 en:
+  actions:
+    add_dish: 'Add Dish'
+    add_drink: 'Add Drink'
+    edit: 'Edit'
+  alerts:
+    dish_option: 
+      register_fail: 'Unable to register dish option'
+      update_fail: 'Unable to update dish option'
+    dish:
+      register_fail: 'Unable to register supplier'
+      update_fail: 'Unable to update supplier'
+    drink_option:
+      register_fail: 'Unable to register product model'
+      update_fail: 'Unable to update product model'
+    drink:
+      register_fail: 'Unable to register order'
+      update_fail: 'Unable to update order'
+    establishment:
+      register_fail: 'Unable to register establishment'
+      update_fail: 'Unable to update establishment'    
+    menu:
+      register_fail: 'Unable to register menu'
+      update_fail: 'Unable to update menu'    
+    operating_hour:
+      register_fail: 'Unable to register operating hour'
+      update_fail: 'Unable to update operating hour'
+    order_dish:
+      added_fail: 'Unable to add order dish'
+      update_fail: 'Unable to update order dish'
+    order_drink:
+      added_fail: 'Unable to add order drink'
+      update_fail: 'Unable to update order drink'
+    order:
+      started_fail: 'Unable to start order'
+      update_fail: 'Unable to update order'
+    pre_registration:
+      register_fail: 'Unable to register user'
+      update_fail: 'Unable to update user'
+    tag:
+      register_fail: 'Unable to register tag'
+      update_fail: 'Unable to update tag'
   messages:
     no_dish_registered: 'No Dish Registered'
     no_drink_registered: 'No Drink Registered'
@@ -8,32 +49,7 @@ en:
     no_option_registered: 'No Option Registered for'
     no_order_registered: 'No Order Registered'
     no_price_history_registered: 'No Price History Registered'
-    no_user_registered: 'No User Registered'
-  views:
-    filter_tag: 'Filter by Tag'
-    new_dish_option: 'New Dish Option'
-    new_dish: 'New Dish'
-    new_drink_option: 'New Drink Option'
-    new_drink: 'New Drink'
-    new_menu: 'New Menu'
-    new_operating_hour: 'New Operating Hour'
-    new_order: 'New Order'
-    new_tag: 'New Tag'
-    new_user: 'New User'
-    warehouse_id: 'Destination Warehouse'
-    add_item: 'Add Item'
-    stock_deduct: 'Stock Deduct'
-    search_dishes_drinks: 'Search Dishes and Drinks'
-    search: 'Search'
-    are_you_sure: 'Are you sure?'
-    select_dish: 'Select a Dish'
-    select_dish_option: 'Select a Option'
-    found:
-      one: "1 order found"
-      other: "%{count} orders found"
-  actions:
-    add_dish: 'Add Dish'
-    add_drink: 'Add Drink'
+    no_user_registered: 'No User Registered'  
   notices:
     dish_option:
       registered: 'Dish option successfully registered'
@@ -86,50 +102,30 @@ en:
     tagTag:
       registered: 'Tag successfully registered'
       updated: 'Tag successfully updated'
-      deleted: 'Tag successfully deleted'
-  alerts:
-    dish_option: 
-      register_fail: 'Unable to register dish option'
-      update_fail: 'Unable to update dish option'
-    dish:
-      register_fail: 'Unable to register supplier'
-      update_fail: 'Unable to update supplier'
-    drink_option:
-      register_fail: 'Unable to register product model'
-      update_fail: 'Unable to update product model'
-    drink:
-      register_fail: 'Unable to register order'
-      update_fail: 'Unable to update order'
-    establishment:
-      register_fail: 'Unable to register establishment'
-      update_fail: 'Unable to update establishment'    
-    menu:
-      register_fail: 'Unable to register menu'
-      update_fail: 'Unable to update menu'    
-    operating_hour:
-      register_fail: 'Unable to register operating hour'
-      update_fail: 'Unable to update operating hour'
-    order_dish:
-      added_fail: 'Unable to add order dish'
-      update_fail: 'Unable to update order dish'
-    order_drink:
-      added_fail: 'Unable to add order drink'
-      update_fail: 'Unable to update order drink'
-    order:
-      started_fail: 'Unable to start order'
-      update_fail: 'Unable to update order'
-    pre_registration:
-      register_fail: 'Unable to register user'
-      update_fail: 'Unable to update user'
-    tag:
-      register_fail: 'Unable to register tag'
-      update_fail: 'Unable to update tag'
-  number:
-    currency:
-      format:
-        unit: "$"
-        separator: "."
-        delimiter: ","
-        format: "%u%n"
+      deleted: 'Tag successfully deleted'  
+  views:
+    filter_by_tag: 'Filter by Tag'
+    filter: 'Filter'
+    new_dish_option: 'New Dish Option'
+    new_dish: 'New Dish'
+    new_drink_option: 'New Drink Option'
+    new_drink: 'New Drink'
+    new_menu: 'New Menu'
+    new_operating_hour: 'New Operating Hour'
+    new_order: 'New Order'
+    new_tag: 'New Tag'
+    new_user: 'New User'
+    warehouse_id: 'Destination Warehouse'
+    add_item: 'Add Item'
+    stock_deduct: 'Stock Deduct'
+    search_dishes_drinks: 'Search Dishes and Drinks'
+    search: 'Search'
+    are_you_sure: 'Are you sure?'
+    select_dish: 'Select a Dish'
+    select_dish_option: 'Select a Option'
+    found:
+      one: "1 order found"
+      other: "%{count} orders found"
+  
   
   

@@ -1,22 +1,22 @@
 <%= form_with model: [@order, @order_drink] do |f| %>
-  <div>
+  <div class='form-group'>
     <%= f.label :drinks, Drink.model_name.human(count: 2) %>
     <%= f.collection_select :drink_id, @drinks || [], :id, :name, { prompt: t('views.select_drink') }, { id: "drink-select" } %>
   </div>
-  <div>
+  <div class='form-group'>
     <%= f.label :drink_options, DrinkOption.model_name.human(count: 2) %>
     <%= f.collection_select :drink_option_id, @drink_options || [], :id, :description, { prompt: t('views.select_drink_option') }, { id: "drink-options-select" } %>
   </div>
-  <div>
+  <div class='form-group'>
     <%= f.label :quantity %>
     <%= f.number_field :quantity %>
   </div>
-  <div>
+  <div class='form-group'>
     <%= f.label :observation %>
     <%= f.text_field :observation %>
   </div>    
   <div>
-    <%= f.submit t('actions.add_drink') %>
+    <%= f.submit t('actions.add_drink'), class: 'submit-button' %>
   </div>
 <% end %>
 

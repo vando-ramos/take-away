@@ -4,18 +4,29 @@
   <% grouped_histories = @drink_price_histories.group_by(&:item_id) %>
 
   <% grouped_histories.each do |item_id, histories| %>
-
     <% drink_option = @drink_options[item_id] %>
-    <hr>
-    <h3><%= drink_option.description %></h3>
-    
-    <% histories.each do |history| %>
-      <p><td><%= number_to_currency(history.price) %></td></p>
+    <h2><%= drink_option.description %></h2>
 
-      De <%= history.start_date.strftime("%d/%m/%Y %H:%M") %><br>
-      Até <%= history.end_date.strftime("%d/%m/%Y %H:%M") %>
-    <% end %>
-    <hr>
+    <div class='history-price-table'>
+      <table>
+        <thead>
+          <tr>
+            <th><%= t('activerecord.attributes.price_history.price') %></th>
+            <th><%= t('views.from') %></th>
+            <th><%= t('views.to') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% histories.each do |history| %>
+            <tr>
+              <td><%= number_to_currency(history.price) %></td>
+              <td><%= history.start_date.strftime("%d/%m/%Y %H:%M") %></td>
+              <td><%= history.end_date.strftime("%d/%m/%Y %H:%M") %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   <% end %>
 <% else %>
   <p><%= t('messages.no_price_history_registered') %></p>

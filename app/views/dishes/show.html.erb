@@ -1,38 +1,39 @@
-<h1 class='title'><%= @dish.name %> (<%= @dish.status.humanize %>)</h1>
+<h1 class='title'><%= @dish.name %> (<%= @dish.translated_status %>)</h1>
 
-<% @dish.tags.each do |tag| %>
-  <span>#<%= tag.name %></span>
-<% end %>
-
-<% if @dish.status == 'active' %>
-  <%= button_to t('actions.deactivate'), inactive_dish_path(@dish.id) %>
-<% else %>
-  <%= button_to t('actions.activate'), active_dish_path(@dish.id) %>
-<% end %>
-
-<%= link_to PriceHistory.model_name.human(count: 1), dish_dish_price_history_index_path(@dish.id) %>
+<%= link_to PriceHistory.model_name.human(count: 1), dish_dish_price_history_index_path(@dish.id), class: 'menu-card' %>
 
 <div class='dish-container-info'>
   <div class='img'><%= image_tag @dish.image %></div>
+  <% @dish.tags.each do |tag| %>
+    <span>#<%= tag.name %></span>
+  <% end %>
   <div class='dish-info'>
-    <p class='dish-attr'><%= @dish.description %></p>
-    <p class='dish-attr'><%= @dish.calories %> cal</p>
+    <p><%= @dish.description %></p>
+    <p><%= @dish.calories %> cal</p>
   </div>
 </div>
 
-<%= link_to t('actions.edit'), edit_dish_path(@dish.id) %>
+<div class='action-buttons'>
+  <%= link_to t('actions.edit'), edit_dish_path(@dish.id), class: 'edit-button' %>
 
-<%= button_to t('actions.delete'), dish_path(@dish.id), 
-    method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+  <% if @dish.status == 'active' %>
+    <%= button_to t('actions.deactivate'), inactive_dish_path(@dish.id), class: 'active-deactive' %>
+  <% else %>
+    <%= button_to t('actions.activate'), active_dish_path(@dish.id), class: 'submit-button' %>
+  <% end %>
+  
+  <%= button_to t('actions.delete'), dish_path(@dish.id),
+      method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'delete-button' %>
+</div>
 
 <hr>
 
-<h2><%= DishOption.model_name.human(count: 2) %></h2>
+<h2 class='subtitle'><%= DishOption.model_name.human(count: 2) %></h2>
 
-<div><%= link_to t('views.new_dish_option'), new_dish_dish_option_path(@dish.id) %></div>
+<div><%= link_to t('views.new_dish_option'), new_dish_dish_option_path(@dish.id), class: 'new-button' %></div>
 
 <% if @dish.dish_options.any? %>
-  <table>
+  <table class='table-container'>
     <thead>
       <tr>
         <th><%= t('views.option') %></th>
@@ -47,7 +48,7 @@
           <td><%= number_to_currency(option.price) %></td>
           <td>
             <%= link_to t('actions.edit'), edit_dish_dish_option_path(@dish.id, option.id), 
-                id: dom_id(option, :edit) %>
+                id: dom_id(option, :edit), class: 'edit-button' %>
           </td>
         </tr>
       <% end %>

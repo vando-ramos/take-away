@@ -1,6 +1,6 @@
 <h1 class='title'><%= PreRegistration.model_name.human(count: 2) %></h1>
 
-<%= link_to t('views.new_user'), new_pre_registration_path %>
+<%= link_to t('views.new_user'), new_pre_registration_path, class: 'new-button' %>
 
 <% if @pre_registrations.any? %>
   <table>

@@ -1,15 +1,15 @@
 <h1 class='title'><%= Dish.model_name.human(count: 2) %></h1>
 
-<div class='register'><%= link_to t('views.new_dish'), new_dish_path %></div>
+<div class='register'><%= link_to t('views.new_dish'), new_dish_path, class: 'new-button' %></div>
 
 <% if @dishes.any? %>
   <div class='tag-filter'>
     <%= form_with(url: dishes_path, method: :get) do %>
-      <%= label_tag :tag_id %>
+      <%= label_tag :tag_id, t('views.filter_by_tag') %>
       <%= select_tag :tag_id, options_from_collection_for_select(@tags, :id, :name, params[:tag_id]),
                       include_blank: t('views.all') %>
     
-      <%= submit_tag 'Filter' %>
+      <%= submit_tag t('views.filter'), class: 'submit-button' %>
     <% end %>
   </div>
 
@@ -18,7 +18,7 @@
       <div class='dish-container'>
         <li>
           <%= link_to dish_path(dish.id) do %>
-            <h2><%= dish.name %> (<%= dish.status.humanize %>)</h2>
+            <h2><%= dish.name %> (<%= dish.translated_status %>)</h2>
             <div class='img'><%= image_tag dish.image %></div>
           <% end %>
         </li>

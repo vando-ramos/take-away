@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_locale
 
   def after_sign_up_path_for(resource)
     new_establishment_path
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::Base
 
   def authorize_admin!
     redirect_to root_path, alert: 'Access denied' unless current_user&.admin?
+  end
+
+  def set_locale
+    I18n.locale = params[:locale] || I18n.default_locale
   end
 end

@@ -1,4 +1,4 @@
-<h1 class='title'><%= @drink.name %> (<%= @drink.status.humanize %>)</h1>
+<h1 class='title'><%= @drink.name %> (<%= @drink.translated_status %>)</h1>
 
 <%= link_to PriceHistory.model_name.human(count: 2), drink_drink_price_history_index_path(@drink.id) %>
 
@@ -12,7 +12,7 @@
   <div class='img'><%= image_tag @drink.image %></div>
   <p><%= @drink.description %></p>
   <p><%= @drink.calories %> cal</p>
-  <p><%= t('activerecord.attributes.drink.is_alcoholic') %> <%= @drink.is_alcoholic.humanize %></p>
+  <p><%= t('activerecord.attributes.drink.is_alcoholic') %> <%= @drink.translated_is_alcoholic %></p>
 </section>
 
 <%= link_to t('actions.edit'), edit_drink_path(@drink.id) %>

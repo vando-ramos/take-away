@@ -1,45 +1,4 @@
 pt-BR:
-  views:
-    action: 'Ação'
-    all: 'Todos'
-    filter_tag: 'Filtrar por Marcador'
-    filter: 'Filtrar'
-    from: 'De'
-    home: 'Início'
-    new_dish_option: 'Nova Opção de Prato'
-    new_dish: 'Novo Prato'
-    new_drink_option: 'Nova Opção de Bebida'
-    new_drink: 'Nova Bebida'
-    new_menu: 'Novo Cardápio'
-    new_operating_hour: 'Novo Horário de Funcionamento'
-    new_order: 'Novo Pedido'
-    new_tag: 'Novo Marcador'
-    new_user: 'Novo Usuário'
-    to: 'Até'
-    location: 'Localização'
-    search: 'Pesquisar'
-    search_dishes_drinks: 'Pesquisar Pratos e Pedidos'
-    are_you_sure: 'Você tem certeza?'
-    english: 'Inglês'
-    portuguese: 'Português'
-    my_establishment: 'Meu Estabelecimento'
-    full_address: 'Endereço'
-    order_items: 'Itens do Pedido'
-    option: 'Opção'
-    quantity: 'Quantidade'
-    observation: 'Observação'
-    select_dish: 'Selecione um Prato'
-    select_dish_option: 'Selecione uma Opção'
-    select_drink: 'Selecione uma Bebida'
-    select_drink_option: 'Selecione uma Opção'
-    price: 'Preço'
-    found:
-      one: "1 pedido encontrado"
-      other: "%{count} pedidos encontrados"
-  status:
-    pending: 'Pendente'
-    delivered: 'Entregue'
-    canceled: 'Cancelado'
   actions:
     activate: 'Ativar'
     add_dish: 'Adicionar Prato'
@@ -49,6 +8,43 @@ pt-BR:
     delete: 'Deletar'
     delivered: 'Entregue'
     canceled: 'Cancelado'
+  alerts:
+    dish_option:
+      register_fail: 'Não foi possível registrar a opção de prato'
+      update_fail: 'Não foi possível atualizar a opção de prato'
+    dish:
+      register_fail: 'Não foi possível registrar o prato'
+      update_fail: 'Não foi possível atualizar o prato'
+    drink_option:
+      register_fail: 'Não foi possível registrar a opção de bebida'
+      update_fail: 'Não foi possível atualizar a opção de bebida'
+    drink:
+      register_fail: 'Não foi possível registrar a bebida'
+      update_fail: 'Não foi possível atualizar a bebida'
+    establishment:
+      register_fail: 'Não foi possível registrar o estabelecimento'
+      update_fail: 'Não foi possível atualizar o estabelecimento'    
+    menu:
+      create_fail: 'Não foi possível criar o cardápio'
+      update_fail: 'Não foi possível atualizar o cardápio'    
+    operating_hour:
+      register_fail: 'Não foi possível registrar o horário de funcionamento'
+      update_fail: 'Não foi possível atualizar o horário de funcionamento'
+    order_dish:
+      added_fail: 'Não foi possível adicionar o prato ao pedido'
+      update_fail: 'Não foi possível atualizar o prato do pedido'
+    order_drink:
+      added_fail: 'Não foi possível adicionar a bebida ao pedido'
+      update_fail: 'Não foi possível atualizar a bebida do pedido'
+    order:
+      started_fail: 'Não foi possível iniciar o pedido'
+      update_fail: 'Não foi possível atualizar o pedido'
+    pre_registration:
+      register_fail: 'Não foi possível registrar o usuário'
+      update_fail: 'Não foi possível atualizar o usuário'
+    tag:
+      register_fail: 'Não foi possível registrar o marcador'
+      update_fail: 'Não foi possível atualizar o marcador'  
   messages:
     no_dish_option_registered: 'Nenhuma Opção de Prato Cadastrada'
     no_dish_registered: 'Nenhum Prato Cadastrado'
@@ -114,40 +110,40 @@ pt-BR:
       registered: 'Marcador registrado com sucesso'
       updated: 'Marcador atualizado com sucesso'
       deleted: 'Marcador excluído com sucesso'
-  alerts:
-    dish_option:
-      register_fail: 'Não foi possível registrar a opção de prato'
-      update_fail: 'Não foi possível atualizar a opção de prato'
-    dish:
-      register_fail: 'Não foi possível registrar o prato'
-      update_fail: 'Não foi possível atualizar o prato'
-    drink_option:
-      register_fail: 'Não foi possível registrar a opção de bebida'
-      update_fail: 'Não foi possível atualizar a opção de bebida'
-    drink:
-      register_fail: 'Não foi possível registrar a bebida'
-      update_fail: 'Não foi possível atualizar a bebida'
-    establishment:
-      register_fail: 'Não foi possível registrar o estabelecimento'
-      update_fail: 'Não foi possível atualizar o estabelecimento'    
-    menu:
-      create_fail: 'Não foi possível criar o cardápio'
-      update_fail: 'Não foi possível atualizar o cardápio'    
-    operating_hour:
-      register_fail: 'Não foi possível registrar o horário de funcionamento'
-      update_fail: 'Não foi possível atualizar o horário de funcionamento'
-    order_dish:
-      added_fail: 'Não foi possível adicionar o prato ao pedido'
-      update_fail: 'Não foi possível atualizar o prato do pedido'
-    order_drink:
-      added_fail: 'Não foi possível adicionar a bebida ao pedido'
-      update_fail: 'Não foi possível atualizar a bebida do pedido'
-    order:
-      started_fail: 'Não foi possível iniciar o pedido'
-      update_fail: 'Não foi possível atualizar o pedido'
-    pre_registration:
-      register_fail: 'Não foi possível registrar o usuário'
-      update_fail: 'Não foi possível atualizar o usuário'
-    tag:
-      register_fail: 'Não foi possível registrar o marcador'
-      update_fail: 'Não foi possível atualizar o marcador'
+  views:
+    action: 'Ação'
+    all: 'Todos'
+    filter_by_tag: 'Filtrar por Marcador'
+    filter: 'Filtrar'
+    from: 'De'
+    home: 'Início'
+    new_dish_option: 'Nova Opção de Prato'
+    new_dish: 'Novo Prato'
+    new_drink_option: 'Nova Opção de Bebida'
+    new_drink: 'Nova Bebida'
+    new_menu: 'Novo Cardápio'
+    new_operating_hour: 'Novo Horário de Funcionamento'
+    new_order: 'Novo Pedido'
+    new_tag: 'Novo Marcador'
+    new_user: 'Novo Usuário'
+    to: 'Até'
+    location: 'Localização'
+    search: 'Pesquisar'
+    search_dishes_drinks: 'Pesquisar Pratos e Pedidos'
+    are_you_sure: 'Você tem certeza?'
+    english: 'Inglês'
+    portuguese: 'Português'
+    my_establishment: 'Meu Estabelecimento'
+    full_address: 'Endereço'
+    order_items: 'Itens do Pedido'
+    option: 'Opção'
+    quantity: 'Quantidade'
+    observation: 'Observação'
+    select_dish: 'Selecione um Prato'
+    select_dish_option: 'Selecione uma Opção'
+    select_drink: 'Selecione uma Bebida'
+    select_drink_option: 'Selecione uma Opção'
+    price: 'Preço'
+    found:
+      one: "1 pedido encontrado"
+      other: "%{count} pedidos encontrados"

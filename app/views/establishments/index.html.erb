@@ -5,7 +5,7 @@
 <% end %>
 <hr>
 
-<h2 class='operating-hour-title'><%= OperatingHour.model_name.human(count: 2) %> </h2>
+<h2 class='subtitle'><%= OperatingHour.model_name.human(count: 2) %> </h2>
 
 <% if current_user.admin? %>
   <div><%= link_to t('views.new_operating_hour'), new_establishment_operating_hour_path(@establishment.id), class: 'new-button' %></div>
@@ -31,7 +31,7 @@
             <td>
               <%= oh.opening_time.strftime("%H:%M") %> - <%= oh.closing_time.strftime("%H:%M") %>
             </td>
-            <td><%= oh.status.humanize %></td>
+            <td><%= oh.translated_status %></td>
           </tr>
         <% end %>
       </tbody>

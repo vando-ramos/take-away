@@ -65,11 +65,41 @@ hr {
 
 /* buttons */
 
+.action-buttons {
+  display: flex;
+}
+
+.active-deactive {
+  border: 1px solid black;
+  padding: 3px 5px;
+  background-color: black;
+  color: white;
+  margin: 10px;
+}
+
+.active-deactive:hover {
+  background-color: rgba(0, 0, 0, 0.800);
+  cursor: pointer;
+}
+
+.delete-button {
+  border: 1px solid red;
+  padding: 3px 5px;
+  background-color: red;
+  color: yellow;
+  margin: 10px;
+}
+
+.delete-button:hover {
+  background-color: yellow;
+  color: red;
+}
+
 .edit-button {
   border: 1px solid #0d6efd;
   padding: 3px 5px;
   background-color: yellow;
-  color: #0d6efd;
+  color: blue;
   margin: 10px;
 }
 
@@ -173,7 +203,7 @@ hr {
 
 /* establishment */
 
-.operating-hour-title {
+.subtitle {
   margin: 20px;
 }
 
@@ -254,16 +284,13 @@ main {
 /* dish-info */
 
 .dish-container-info {
-  display: flex;
+  margin: 20px 0;
 }
 
-.dish-info {
-  width: 200px;
-  margin-left: 20px;
+.dish-info {  
 }
 
 .dish-attr {
-  margin: 10px 0;
 }
 
 /* table */
@@ -297,8 +324,6 @@ td {
 .order-link:hover {
   text-decoration: underline;
 }
-
-
 
 section {
   margin-left: 20px;

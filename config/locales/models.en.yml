@@ -66,6 +66,9 @@ en:
         tag_id: 'Tag'
       dish:
         establishment_id: 'Establishment'
+        statuses:
+          active: 'Active'
+          inactive: 'Inactive'
       drink_menu:
         drink_id: 'Drink'
         menu_id: 'Menu'
@@ -74,9 +77,15 @@ en:
       drink_tag:
         drink_id: 'Drink'        
         tag_id: 'Tag'
-      drink:        
+      drink:
         establishment_id: 'Establishment'
         is_alcoholic: 'Is Alcoholic?'
+        is_alcoholics:
+          yes: 'Yes'
+          no: 'No'
+        statuses:
+          active: 'Active'
+          inactive: 'Inactive'
       establishment:
         brand_name: 'Brand Name'
         corporate_name: 'Corporate Name'
@@ -89,6 +98,9 @@ en:
         day_of_week: 'Day of Week'
         establishment_id: 'Establishment'
         opening_time: 'Opening Time'
+        statuses:
+          opened: 'Opened'
+          closed: 'Closed'
       order_dish:
         dish_option_id: 'Dish Option'
         dish_id: 'Dish'

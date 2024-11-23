@@ -14,7 +14,7 @@
     </div>
     <div class='form-group'>
       <%= f.label :status %>
-      <%= f.select :status, OperatingHour.statuses.keys.map { |key| [key.humanize, key] } %>
+      <%= f.select :status, OperatingHour.statuses.keys.map { |key| [OperatingHour.new(status: key).translated_status, key] } %>
     </div> 
     <div>
       <%= f.submit class: 'submit-button' %>
