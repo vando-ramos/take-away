@@ -1,40 +1,59 @@
 <h1 class='title'><%= @drink.name %> (<%= @drink.translated_status %>)</h1>
 
-<%= link_to PriceHistory.model_name.human(count: 2), drink_drink_price_history_index_path(@drink.id) %>
-
-<% if @drink.status == 'active' %>
-  <%= button_to t('actions.deactivate'), inactive_drink_path(@drink.id) %>
-<% else %>
-  <%= button_to t('actions.activate'), active_drink_path(@drink.id) %>
-<% end %>
-
-<section>
+<div class='container-info'>
   <div class='img'><%= image_tag @drink.image %></div>
-  <p><%= @drink.description %></p>
-  <p><%= @drink.calories %> cal</p>
-  <p><%= t('activerecord.attributes.drink.is_alcoholic') %> <%= @drink.translated_is_alcoholic %></p>
-</section>
+  <div class='info'>
+    <p><%= @drink.description %></p>
+    <p><%= @drink.calories %> cal</p>
+    <p><%= t('activerecord.attributes.drink.is_alcoholic') %> <%= @drink.translated_is_alcoholic %></p>
+  </div>
+</div>
 
-<%= link_to t('actions.edit'), edit_drink_path(@drink.id) %>
+<div class='action-buttons'>
+  <%= link_to t('actions.edit'), edit_drink_path(@drink.id), class: 'edit-button' %>
+  
+  <% if @drink.status == 'active' %>
+    <%= button_to t('actions.deactivate'), inactive_drink_path(@drink.id), class: 'active-deactive' %>
+  <% else %>
+    <%= button_to t('actions.activate'), active_drink_path(@drink.id) %>
+  <% end %>
+  
+  <%= button_to t('actions.delete'), drink_path(@drink.id),
+      method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'delete-button' %>
+</div>
 
-<%= button_to t('actions.delete'), drink_path(@drink.id), 
-    method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+<hr>
 
-<h2><%= DrinkOption.model_name.human(count: 2) %></h2>
+<h2 class='subtitle'><%= DrinkOption.model_name.human(count: 2) %></h2>
 
-<div><%= link_to t('views.new_drink_option'), new_drink_drink_option_path(@drink.id) %></div>
+<div><%= link_to t('views.new_drink_option'), new_drink_drink_option_path(@drink.id), class: 'new-button' %></div>
 
 <% if @drink.drink_options.any? %>
-  <ul>
-    <% @drink.drink_options.each do |option| %>
-      <li><%= option.description %></li>
-      <li><%= number_to_currency(option.price) %></li>
-
-      <%= link_to t('actions.edit'), 
-          edit_drink_drink_option_path(@drink.id, option.id), 
-          id: dom_id(option, :edit) %>
-    <% end %>
-  </ul>
+  <table class='table-container'>
+    <thead>
+      <tr>
+        <th><%= t('views.option') %></th>
+        <th><%= t('views.price') %></th>
+        <th><%= t('views.action') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @drink.drink_options.each do |option| %>
+        <tr>
+          <td><%= option.description %></td>
+          <td><%= number_to_currency(option.price) %></td>
+          <td>
+            <%= link_to t('actions.edit'), edit_dish_dish_option_path(@drink.id, option.id), 
+                id: dom_id(option, :edit), class: 'edit-button' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% else %>
-  <p><%= t('messages.no_drink_option_registered') %></p>
+  <p><%= t('messages.no_dish_option_registered') %></p>
 <% end %>
+
+<h2>
+  <%= link_to PriceHistory.model_name.human(count: 1), drink_drink_price_history_index_path(@drink.id), class: 'menu-card' %>
+</h2>

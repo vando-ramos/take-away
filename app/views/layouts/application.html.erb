@@ -21,7 +21,7 @@
         <% if user_signed_in? %>
           <li class='nav-item'>
             <%= current_user.email %>
-            <%= button_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'sign-out-button' %>
+            <%= button_to t('devise.sessions.sign_out'), destroy_user_session_path, method: :delete, class: 'sign-button' %>
           </li>
           <% if current_user.establishment.present? %>
             <li class='nav-item'>

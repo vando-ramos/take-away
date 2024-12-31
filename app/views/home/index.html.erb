@@ -13,7 +13,7 @@
   <ul>
     <% @menus.each do |menu| %>
       <li>
-        <h2 class='menu-card'><%= link_to menu.name, menu_path(menu.id) %></h2>
+        <h2><%= link_to menu.name, menu_path(menu.id), class: 'menu-card' %></h2>
       </li>
     <% end %>
   </ul>

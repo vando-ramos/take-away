@@ -1,7 +1,9 @@
 <h1 class='title'><%= link_to @establishment.corporate_name, establishment_path(@establishment.id) %></h1>
 
 <% if current_user.admin? %>
-  <h2 class='menu-card'><%= link_to Tag.model_name.human(count: 2), establishment_tags_path(@establishment.id), class: 'menu-buttons' %></h2>
+  <h2>
+    <%= link_to Tag.model_name.human(count: 2), establishment_tags_path(@establishment.id), class: 'menu-buttons menu-card' %>
+  </h2>
 <% end %>
 <hr>
 

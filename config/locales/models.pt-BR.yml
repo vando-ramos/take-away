@@ -82,10 +82,7 @@ pt-BR:
       drink_option:
         description: 'Descrição'
         drink_id: 'Bebida'
-        price: 'Preço'
-      drink_tag:
-        drink_id: 'Bebida'
-        tag_id: 'Marcador'
+        price: 'Preço'      
       drink:        
         description: 'Descrição'        
         establishment_id: 'Estabelecimento'

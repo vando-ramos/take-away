@@ -4,22 +4,22 @@
 
 <% if @dishes.any? %>
   <div class='tag-filter'>
-    <%= form_with(url: dishes_path, method: :get) do %>
+    <%= form_with(url: dishes_path, method: :get, class: 'filter-form') do %>
       <%= label_tag :tag_id, t('views.filter_by_tag') %>
       <%= select_tag :tag_id, options_from_collection_for_select(@tags, :id, :name, params[:tag_id]),
-                      include_blank: t('views.all') %>
+                      include_blank: t('views.all'), class: 'filter-select' %>
     
-      <%= submit_tag t('views.filter'), class: 'submit-button' %>
+      <%= submit_tag t('views.filter'), class: 'filter-button' %>
     <% end %>
   </div>
 
-  <ul class='dish-list'>
+  <ul class='list'>
     <% @dishes.each do |dish| %>
-      <div class='dish-container'>
+      <div class='container'>
+        <div class='img'><%= image_tag dish.image %></div>
         <li>
           <%= link_to dish_path(dish.id) do %>
-            <h2><%= dish.name %> (<%= dish.translated_status %>)</h2>
-            <div class='img'><%= image_tag dish.image %></div>
+            <h2><%= dish.name %> (<%= dish.translated_status %>)</h2>            
           <% end %>
         </li>
           <% dish.tags.each do |tag| %>

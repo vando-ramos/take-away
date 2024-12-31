@@ -1,13 +1,11 @@
 <h1 class='title'><%= @dish.name %> (<%= @dish.translated_status %>)</h1>
 
-<%= link_to PriceHistory.model_name.human(count: 1), dish_dish_price_history_index_path(@dish.id), class: 'menu-card' %>
-
-<div class='dish-container-info'>
+<div class='container-info'>
   <div class='img'><%= image_tag @dish.image %></div>
   <% @dish.tags.each do |tag| %>
     <span>#<%= tag.name %></span>
   <% end %>
-  <div class='dish-info'>
+  <div class='info'>
     <p><%= @dish.description %></p>
     <p><%= @dish.calories %> cal</p>
   </div>
@@ -57,3 +55,7 @@
 <% else %>
   <p><%= t('messages.no_dish_option_registered') %></p>
 <% end %>
+
+<h2>
+  <%= link_to PriceHistory.model_name.human(count: 1), dish_dish_price_history_index_path(@dish.id), class: 'menu-card' %>
+</h2>

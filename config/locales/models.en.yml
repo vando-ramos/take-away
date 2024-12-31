@@ -74,15 +74,12 @@ en:
         menu_id: 'Menu'
       drink_option:
         drink_id: 'Drink'
-      drink_tag:
-        drink_id: 'Drink'        
-        tag_id: 'Tag'
       drink:
         establishment_id: 'Establishment'
         is_alcoholic: 'Is Alcoholic?'
         is_alcoholics:
-          yes: 'Yes'
-          no: 'No'
+          'yes': 'Yes'
+          'no': 'No'
         statuses:
           active: 'Active'
           inactive: 'Inactive'
