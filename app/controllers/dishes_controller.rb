@@ -1,7 +1,7 @@
 class DishesController < ApplicationController
   before_action :authorize_admin!
   before_action :set_establishment
-  before_action :set_dish, only: %i[show edit update destroy active inactive]
+  before_action :set_dish, only: %i[show edit update active inactive]
 
   def index
     @tags = Tag.all
@@ -43,11 +43,6 @@ class DishesController < ApplicationController
     end
   end
 
-  def destroy
-    @dish.destroy
-    redirect_to dishes_path, notice: t('notices.dish.deleted')
-  end
-
   def active
     @dish.active!
     redirect_to dish_path(@dish.id), notice: t('notices.dish.activated')
@@ -73,6 +68,7 @@ class DishesController < ApplicationController
   end
 
   def dish_params
-    params.require(:dish).permit(:name, :description, :calories, :image, tag_ids: [])
+    type_key = params[:dish] ? :dish : :item
+    params.require(type_key).permit(:name, :description, :calories, :image, tag_ids: []).merge(type: 'Dish')
   end
 end

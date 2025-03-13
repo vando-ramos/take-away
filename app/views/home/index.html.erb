@@ -1,22 +1,43 @@
 <h1 class='title'><%= Menu.model_name.human(count: 2) %></h1>
 
-<hr>
-
 <div class='menu-buttons'>
   <%= link_to t('views.new_menu'), new_menu_path, class: 'new-button' %>
   <%= link_to t('views.new_order'), new_order_path, class: 'new-button' %>
 </div>
 
-<hr>
-
 <% if @menus.any? %>
-  <ul>
-    <% @menus.each do |menu| %>
-      <li>
-        <h2><%= link_to menu.name, menu_path(menu.id), class: 'menu-card' %></h2>
-      </li>
-    <% end %>
-  </ul>
+  <% @menus.each do |menu| %>
+    <hr>
+    <h2><%= link_to menu.name, menu_path(menu.id) %></h2>
+
+    <div class="menu-card">
+      <ul class="dish-list">
+        <% menu.items.where(type: 'Dish').each do |dish| %>
+          <% if dish.present? %>
+            <% dish.options.each do |option| %>
+              <li><%= "#{dish.name} #{option.description}" %> <%= option.price %></li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+
+      <ul class="drink-list">
+        <% menu.items.where(type: 'Drink').each do |drink| %>
+          <% if drink.present? %>
+            <% drink.options.each do |option| %>
+              <li><%= "#{drink.name} #{option.description} #{option.price}" %></li>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+
+      <% unless menu.items.present? %>
+        <p><%= t('messages.no_item_registered') %></p>
+      <% end %>    
+    
+    <hr>
+  <% end %>
 <% else %>
   <p><%= t('messages.no_menu_registered') %></p>
 <% end %>

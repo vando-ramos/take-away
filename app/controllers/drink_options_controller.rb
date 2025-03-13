@@ -11,15 +11,15 @@ class DrinkOptionsController < ApplicationController
   end
 
   def new
-    @drink_option = @drink.drink_options.build
+    @drink_option = @drink.options.build
     @drinks = Drink.all
   end
 
   def create
-    @drink_option = @drink.drink_options.build(drink_option_params)
+    @drink_option = @drink.options.build(drink_option_params)
 
     if @drink_option.save
-      redirect_to drink_path(@drink.id), notice: t('notices.drink_option.registered')
+      redirect_to drink_path(@drink), notice: t('notices.drink_option.registered')
     else
       flash.now.alert = t('alerts.drink_option.register_fail')
       render :new, status: :unprocessable_entity
@@ -31,7 +31,7 @@ class DrinkOptionsController < ApplicationController
 
   def update
     if @drink_option.update(drink_option_params)
-      redirect_to drink_path(@drink.id), notice: t('notices.drink_option.updated')
+      redirect_to drink_path(@drink), notice: t('notices.drink_option.updated')
     else
       flash.now.alert = t('alerts.drink_option.update_fail')
       render :edit, status: :unprocessable_entity
@@ -49,13 +49,14 @@ class DrinkOptionsController < ApplicationController
   end
 
   def set_drink_option
-    @drink_option = @drink.drink_options.find_by(id: params[:id])
+    @drink_option = @drink.options.find_by(id: params[:id])
+
     unless @drink_option
-      redirect_to drink_path(@drink.id), alert: 'Drink option not found'
+      redirect_to drink_path(@drink), alert: 'Drink option not found'
     end
   end
 
   def drink_option_params
-    params.require(:drink_option).permit(:drink_id, :description, :price)
+    params.require(:option).permit(:drink_id, :description, :price)
   end
 end

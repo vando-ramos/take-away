@@ -11,15 +11,15 @@ class DishOptionsController < ApplicationController
   end
 
   def new
-    @dish_option = @dish.dish_options.build
+    @dish_option = @dish.options.build
     @dishes = Dish.all
   end
 
   def create
-    @dish_option = @dish.dish_options.build(dish_option_params)
+    @dish_option = @dish.options.build(dish_option_params)
 
     if @dish_option.save
-      redirect_to dish_path(@dish.id), notice: t('notices.dish_option.registered')
+      redirect_to dish_path(@dish), notice: t('notices.dish_option.registered')
     else
       flash.now.alert = t('alerts.dish_option.register_fail')
       render :new, status: :unprocessable_entity
@@ -31,7 +31,7 @@ class DishOptionsController < ApplicationController
 
   def update
     if @dish_option.update(dish_option_params)
-      redirect_to dish_path(@dish.id), notice: t('notices.dish_option.updated')
+      redirect_to dish_path(@dish), notice: t('notices.dish_option.updated')
     else
       flash.now.alert = t('alerts.dish_option.update_fail')
       render :edit, status: :unprocessable_entity
@@ -49,13 +49,14 @@ class DishOptionsController < ApplicationController
   end
 
   def set_dish_option
-    @dish_option = @dish.dish_options.find_by(id: params[:id])
+    @dish_option = @dish.options.find_by(id: params[:id])
+
     unless @dish_option
-      redirect_to dish_path(@dish.id), alert: 'Dish option not found'
+      redirect_to dish_path(@dish), alert: 'Dish option not found'
     end
   end
 
   def dish_option_params
-    params.require(:dish_option).permit(:dish_id, :description, :price)
+    params.require(:option).permit(:dish_id, :description, :price)
   end
 end

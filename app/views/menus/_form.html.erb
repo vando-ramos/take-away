@@ -6,7 +6,7 @@
   <div class="checkbox-section">
     <%= f.label :dishes, Dish.model_name.human(count: 2) %>
     <div class="checkbox-group">
-      <%= f.collection_check_boxes :dish_ids, @dishes, :id, :name do |box| %>
+      <%= f.collection_check_boxes :item_ids, @dishes, :id, :name do |box| %>
         <div class="checkbox-item">
           <%= box.check_box %>
           <%= box.label %>
@@ -17,7 +17,7 @@
   <div class="checkbox-section">
     <%= f.label :drinks, Drink.model_name.human(count: 2) %>
     <div class="checkbox-group">
-      <%= f.collection_check_boxes :drink_ids, @drinks, :id, :name do |box| %>
+      <%= f.collection_check_boxes :item_ids, @drinks, :id, :name do |box| %>
         <div class="checkbox-item">
           <%= box.check_box %>
           <%= box.label %>

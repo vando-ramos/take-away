@@ -1,8 +1,8 @@
 <h1 class='title'><%= t('actions.add_dish') %></h1>
 
-<% if @order_dish.errors.any? %>
+<% if @order_item.errors.any? %>
   <ul>
-    <% @order_dish.errors.full_messages.each do |msg| %>
+    <% @order_item.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
   </ul>

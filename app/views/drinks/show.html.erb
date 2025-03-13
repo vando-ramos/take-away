@@ -16,19 +16,16 @@
     <%= button_to t('actions.deactivate'), inactive_drink_path(@drink.id), class: 'active-deactive' %>
   <% else %>
     <%= button_to t('actions.activate'), active_drink_path(@drink.id) %>
-  <% end %>
-  
-  <%= button_to t('actions.delete'), drink_path(@drink.id),
-      method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'delete-button' %>
+  <% end %>  
 </div>
 
 <hr>
 
-<h2 class='subtitle'><%= DrinkOption.model_name.human(count: 2) %></h2>
+<h2 class='subtitle'><%= Option.model_name.human(count: 2) %></h2>
 
 <div><%= link_to t('views.new_drink_option'), new_drink_drink_option_path(@drink.id), class: 'new-button' %></div>
 
-<% if @drink.drink_options.any? %>
+<% if @drink.options.any? %>
   <table class='table-container'>
     <thead>
       <tr>
@@ -38,12 +35,12 @@
       </tr>
     </thead>
     <tbody>
-      <% @drink.drink_options.each do |option| %>
+      <% @drink.options.each do |option| %>
         <tr>
           <td><%= option.description %></td>
           <td><%= number_to_currency(option.price) %></td>
           <td>
-            <%= link_to t('actions.edit'), edit_dish_dish_option_path(@drink.id, option.id), 
+            <%= link_to t('actions.edit'), edit_drink_drink_option_path(@drink.id, option.id), 
                 id: dom_id(option, :edit), class: 'edit-button' %>
           </td>
         </tr>
@@ -55,5 +52,5 @@
 <% end %>
 
 <h2>
-  <%= link_to PriceHistory.model_name.human(count: 1), drink_drink_price_history_index_path(@drink.id), class: 'menu-card' %>
+  <%= link_to PriceHistory.model_name.human(count: 1), price_history_index_path, class: 'menu-card' %>
 </h2>

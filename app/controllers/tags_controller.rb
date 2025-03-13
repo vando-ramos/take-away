@@ -1,5 +1,4 @@
 class TagsController < ApplicationController
-  before_action :set_establishment
   before_action :set_tag, only: %i[edit update]
 
   def index
@@ -14,7 +13,7 @@ class TagsController < ApplicationController
     @tag = Tag.new(tag_params)
 
     if @tag.save
-      redirect_to establishment_tags_path(@establishment.id), notice: t('notices.tag.registered')
+      redirect_to tags_path, notice: t('notices.tag.registered')
     else
       flash.now.alert = t('alerts.tag.register_fail')
       render :new, status: :unprocessable_entity
@@ -26,7 +25,7 @@ class TagsController < ApplicationController
 
   def update
     if @tag.update(tag_params)
-      redirect_to establishment_tags_path(@establishment.id), notice: t('notices.tag.updated')
+      redirect_to tags_path, notice: t('notices.tag.updated')
     else
       flash.now.alert = t('alerts.tag.update_fail')
       render :edit, status: :unprocessable_entity
@@ -35,20 +34,11 @@ class TagsController < ApplicationController
 
   private
 
-  def set_establishment
-    @establishment = current_user.establishment
-
-    if @establishment.nil? || @establishment.id.to_s != params[:establishment_id]
-      return redirect_to establishment_tags_path(@establishment.id),
-      alert: 'Not found or access not authorized'
-    end
-  end
-
   def set_tag
     @tag = Tag.find_by(id: params[:id])
 
     if @tag.nil?
-      redirect_to establishment_tags_path(@establishment.id), alert: 'Not found or access not authorized'
+      redirect_to tags_path, alert: 'Not found or access not authorized'
     end
   end
 

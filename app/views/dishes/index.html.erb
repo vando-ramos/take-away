@@ -2,6 +2,8 @@
 
 <div class='register'><%= link_to t('views.new_dish'), new_dish_path, class: 'new-button' %></div>
 
+<div class='register'><%= link_to Tag.model_name.human(count: 2), tags_path, class: 'new-button' %></div>
+
 <% if @dishes.any? %>
   <div class='tag-filter'>
     <%= form_with(url: dishes_path, method: :get, class: 'filter-form') do %>

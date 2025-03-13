@@ -1,10 +1,10 @@
 <ul>
   <% @dishes.each do |dish| %>
     <li>
-      <strong><%= dish.name %></strong>        
+      <strong><%= dish.name %></strong>
       <ul>
-        <% if dish.dish_options.any? %>
-          <% dish.dish_options.each do |option| %>              
+        <% if dish.options.any? %>
+          <% dish.options.each do |option| %>              
             <li><%= option.description %> - <%= number_to_currency(option.price) %></li>
           <% end %>
         <% else %>

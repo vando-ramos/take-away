@@ -1,11 +1,9 @@
 <h1 class='title'><%= PriceHistory.model_name.human(count: 1) %></h1>
 
-<% if @dish_price_histories.any? %>
-  <% grouped_histories = @dish_price_histories.group_by(&:item_id) %>
-
-  <% grouped_histories.each do |item_id, histories| %>
-    <% dish_option = @dish_options[item_id] %>
-    <h2><%= dish_option.description %></h2>
+<% if @grouped_price_histories.present? %>
+  <% @grouped_price_histories.each do |option, price_histories| %>
+    
+    <h2><%= option.description %></h2>
 
     <div class='history-price-table'>
       <table>
@@ -17,11 +15,11 @@
           </tr>
         </thead>
         <tbody>
-          <% histories.each do |history| %>
+          <% price_histories.each do |price_history| %>
             <tr>
-              <td><%= number_to_currency(history.price) %></td>
-              <td><%= history.start_date.strftime("%d/%m/%Y %H:%M") %></td>
-              <td><%= history.end_date.strftime("%d/%m/%Y %H:%M") %></td>
+              <td><%= number_to_currency(price_history.price) %></td>
+              <td><%= price_history.start_date.strftime("%d/%m/%Y %H:%M") %></td>
+              <td><%= price_history.end_date.strftime("%d/%m/%Y %H:%M") %></td>
             </tr>
           <% end %>
         </tbody>

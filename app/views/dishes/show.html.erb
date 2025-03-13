@@ -19,18 +19,15 @@
   <% else %>
     <%= button_to t('actions.activate'), active_dish_path(@dish.id), class: 'submit-button' %>
   <% end %>
-  
-  <%= button_to t('actions.delete'), dish_path(@dish.id),
-      method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: 'delete-button' %>
 </div>
 
 <hr>
 
-<h2 class='subtitle'><%= DishOption.model_name.human(count: 2) %></h2>
+<h2 class='subtitle'><%= Option.model_name.human(count: 2) %></h2>
 
 <div><%= link_to t('views.new_dish_option'), new_dish_dish_option_path(@dish.id), class: 'new-button' %></div>
 
-<% if @dish.dish_options.any? %>
+<% if @dish.options.any? %>
   <table class='table-container'>
     <thead>
       <tr>
@@ -40,7 +37,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @dish.dish_options.each do |option| %>
+      <% @dish.options.each do |option| %>
         <tr>
           <td><%= option.description %></td>
           <td><%= number_to_currency(option.price) %></td>
@@ -57,5 +54,5 @@
 <% end %>
 
 <h2>
-  <%= link_to PriceHistory.model_name.human(count: 1), dish_dish_price_history_index_path(@dish.id), class: 'menu-card' %>
+  <%= link_to PriceHistory.model_name.human(count: 1), price_history_index_path, class: 'menu-card' %>
 </h2>

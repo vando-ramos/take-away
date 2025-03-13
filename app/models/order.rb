@@ -18,10 +18,12 @@ class Order < ApplicationRecord
                  ready: 3, delivered: 4 }
 
   def total_price
-    total_dishes = order_dishes.sum(&:total_price)
-    total_drinks = order_drinks.sum(&:total_price)
+    # total_dishes = order_dishes.sum(&:total_price)
+    # total_drinks = order_drinks.sum(&:total_price)
 
-    total_dishes + total_drinks
+    # total_dishes + total_drinks
+
+    total_items = order_items.sum(&:total_price)
   end
 
   def update_total_value!

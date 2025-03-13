@@ -36,22 +36,22 @@
     </tr>
   </thead>
   <tbody>
-    <% @order.order_dishes.each do |od| %>
+    <% @order.order_items.each do |oi| %>
       <tr>
-        <td><%= od.dish.name %></td>
-        <td><%= od.dish_option.description %></td>
-        <td><%= od.quantity %></td>
-        <td><%= od.observation %></td>
-        <td><%= number_to_currency(od.total_price) %></td>
+        <td><%= oi.dish.name %></td>
+        <td><%= oi.dish_option.description %></td>
+        <td><%= oi.quantity %></td>
+        <td><%= oi.observation %></td>
+        <td><%= number_to_currency(oi.total_price) %></td>
       </tr>
     <% end %>  
-    <% @order.order_drinks.each do |od| %>
+    <% @order.order_items.each do |oi| %>
       <tr>
-        <td><%= od.drink.name %></td>
-        <td><%= od.drink_option.description %></td>
-        <td><%= od.quantity %></td>
-        <td><%= od.observation %></td>
-        <td><%= number_to_currency(od.total_price) %></td>
+        <td><%= oi.drink.name %></td>
+        <td><%= oi.drink_option.description %></td>
+        <td><%= oi.quantity %></td>
+        <td><%= oi.observation %></td>
+        <td><%= number_to_currency(oi.total_price) %></td>
       </tr>
     <% end %>  
   </tbody>

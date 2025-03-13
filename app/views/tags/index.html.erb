@@ -1,6 +1,6 @@
 <h1 class='title'><%= Tag.model_name.human(count: 2) %></h1>
 
-<div><%= link_to t('views.new_tag'), new_establishment_tag_path(@establishment.id), class: 'new-button' %></div>
+<div><%= link_to t('views.new_tag'), new_tag_path, class: 'new-button' %></div>
 
 <% if @tags.any? %>
   <table class='table-container'>
@@ -15,7 +15,7 @@
         <tr>
           <td><%= tag.name %></td>
           <td>
-            <%= link_to t('actions.edit'), edit_establishment_tag_path(@establishment.id, tag.id), 
+            <%= link_to t('actions.edit'), edit_tag_path(tag.id), 
                 id: dom_id(tag, :edit), class: 'edit-button' %>
           </td>
         </tr>

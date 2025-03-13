@@ -1,4 +1,4 @@
-<%= form_with model: [@order, @order_dish] do |f| %>
+<%= form_with model: [@order, @order_item] do |f| %>
   <div class='form-group'>
     <%= f.label :dishes, Dish.model_name.human(count: 2) %>
     <%= f.collection_select :dish_id, @dishes || [], :id, :name, { prompt: t('views.select_dish') }, { id: "dish-select" } %>

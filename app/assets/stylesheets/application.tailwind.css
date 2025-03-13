@@ -267,15 +267,14 @@ hr {
 }
 
 .menu-card {
-  border: 1px solid black;
-  padding: 5px 10px;
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.menu-card:hover {
-  background-color: rgba(0, 0, 0, 0.100);
+.dish-list, .drink-list {
+  width: 48%;
 }
 
 /* navbar */

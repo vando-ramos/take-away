@@ -1,7 +1,7 @@
 class DrinksController < ApplicationController
   before_action :authorize_admin!
   before_action :set_establishment
-  before_action :set_drink, only: %i[show edit update destroy active inactive]
+  before_action :set_drink, only: %i[show edit update active inactive]
 
   def index
     @drinks = @establishment.drinks
@@ -66,6 +66,7 @@ class DrinksController < ApplicationController
   end
 
   def drink_params
-    params.require(:drink).permit(:name, :description, :calories, :image, :is_alcoholic)
+    type_key = params[:drink] ? :drink : :item
+    params.require(type_key).permit(:name, :description, :calories, :image, :is_alcoholic).merge(type: 'Drink')
   end
 end

@@ -4,8 +4,8 @@ class MenusController < ApplicationController
   before_action :set_menu_items, only: %i[new create edit update]
 
   def show
-    @dishes = @menu.dishes.includes(:dish_options).where(status: Dish.statuses[:active])
-    @drinks = @menu.drinks.includes(:drink_options).where(status: Drink.statuses[:active])
+    @dishes = @menu.items.where(type: 'Dish').includes(:options).where(status: Item.statuses[:active])
+    @drinks = @menu.items.where(type: 'Drink').includes(:options).where(status: Item.statuses[:active])
   end
 
   def new
@@ -46,11 +46,11 @@ class MenusController < ApplicationController
   end
 
   def set_menu_items
-    @dishes = @establishment.dishes.includes(:dish_options).order(:name)
-    @drinks = @establishment.drinks.includes(:drink_options).order(:name)
+    @dishes = @establishment.dishes.includes(:options).order(:name)
+    @drinks = @establishment.drinks.includes(:options).order(:name)
   end
 
   def menu_params
-    params.require(:menu).permit(:name, dish_ids: [], drink_ids: [])
+    params.require(:menu).permit(:name, item_ids: [])
   end
 end

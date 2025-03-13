@@ -1,5 +1,5 @@
 <div class='form-container'>
-  <%= form_with model: @drink do |f| %>
+  <%= form_with model: @drink, url: @drink.persisted? ? drink_path(@drink) : drinks_path, local: true do |f| %>
     <div class='form-group'>
       <%= f.label :name %>
       <%= f.text_field :name %>

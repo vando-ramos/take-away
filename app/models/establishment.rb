@@ -1,8 +1,9 @@
 class Establishment < ApplicationRecord
   has_many :users
   has_many :operating_hours
-  has_many :dishes
-  has_many :drinks
+  has_many :items, dependent: :destroy
+  has_many :dishes, -> { where(type: 'Dish') }, class_name: 'Item'
+  has_many :drinks, -> { where(type: 'Drink') }, class_name: 'Item'
   has_many :menus
   has_many :orders
   has_many :pre_registrations

@@ -3,8 +3,8 @@
     <li>
       <strong><%= drink.name %></strong>    
       <ul>
-        <% if drink.drink_options.any? %>
-          <% drink.drink_options.each do |option| %>              
+        <% if drink.options.any? %>
+          <% drink.options.each do |option| %>              
             <li><%= option.description %> - <%= number_to_currency(option.price) %></li>
           <% end %>
         <% else %>

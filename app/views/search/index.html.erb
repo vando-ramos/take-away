@@ -1,6 +1,6 @@
-<h1 class='title'>Results found: <%= @dishes.count %></h1>
-
 <% if @dishes.present? %>
+  <h1 class='title'>Results found: <%= @dishes.count %></h1>
+
   <ul>
     <% @dishes.each do |dish| %>
       <li>
@@ -11,13 +11,9 @@
       </li>
     <% end %>
   </ul>
-<% else %>
-  <p>Dish not found</p>
-<% end %>
+<% elsif @drinks.present? %>
+  <h1 class='title'>Results found: <%= @drinks.count %></h1>
 
-<h1 class='title'>Results found: <%= @drinks.count %></h1>
-
-<% if @drinks.present? %>
   <ul>
     <% @drinks.each do |drink| %>
       <li>
@@ -29,6 +25,6 @@
     <% end %>
   </ul>
 <% else %>
-  <p>Drink not found</p>
+  <p>No results found</p>
 <% end %>
 

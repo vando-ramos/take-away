@@ -66,6 +66,20 @@ pt-BR:
       dish_tag:
         dish_id: 'Prato'
         tag_id: 'Marcador'
+      item:
+        calories: 'Calorias'
+        description: 'Descrição'
+        establishment_id: 'Estabelecimento'
+        image: 'Imagem'
+        is_alcoholic: 'É Alcóolico?'
+        is_alcoholics:
+          yes: 'Sim'
+          no: 'Não'
+        name: 'Nome'
+        status: 'Situação'
+        statuses:
+          active: 'Ativo'
+          inactive: 'Inativo'
       dish:
         calories: 'Calorias'
         description: 'Descrição'
