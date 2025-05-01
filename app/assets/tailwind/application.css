@@ -1,0 +1,408 @@
+@import "tailwindcss";
+
+/* global */
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .title {
+    font-size: 30px;
+    margin: 20px 0;
+  }
+  
+  .register {
+    margin-bottom: 20px;
+  }
+  
+  h2 {
+    font-size: 20px;
+  }
+  
+  hr {  
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.200);
+    margin: 10px 0;
+  }
+  
+  .success-message {
+    color: green;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .error-message {
+    color: #e74c3c;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  /* buttons */
+  
+  .action-buttons {
+    display: flex;
+  }
+  
+  .active-deactive {
+    border: 1px solid black;
+    padding: 3px 5px;
+    background-color: black;
+    color: white;
+    margin: 10px;
+  }
+  
+  .active-deactive:hover {
+    background-color: rgba(0, 0, 0, 0.800);
+    cursor: pointer;
+  }
+  
+  .delete-button {
+    border: 1px solid red;
+    padding: 3px 5px;
+    background-color: red;
+    color: yellow;
+    margin: 10px;
+  }
+  
+  .delete-button:hover {
+    background-color: yellow;
+    color: red;
+  }
+  
+  .edit-button {
+    border: 1px solid #0d6efd;
+    padding: 3px 5px;
+    background-color: yellow;
+    color: blue;
+    margin: 10px;
+    font-weight: 500;
+  }
+  
+  .edit-button:hover {
+    background-color: #0d6efd;
+    color: yellow;
+  }
+  
+  .filter-button {
+    border: 1px solid black;
+    height: 40px;
+    padding: 0 10px;
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
+  
+  .new-button {
+    border: 1px solid #0d6efd;
+    padding: 10px;
+    background-color: #0d6efd;
+    color: white;
+    margin: 10px;
+  }
+  
+  .new-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .search-button {
+    border: 1px solid black;
+    height: 40px;
+    padding: 0 10px;
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
+  
+  .search-button:hover {
+    background-color: rgba(0, 0, 0, 0.800);
+    cursor: pointer;
+  }
+  
+  .sign-button {
+    border: 1px solid black;
+    height: 30px;
+    padding: 0 5px;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 12px;
+  }
+  
+  .sign-button:hover {
+    background-color: rgba(0, 0, 0, 0.800);
+    cursor: pointer;
+  }
+  
+  .submit-button {
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    text-align: center;
+    width: 100%;
+    padding: 8px;
+    border-radius: 4px;
+  }
+  
+  .submit-button:hover {
+    background-color: rgba(0, 0, 0, 0.800);
+    cursor: pointer;
+  }
+  
+  /* form */
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-group textarea {
+    width: 100%;
+    height: 100px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .form-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .checkbox-section {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  .checkbox-section label {
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .checkbox-group {  
+    gap: 15px;
+  }
+  
+  .checkbox-item input {
+    margin-right: 10px;
+  }
+  
+  .time-select-group select {
+    width: 46%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline;
+  }
+  
+  .time-select-group select:first-child {
+    margin-right: 4%;
+  }
+  
+  .filter-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .filter-form label {
+    margin-right: 5px;
+  }
+  
+  .filter-select {
+    height: 40px;
+  }
+  
+  /* establishment */
+  
+  .subtitle {
+    margin: 20px;
+  }
+  
+  /* menu */
+  
+  .menu-buttons {
+    margin: 20px 0;
+  }
+  
+  .menu-card {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .dish-list, .drink-list {
+    width: 48%;
+  }
+  
+  /* navbar */
+  
+  .navbar {
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    height: 100vh;
+    width: 200px;
+    margin: 0 5px;
+    overflow: auto;
+    padding: 0 10px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  .nav-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  .nav-item:hover {
+    text-decoration: underline;
+  }
+  
+  /* tag-filter */
+  
+  .tag-filter {
+    margin: 20px 0;
+  }
+  
+  /* dishes and drinks index */
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .list li {
+    text-align: center;
+  }
+  
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+    margin: 20px;
+    overflow: auto;
+    padding-right: 20px;
+  }
+  
+  /* dish an drink info */
+  
+  .container-info {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .info {
+    width: 300px;
+  }
+  
+  /* table */
+  
+  .table-container {
+    margin: 30px 0;
+  }
+  
+  table {  
+    width: 100%;
+    border-collapse: collapse;
+  }
+    
+  table, th, td {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  
+  td {
+    text-align: center;
+  }
+  
+  .history-price-table {
+    margin-bottom: 20px;
+  }
+  
+  .day-link:hover {
+    text-decoration: underline;
+  }
+  
+  .order-link:hover {
+    text-decoration: underline;
+  }
+  
+  section {
+    margin-left: 20px;
+  }
+  
+  .container {
+    margin-top: 30px;
+  }
+  
+  li {
+    margin: 10px;
+  }
+  
+  .link {
+    margin: 20px;
+  }
+  
+  .img {
+    width: 300px;
+  }
+  
+  .add-items-link {
+    display: flex;
+  }
+  
+  .add-items-link a {
+    margin: 10px;
+  }
+  
+  .total-price {
+    margin: 20px;
+  }
+  
+  /* search */
+  
+  .search-field {
+    height: 40px;
+  }
+  
+  .search-form {
+    display: flex;
+    align-items: center;
+  }
